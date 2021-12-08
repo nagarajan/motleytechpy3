@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Motleytech" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Physics, Mathematics, Optimization, Blog, " />
+
+<meta property="og:title" content="Brachistochrone "/>
+<meta property="og:url" content="/brachistochrone.html" />
+<meta property="og:description" content="This article is extracted from my final project report for the Numerical Optimization course at Stanford ICME The brachistochrone curve, or curve of shortest time (literally in Greek), is the curve between two points that is covered in the least time by a body that travels solely under the effect …" />
+<meta property="og:site_name" content="MotleyTech.net" />
+<meta property="og:article:author" content="Motleytech" />
+<meta property="og:article:published_time" content="2009-05-13T03:45:00-07:00" />
+<meta name="twitter:title" content="Brachistochrone ">
+<meta name="twitter:description" content="This article is extracted from my final project report for the Numerical Optimization course at Stanford ICME The brachistochrone curve, or curve of shortest time (literally in Greek), is the curve between two points that is covered in the least time by a body that travels solely under the effect …">
+
+        <title>Brachistochrone  · MotleyTech.net
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/theme/css/elegant.prod.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/theme/css/custom.css" media="screen">
+
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="/"><span class=site-name>MotleyTech.net</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       "/"
+                                    >Home</a>
+                                </li>
+                                <li ><a href="/categories.html">Categories</a></li>
+                                <li ><a href="/tags.html">Tags</a></li>
+                                <li ><a href="/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="/brachistochrone.html">
+                Brachistochrone
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <p><i style="color:#bbb">This article is extracted from my final project report for the Numerical Optimization course at Stanford ICME</i></p>
+<p>The <i class="hlitalics">brachistochrone</i> curve, or curve of <em>shortest time</em> (literally in <em>Greek</em>), is the curve between two points that is covered in the least time by a body that travels solely under the effect of constant gravity. The problem is described below pictorially. If each of the lines in the picture is a smooth ramp, and a particle starts to slide (ignoring friction) on each ramp from the left to right, which ramp will lead its particle to the end first?</p>
+<p><span class="img-width-600">
+<img alt="Some possible paths" src="/images/brachistochrone/which_curve.png">
+</span></p>
+<p>The answer may surprise you. At the very least, finding it is very interesting.</p>
+<h2>History</h2>
+<p>In the words of Johann Bernoulli, who originally posed the problem in 1696,</p>
+<blockquote>
+<p>I, Johann Bernoulli, address the most brilliant mathematicians in the world. Nothing is more attractive to intelligent people than an honest, challenging problem, whose possible solution will bestow fame and remain as a lasting monument. Following the example set by Pascal, Fermat, etc., I hope to gain the gratitude of the whole scientific community by placing before the finest mathematicians of our time a problem which will test their methods and the strength of their intellect. If someone communicates to me the solution of the proposed problem, I shall publicly declare him worthy of praise.</p>
+</blockquote>
+<p>Earlier, Galileo incorrectly stated in 1638 in his book <i class="hlitalics">Discourse on two new sciences</i> that this curve was an arc of a circle. Johann Bernoulli solved the problem before posing it to readers of <i class="hlitalics">Acta Eruditorum</i> in June 1696. Five mathematicians responded with solutions: Isaac Newton, Jakob Bernoulli (Johann's brother), Gottfried Leibniz, Ehrenfried Walther von Tschirnhaus and Guillaume Francois Antoine l'Hopital. Four of the solutions (excluding l'Hopital's) were published in the May 1697 edition of the same publication.</p>
+<p>In an attempt to outdo his brother, Jakob Bernoulli created a harder version of the brachistochrone problem. In solving it, he developed new methods that were refined by Leonhard Euler into what the latter called (in 1766) the <i class="hlitalics">calculus of variations</i>.</p>
+<h2>Analytical solution</h2>
+<p>The analytical solution to the brachistochrone problem is given by the equations,</p>
+<div class="math">\begin{equation}
+  x = a(\theta - sin\theta)
+\end{equation}</div>
+<div class="math">\begin{equation}
+  y = a(1 - cos\theta)
+\end{equation}</div>
+<p>where the initial point is assumed to be at the origin. The solution curve is a <em>cycloid</em> with the cusp at the origin. The time taken to travel to the destination point <span class="math">\((x_0, y_0)\)</span> along this curve is given by,</p>
+<div class="math">$$ t_0 = \sqrt{\frac{a_0}{g}}\theta_0 $$</div>
+<p>We solve the problem numerically using optimization techniques and compare the solution against the optimal analytical time.</p>
+<h3>Finding <span class="math">\(a_0\)</span> and <span class="math">\(\theta_0\)</span></h3>
+<p>A good way of comparing the numerical solution against the analytical solution is to find the difference in the minimum time predicted by both methods. We need to find the value of <span class="math">\(a_0\)</span> and <span class="math">\(\theta_0\)</span> in order to find the analytical time. I wrote a program which performs binary search for an appropriate <span class="math">\(a\)</span>, such that the resultant <span class="math">\(\theta\)</span> satisfies both the equations (1) and (2) of the cycloid.</p>
+<h3>Preliminary Analysis</h3>
+<p>It is clear that the problem has no solution if the destination point is higher than the initial point. In the case when the destination point is at the same level, errors in calculation can make the problem infeasible to a numerical solution (A very close problem has the destination higher than initial).
+In this case, we perturb the data and make the destination point a bit lower than the initial point to get an approximate solution, such that it is well within the limits set by numerical errors.</p>
+<h2>Numerical Solution</h2>
+<p>We now describe the method of Numerical Optimization and supporting algorithms used to find the Brachistochrone curve.</p>
+<h4>Discretization Model</h4>
+<p>The problem is first discretized appropriately into <span class="math">\(n\)</span> variables which correspond to the height of the path at intermediate discrete points.</p>
+<p><strong>Uniform discretization</strong><br />
+A uniform division of the horizontal distance between the 2 points in to (n+1) equal parts leads to, what I refer to as, "Uniform Discretization". The figure below shows 3 different possible paths using uniform discretization.</p>
+<p><span class="img-width-600">
+<img alt="Uniform Discretization" src="/images/brachistochrone/linear_discretization.png">
+</span></p>
+<p><strong>Non-uniform Discretization</strong> <br />
+When the horizontal distance between the points is not divided uniformly, it is referred to as "Non-uniform Discretization". This is desirable as the error between the approximated curve and the actual curve is high in places where the curvature (rate of change of slope) is high. The figure below depicts one possible non-uniformly discretized path. Notice that the division of the horizontal distance near the initial point is much finer than farther from it.</p>
+<p><span class="img-width-600">
+<img alt="Non-uniform Discretization" src="/images/brachistochrone/non_uniform_discrt.png">
+</span></p>
+<p>The width of each interval here depends on the curvature of the approximated curve near the optimal solution.</p>
+<p><strong>Optimal Discretization</strong><br />
+This raises an interesting question about the optimal non-uniform discretization. "What is the optimal spacing of the variables in the horizontal direction which gives the minimum error as compared to the optimal brachistochrone?". This is an optimization problem in '2n' variables. We will talk more about this topic in the appendix.</p>
+<h3>Equations for Time and Gradient</h3>
+<p>For a particular discretization and a set of values for the variables, we join the intermediate points by appropriate curves (or straight lines) and find the time for the whole path. The time and rate of change of time with respect to the different variables (<em>gradient</em>) is then computed analytically. Let us define some useful intermediate variables which will be used to define the final formulas for time and gradient. For the <span class="math">\(k^{th}\)</span> interval, let <span class="math">\(l_k\)</span> denote the horizontal length of the interval and <span class="math">\(h_k\)</span> denote the value of the height at beginning of the interval. Also, <span class="math">\(N = n+2\)</span> (including the end points <span class="math">\(h_1\)</span> and <span class="math">\(h_N\)</span>). We then define</p>
+<div class="math">\begin{align}
+    d_k &amp;= h_k - h_{k+1} \qquad &amp;\forall \{1 \le k \le N - 1\}\\
+    y_k &amp;= h_1 - h_k    \qquad &amp;\forall \{2 \le k \le N\}\\
+    s_k &amp;= \sqrt{l_k^2 + d_k^2} \qquad &amp;\forall \{1 \le k \le N - 1\}\\
+    r_k &amp;= \sqrt{\frac{2}{g}}\frac{s_k}{d_k} \qquad &amp;\forall \{ d_k \ne 0\}
+\end{align}</div>
+<p>We impose a restriction that <span class="math">\(y_k &gt; 0\)</span>. It is justified as <span class="math">\(y_k = 0\)</span> is a problem which is close to another with no solution, and hence prone to numerical problems. We impose this restriction on the initial conditions as well as on intermediate values of the variables.
+The amount for the time taken by a particle to travel each interval, in a straight line path, is given by the formulas,</p>
+<div class="math">\begin{align}
+    t_1 &amp;= s_1\sqrt{\frac{2}{gy_2}}; \qquad &amp;\{y_2 \ne 0\}\\
+    t_k &amp;= r_k \left\{\sqrt{y_{k+1}} - \sqrt{y_k}\right\} \qquad &amp;\forall \{k &gt; 1, d_k \ne 0\}\\
+    t_k &amp;= \frac{s_k}{\sqrt{2gy_k}}; \qquad &amp;\forall \{k &gt; 1, d_k = 0, y_k \ne 0\}\\
+\end{align}</div>
+<p>The total time is given by</p>
+<div class="math">$$ T = \sum_{k = 1}^{N-1} t_k $$</div>
+<p>The gradient for <span class="math">\(\{2 \leq k \leq (N-1)\}, y_k &gt; 0\)</span> is computed using the formulas</p>
+<div class="math">\begin{align}
+    \frac{\partial t_k}{\partial h_k} &amp;= r_k
+    \left\{
+    \frac{(\sqrt{y_{k+1}} - \sqrt{y_k})(d_k^2 - s_k^2)}{s_k^2 d_k}
+    + \frac{1}{2\sqrt{y_k}}
+    \right\}
+    \qquad &amp;\{d_k \ne 0\}\\
+    \frac{\partial t_k}{\partial h_k} &amp;= \frac{l_k^2}{4 t_k g y_k^2}
+    \qquad &amp;\{d_k = 0\}\\
+    \frac{\partial t_{k-1}}{\partial h_k} &amp;= r_{k-1}
+    \left\{
+    \frac{(\sqrt{y_{k}} - \sqrt{y_{k-1}})(s_{k-1}^2 - d_{k-1}^2)}{s_{k-1}^2  d_{k-1}}
+    - \frac{1}{2\sqrt{y_k}}
+    \right\}
+    \quad &amp;\{d_{k-1} \ne 0\} \\
+    \frac{\partial t_{k-1}}{\partial h_k} &amp;= \frac{l_{k-1}}{\sqrt{32 g y_{k-1}^3}}
+    \qquad &amp;\{d_{k-1} = 0\}
+\end{align}</div>
+<p>The final gradient is given by</p>
+<div class="math">\begin{align}
+  \frac{\partial T}{\partial h_k} &amp;=
+  \frac{\partial t_k}{\partial h_k}
+  + \frac{\partial t_{k-1}}{\partial h_k}
+  \qquad &amp;\{2 \leq k \leq N-1\}
+\end{align}</div>
+<p><strong>Gradient by central difference</strong> <br />
+For the line search test functions, which uses the gradient extensively, whenever the gradient is not available in analytical form, the gradient is found by a central difference using <span class="math">\(\delta x = 10^{-4}\)</span>. This uses <span class="math">\(n\)</span> evaluations of the objective function.</p>
+<h1>Algorithm</h1>
+<p>The optimization algorithm uses the quasi newton direction using the BFGS update and a line search using gamma conditions to find a local minimum of the objective function.</p>
+<h4>Quasi Newton - BFGS</h4>
+<p>The equation of the quasi-newton direction is given by</p>
+<div class="math">$$ p_k = -B_k^{-1} g_k $$</div>
+<p>where the <span class="math">\(B_k\)</span> is defined by the BFGS update. We set <span class="math">\(B_0 = I\)</span> and then compute</p>
+<div class="math">$$ B_{k+1} = B_k - \frac{B_k s_k (B_k s_k)^T}{s_k^T B_k s_k} + \frac{y_k y_k^T}{y_k^T s_k} $$</div>
+<p>where <span class="math">\(s_k = x_{k+1} - x_k\)</span> and <span class="math">\(y_k = \nabla f_{k+1} - \nabla f_k\)</span>.</p>
+<p>Another way to use the BFGS update is to directly update the inverse of the Hessian, <span class="math">\(H_k\)</span>. Again, <span class="math">\(H_0 = I\)</span>. This approach reduces the computation time required for computing the search direction. The inverse update is given by</p>
+<div class="math">$$
+    H_{k+1}^{-1} = H_k^{-1}
+    + \frac{(s_k s_k^T)(s_k^T y_k + y_k^T H_k^{-1} y_k)}{(s_k^T y_k)^2}
+    - \frac{H_k^{-1} y_k s_k^T + s_k y_k^T H_k^{-1}}{s_k^T y_k}
+$$</div>
+<p>The direction is now computed directly as</p>
+<div class="math">$$ p_k = -H_k g_k $$</div>
+<p>Though this technique can be faster, it is also prone to more numerical errors, hence we will not use the method of updating the inverse of the Hessian. A common practice is to add <em>I</em> to the hessian or set the computed approximate Hessian to <em>I</em> when the Hessian becomes very ill conditioned, typically <span class="math">\(cond(H) &gt; 10^6\)</span>, or when the search direction is not actually a descent direction and line search returns a step size of zero.</p>
+<h3>Linesearch</h3>
+<p>I implemented a line search using the gamma conditions (as described in Nocedal and Wright), which is used to calculate step length in the direction given by the quasi newton. Cubic interpolation is used to find intermediate points. The line search also takes care that the step size should not take the variables into the infeasible region. The line search starts with the initial step size of 1 and tries to bracket the minimizer by increasing or decreasing the step size.</p>
+<h4>Constraints</h4>
+<p>The constraint on the problem is that any of the variables cannot be greater than the initial point. This constraint is respected by the line search through interaction with the objective function which returns a <em>NaN</em> when the variables are out of bound. A bisection in the current bracket is done by line search in order to decrease the step size and remain in the constrained space.</p>
+<h4>Stopping Criteria</h4>
+<p>The algorithm stops when the norm of the gradient, <span class="math">\(\vectornorm{g} &lt; 10^{-7}\)</span>.</p>
+<h4>Line Search Testing</h4>
+<p><strong>Quadratic in 2 variables</strong>
+This was the first test function used to visually gauge the progress the of the Line search. Figures 2.3 and 2.4 compare the Steepest descent and Quasi Newton direction using the same gamma conditions.</p>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="o">[</span><span class="n">H</span><span class="o">]</span><span class="w"></span>
+<span class="w">      </span><span class="err">\</span><span class="n">centering</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">includegraphics</span><span class="o">[</span><span class="n">width=150mm</span><span class="o">]</span><span class="err">{</span><span class="n">quad_2d_sd</span><span class="p">.</span><span class="n">eps</span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">vspace</span><span class="err">{</span><span class="o">-</span><span class="mi">20</span><span class="n">pt</span><span class="err">}</span><span class="w"></span>
+<span class="w">      </span><span class="err">\</span><span class="n">caption</span><span class="err">{</span><span class="n">Steepest</span><span class="w"> </span><span class="n">Descent</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="o">[</span><span class="n">H</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">vspace</span><span class="err">{</span><span class="o">-</span><span class="mi">20</span><span class="n">pt</span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">centering</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">includegraphics</span><span class="o">[</span><span class="n">width=100mm</span><span class="o">]</span><span class="err">{</span><span class="n">quad_2d_bfgs</span><span class="p">.</span><span class="n">eps</span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">vspace</span><span class="err">{</span><span class="o">-</span><span class="mi">20</span><span class="n">pt</span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">caption</span><span class="err">{</span><span class="n">Quasi</span><span class="w"> </span><span class="n">Newton</span><span class="w"> </span><span class="n">Line</span><span class="w"> </span><span class="k">search</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="err">\</span><span class="n">subsubsection</span><span class="err">{</span><span class="n">Rosenbrock</span><span class="w"> </span><span class="k">Function</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">Also</span><span class="w"> </span><span class="k">called</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">banana</span><span class="w"> </span><span class="k">function</span><span class="p">,</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">classic</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">testing</span><span class="w"> </span><span class="n">optimization</span><span class="w"> </span><span class="n">algorithms</span><span class="p">.</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">minimum</span><span class="w"> </span><span class="n">lies</span><span class="w"> </span><span class="n">inside</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">long</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">thin</span><span class="w"> </span><span class="n">curved</span><span class="w"> </span><span class="n">valley</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">).</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">given</span><span class="w"> </span><span class="k">by</span><span class="w"></span>
+
+<span class="w">  </span><span class="err">\</span><span class="o">[</span><span class="n"></span>
+<span class="n">    f(x) = \sum_{i=1}^{n-1} 100(x(i+1) - x(i)^2)^2 + (1 - x(i))^2</span>
+<span class="n">  \</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">The</span><span class="w"> </span><span class="n">convergence</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="k">search</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">shown</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">figure</span><span class="w"> </span><span class="mf">2.5</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="o">[</span><span class="n">H</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">centering</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">includegraphics</span><span class="o">[</span><span class="n">width=100mm</span><span class="o">]</span><span class="err">{</span><span class="n">rosen_1</span><span class="p">.</span><span class="n">eps</span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">vspace</span><span class="err">{</span><span class="o">-</span><span class="mi">20</span><span class="n">pt</span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">caption</span><span class="err">{</span><span class="n">Rosenbrock</span><span class="w"> </span><span class="k">Function</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="err">\</span><span class="n">subsubsection</span><span class="err">{</span><span class="n">Branin</span><span class="s1">&#39;s Funtion}</span>
+<span class="s1">  This is another optimization test function.\footnote[1]{Thanks to Gurjeet for suggesting Branin&#39;</span><span class="n">s</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Schwefel</span><span class="s1">&#39;s functions} It has 4 local minima near the origin. The convergence to one of the minima is shown in the figure 2.6. This example also illustrates that the line search might not converge to the nearest local minimum. It only guarantees convergence to any local minimum.</span>
+
+<span class="s1">  \begin{figure}[H]</span>
+<span class="s1">    \centering</span>
+<span class="s1">    \includegraphics[width=150mm]{branin_1.eps}</span>
+<span class="s1">    \vspace{-20pt}</span>
+<span class="s1">    \caption{Branin&#39;</span><span class="n">s</span><span class="w"> </span><span class="k">Function</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="w"></span>
+
+
+<span class="w">  </span><span class="err">\</span><span class="n">subsubsection</span><span class="err">{</span><span class="n">Schwefel</span><span class="s1">&#39;s Funtion}</span>
+<span class="s1">  This is an optimization test function which has lots of variation and hence can give wrong directions of search. Also, it can be noticed that small discrete perturbations in the initial point can change the final local minima. The convergence for a particular case is shown in figure 2.5 and 2.6.</span>
+
+<span class="s1">  \begin{figure}[H]</span>
+<span class="s1">      \centering</span>
+<span class="s1">      \includegraphics[width=130mm]{schwefel_1.eps}</span>
+<span class="s1">    \vspace{-20pt}</span>
+<span class="s1">      \caption{Schwefel&#39;</span><span class="n">s</span><span class="w"> </span><span class="k">Function</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="o">[</span><span class="n">H</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">vspace</span><span class="err">{</span><span class="o">-</span><span class="mi">20</span><span class="n">pt</span><span class="err">}</span><span class="w"></span>
+<span class="w">      </span><span class="err">\</span><span class="n">centering</span><span class="w"></span>
+<span class="w">      </span><span class="err">\</span><span class="n">includegraphics</span><span class="o">[</span><span class="n">width=120mm</span><span class="o">]</span><span class="err">{</span><span class="n">schwefel_2</span><span class="p">.</span><span class="n">eps</span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">vspace</span><span class="err">{</span><span class="o">-</span><span class="mi">20</span><span class="n">pt</span><span class="err">}</span><span class="w"></span>
+<span class="w">      </span><span class="err">\</span><span class="n">caption</span><span class="err">{</span><span class="n">Schwefel</span><span class="err">&#39;</span><span class="n">s</span><span class="w"> </span><span class="k">Function</span><span class="w"> </span><span class="p">(</span><span class="n">Zoomed</span><span class="w"> </span><span class="ow">in</span><span class="p">)</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="w"></span>
+
+
+<span class="w">  </span><span class="err">\</span><span class="n">subsubsection</span><span class="err">{</span><span class="n">N</span><span class="w"> </span><span class="n">dimensional</span><span class="w"> </span><span class="n">Quadratic</span><span class="w"> </span><span class="k">Function</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">An</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="n">dimensional</span><span class="w"> </span><span class="n">quadratic</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">defined</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">equation</span><span class="w"></span>
+
+<span class="w">  </span><span class="err">\</span><span class="o">[</span><span class="n"></span>
+<span class="n">    f(x) = g^T x + \frac{1}{2}x^T H x</span>
+<span class="n">  \</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">  </span><span class="ow">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">location</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">minima</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="n">x</span><span class="o">^*</span><span class="err">$</span><span class="p">,</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">given</span><span class="w"> </span><span class="k">by</span><span class="w"></span>
+
+<span class="w">  </span><span class="err">\</span><span class="o">[</span><span class="n"></span>
+<span class="n">    x^* = -H^{-1}g</span>
+<span class="n">  \</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">provided</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">H</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">positive</span><span class="w"> </span><span class="n">definite</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">The</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">sprandsym</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">eig</span><span class="p">)</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">matlab</span><span class="p">,</span><span class="w"> </span><span class="n">generates</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">random</span><span class="w"> </span><span class="k">symmetric</span><span class="w"> </span><span class="n">matrix</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">eigenvalues</span><span class="w"> </span><span class="n">given</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">vector</span><span class="w"> </span><span class="n">eig</span><span class="p">.</span><span class="w"> </span><span class="k">Using</span><span class="w"> </span><span class="n">positive</span><span class="w"> </span><span class="n">numbers</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">vector</span><span class="w"> </span><span class="n">eig</span><span class="p">,</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">generate</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">desired</span><span class="w"> </span><span class="n">quadratic</span><span class="w"> </span><span class="k">function</span><span class="p">.</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">converges</span><span class="w"> </span><span class="k">within</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">expected</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">steps</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="err">\</span><span class="n">paragraph</span><span class="err">{</span><span class="n">Multiple</span><span class="w"> </span><span class="n">Eigenvalue</span><span class="w"> </span><span class="n">Quadratic</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">Also</span><span class="p">,</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">expect</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">optimization</span><span class="w"> </span><span class="n">converges</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">less</span><span class="w"> </span><span class="k">than</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="n">steps</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="n">multiple</span><span class="w"> </span><span class="n">eigenvalues</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">present</span><span class="p">.</span><span class="w"> </span><span class="n">We</span><span class="w"> </span><span class="n">tested</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">various</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">few</span><span class="w"> </span><span class="n">configurations</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">multiple</span><span class="w"> </span><span class="n">eigenvalues</span><span class="p">.</span><span class="w"> </span><span class="n">Again</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">search</span><span class="w"> </span><span class="n">converges</span><span class="w"> </span><span class="k">within</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">expected</span><span class="w"> </span><span class="n">steps</span><span class="p">.</span><span class="w"></span>
+</code></pre></div>
+
+<p>\chapter{Results}
+We look at the Brachistochrone using various initial and final points as well as different starting estimates of the curve. We also analyze the running time, the number of function/gradient evaluations as well as the error with respect to the optimal analytical time vs. the number of variables used for discretization.</p>
+<p>The figure below shows a typical curve obtained using 29 variables, and convergence in 107 steps. The intermediate steps are colored in cyan and the final curve is in red.</p>
+<div class="math">\begin{figure}[H]
+  \vspace{-15pt}
+  \begin{center}
+    \includegraphics[width=150mm]{brach_1.eps}
+  \end{center}
+  \vspace{-80pt}
+  \caption{Destination (300, -100)}
+\end{figure}</div>
+<p>\section{Curve with Linear Discretization}
+    \subsection{Optimal curves}
+    We look at some brachistochrones corresponding to different final points. The origin is always the starting point (the method has been tested with other starting locations as well). In this section, we use the straight wedge as the initial curve. Each output gives comprehensive information about the final curve as well as the order and error performance of the algorithm. Each plot contains 6 subplots. Below is an example output followed by information about each plot. The plots are zoom-able as they are vector images.
+    </p>
+<div class="math">\begin{figure}[H]
+      \vspace{-10pt}
+      \begin{center}
+        \includegraphics[width=150mm]{brach_a1.eps}
+      \end{center}
+      \vspace{-35pt}
+      \caption{Destination (300, -100) with analysis}
+    \end{figure}</div>
+<div class="highlight"><pre><span></span><code><span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">enumerate</span><span class="err">}</span><span class="w"></span>
+
+<span class="err">\</span><span class="n">item</span><span class="w"> </span><span class="ow">In</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">first</span><span class="w"> </span><span class="n">plot</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">curves</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">blue</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">final</span><span class="w"> </span><span class="n">optimized</span><span class="w"> </span><span class="n">curves</span><span class="w"> </span><span class="n">obtained</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">96</span><span class="p">,</span><span class="w"> </span><span class="mi">128</span><span class="p">,</span><span class="w"> </span><span class="mi">160</span><span class="p">,</span><span class="w"> </span><span class="mi">196</span><span class="p">,</span><span class="w"> </span><span class="mi">220</span><span class="p">,</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span><span class="w"> </span><span class="mi">325</span><span class="p">)</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">curve</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">red</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="mi">400</span><span class="w"> </span><span class="n">variables</span><span class="p">.</span><span class="w"></span>
+<span class="err">\</span><span class="n">item</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="k">second</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="p">(</span><span class="k">Order</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">fitting</span><span class="w"> </span><span class="n">Quadratic</span><span class="p">)</span><span class="w"> </span><span class="n">tries</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">fit</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">quadratic</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="nc">time</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">algorithm</span><span class="w"> </span><span class="n">vs</span><span class="p">.</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">variables</span><span class="p">.</span><span class="w"></span>
+
+<span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="o">[</span><span class="n">H</span><span class="o">]</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">center</span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">includegraphics</span><span class="o">[</span><span class="n">width=120mm</span><span class="o">]</span><span class="err">{</span><span class="n">brach_a5</span><span class="p">.</span><span class="n">eps</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">center</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="n">vspace</span><span class="err">{</span><span class="o">-</span><span class="mi">35</span><span class="n">pt</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="n">caption</span><span class="err">{</span><span class="n">Destination</span><span class="w"> </span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">191</span><span class="p">)</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">analysis</span><span class="err">}</span><span class="w"></span>
+<span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="w"></span>
+
+<span class="err">\</span><span class="n">item</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">third</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="p">(</span><span class="k">Order</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">fitting</span><span class="w"> </span><span class="n">Cubic</span><span class="p">)</span><span class="w"> </span><span class="n">tries</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">fit</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">cubic</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="nc">time</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">algorithm</span><span class="w">  </span><span class="n">vs</span><span class="p">.</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">variables</span><span class="p">.</span><span class="w"></span>
+<span class="err">\</span><span class="n">item</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">fourth</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="p">(</span><span class="n">Number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">steps</span><span class="p">)</span><span class="w">  </span><span class="n">traces</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">steps</span><span class="w"> </span><span class="n">vs</span><span class="p">.</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">variables</span><span class="p">.</span><span class="w"></span>
+<span class="err">\</span><span class="n">item</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">fifth</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="p">(</span><span class="n">Number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">evaluations</span><span class="p">)</span><span class="w"> </span><span class="n">gives</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">functions</span><span class="o">/</span><span class="n">gradient</span><span class="w"> </span><span class="n">evaluations</span><span class="w"> </span><span class="n">vs</span><span class="p">.</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">variables</span><span class="p">.</span><span class="w"></span>
+<span class="err">\</span><span class="n">item</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">sixth</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="p">(</span><span class="k">Relative</span><span class="w"> </span><span class="n">error</span><span class="p">)</span><span class="w"> </span><span class="n">traces</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">relative</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="err">$</span><span class="p">(</span><span class="n">log_</span><span class="err">{</span><span class="mi">10</span><span class="err">}</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="n">t</span><span class="p">)</span><span class="o">/</span><span class="n">T</span><span class="p">)</span><span class="err">$</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">compared</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">optimal</span><span class="w"> </span><span class="nc">time</span><span class="w"> </span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="w"> </span><span class="n">vs</span><span class="p">.</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">variables</span><span class="p">.</span><span class="w"></span>
+
+<span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">enumerate</span><span class="err">}</span><span class="w"></span>
+
+
+<span class="n">Many</span><span class="w"> </span><span class="n">more</span><span class="w"> </span><span class="n">destination</span><span class="w"> </span><span class="n">points</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">evaluated</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Appendix</span><span class="p">.</span><span class="w"> </span><span class="n">We</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="n">show</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">brachistochrones</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">along</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">progress</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">optimization</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="ow">some</span><span class="w"> </span><span class="n">more</span><span class="w"> </span><span class="n">configurations</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="mi">99</span><span class="w"> </span><span class="n">variables</span><span class="p">.</span><span class="w"></span>
+
+<span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="o">[</span><span class="n">H</span><span class="o">]</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">center</span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">includegraphics</span><span class="o">[</span><span class="n">width=150mm</span><span class="o">]</span><span class="err">{</span><span class="n">brach_3</span><span class="p">.</span><span class="n">eps</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">center</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="n">vspace</span><span class="err">{</span><span class="o">-</span><span class="mi">35</span><span class="n">pt</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="n">caption</span><span class="err">{</span><span class="n">Destination</span><span class="w"> </span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="err">}</span><span class="w"></span>
+<span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="w"></span>
+
+<span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="o">[</span><span class="n">H</span><span class="o">]</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">center</span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">includegraphics</span><span class="o">[</span><span class="n">width=120mm</span><span class="o">]</span><span class="err">{</span><span class="n">brach_2</span><span class="p">.</span><span class="n">eps</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">center</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="n">vspace</span><span class="err">{</span><span class="o">-</span><span class="mi">35</span><span class="n">pt</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="n">caption</span><span class="err">{</span><span class="n">Destination</span><span class="w"> </span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">20</span><span class="p">)</span><span class="err">}</span><span class="w"></span>
+<span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="w"></span>
+
+<span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="o">[</span><span class="n">H</span><span class="o">]</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">center</span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">includegraphics</span><span class="o">[</span><span class="n">width=120mm</span><span class="o">]</span><span class="err">{</span><span class="n">brach_5</span><span class="p">.</span><span class="n">eps</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">center</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="n">vspace</span><span class="err">{</span><span class="o">-</span><span class="mi">35</span><span class="n">pt</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="n">caption</span><span class="err">{</span><span class="n">Destination</span><span class="w"> </span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">50</span><span class="p">)</span><span class="err">}</span><span class="w"></span>
+<span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="w"></span>
+
+<span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="o">[</span><span class="n">H</span><span class="o">]</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">center</span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">includegraphics</span><span class="o">[</span><span class="n">width=120mm</span><span class="o">]</span><span class="err">{</span><span class="n">brach_6</span><span class="p">.</span><span class="n">eps</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">center</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="n">vspace</span><span class="err">{</span><span class="o">-</span><span class="mi">35</span><span class="n">pt</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="n">caption</span><span class="err">{</span><span class="n">Destination</span><span class="w"> </span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">100</span><span class="p">)</span><span class="err">}</span><span class="w"></span>
+<span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="w"></span>
+
+<span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="o">[</span><span class="n">H</span><span class="o">]</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">center</span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">includegraphics</span><span class="o">[</span><span class="n">width=120mm</span><span class="o">]</span><span class="err">{</span><span class="n">brach_4</span><span class="p">.</span><span class="n">eps</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">center</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="n">vspace</span><span class="err">{</span><span class="o">-</span><span class="mi">35</span><span class="n">pt</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="n">caption</span><span class="err">{</span><span class="n">Destination</span><span class="w"> </span><span class="p">(</span><span class="mi">157</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">100</span><span class="p">)</span><span class="err">}</span><span class="w"></span>
+<span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="w"></span>
+
+
+
+<span class="err">\</span><span class="n">subsection</span><span class="err">{</span><span class="k">Varying</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="n">conditions</span><span class="err">}</span><span class="w"></span>
+<span class="n">Now</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">look</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="n">different</span><span class="w"> </span><span class="n">starting</span><span class="w"> </span><span class="n">curves</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">their</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">convergence</span><span class="p">.</span><span class="w"> </span><span class="k">Each</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">curves</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="mi">99</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">starting</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">magenta</span><span class="p">.</span><span class="w"></span>
+
+<span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="o">[</span><span class="n">H</span><span class="o">]</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">center</span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">includegraphics</span><span class="o">[</span><span class="n">width=120mm</span><span class="o">]</span><span class="err">{</span><span class="n">brach_b0</span><span class="p">.</span><span class="n">eps</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">center</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="n">vspace</span><span class="err">{</span><span class="o">-</span><span class="mi">35</span><span class="n">pt</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="n">caption</span><span class="err">{</span><span class="n">Destination</span><span class="w"> </span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">100</span><span class="p">),</span><span class="w"> </span><span class="n">Init</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Linear</span><span class="w"> </span><span class="n">curve</span><span class="err">}</span><span class="w"></span>
+<span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="w"></span>
+
+<span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="o">[</span><span class="n">H</span><span class="o">]</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">center</span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">includegraphics</span><span class="o">[</span><span class="n">width=120mm</span><span class="o">]</span><span class="err">{</span><span class="n">brach_b1</span><span class="p">.</span><span class="n">eps</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">center</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="n">vspace</span><span class="err">{</span><span class="o">-</span><span class="mi">35</span><span class="n">pt</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="n">caption</span><span class="err">{</span><span class="n">Destination</span><span class="w"> </span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">100</span><span class="p">),</span><span class="w"> </span><span class="n">Init</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Flat</span><span class="w"> </span><span class="n">curve</span><span class="err">}</span><span class="w"></span>
+<span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="w"></span>
+
+<span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="o">[</span><span class="n">H</span><span class="o">]</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">center</span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">includegraphics</span><span class="o">[</span><span class="n">width=120mm</span><span class="o">]</span><span class="err">{</span><span class="n">brach_b2</span><span class="p">.</span><span class="n">eps</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">center</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="n">vspace</span><span class="err">{</span><span class="o">-</span><span class="mi">35</span><span class="n">pt</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="n">caption</span><span class="err">{</span><span class="n">Destination</span><span class="w"> </span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">100</span><span class="p">),</span><span class="w"> </span><span class="n">Init</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Linear</span><span class="o">/</span><span class="n">Flat</span><span class="w"> </span><span class="n">curve</span><span class="err">}</span><span class="w"></span>
+<span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="w"></span>
+
+<span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="o">[</span><span class="n">H</span><span class="o">]</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">center</span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">includegraphics</span><span class="o">[</span><span class="n">width=120mm</span><span class="o">]</span><span class="err">{</span><span class="n">brach_b3</span><span class="p">.</span><span class="n">eps</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">center</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="n">vspace</span><span class="err">{</span><span class="o">-</span><span class="mi">35</span><span class="n">pt</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="n">caption</span><span class="err">{</span><span class="n">Destination</span><span class="w"> </span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">100</span><span class="p">),</span><span class="w"> </span><span class="n">Init</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Random</span><span class="w"> </span><span class="mi">1</span><span class="err">}</span><span class="w"></span>
+<span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="w"></span>
+
+<span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="o">[</span><span class="n">H</span><span class="o">]</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">center</span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">includegraphics</span><span class="o">[</span><span class="n">width=120mm</span><span class="o">]</span><span class="err">{</span><span class="n">brach_b4</span><span class="p">.</span><span class="n">eps</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">center</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="n">vspace</span><span class="err">{</span><span class="o">-</span><span class="mi">35</span><span class="n">pt</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="n">caption</span><span class="err">{</span><span class="n">Destination</span><span class="w"> </span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">100</span><span class="p">),</span><span class="w"> </span><span class="n">Init</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Random</span><span class="w"> </span><span class="mi">2</span><span class="err">}</span><span class="w"></span>
+<span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="w"></span>
+
+<span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="o">[</span><span class="n">H</span><span class="o">]</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">center</span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">\</span><span class="n">includegraphics</span><span class="o">[</span><span class="n">width=120mm</span><span class="o">]</span><span class="err">{</span><span class="n">brach_b5</span><span class="p">.</span><span class="n">eps</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">center</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="n">vspace</span><span class="err">{</span><span class="o">-</span><span class="mi">35</span><span class="n">pt</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">\</span><span class="n">caption</span><span class="err">{</span><span class="n">Destination</span><span class="w"> </span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">100</span><span class="p">),</span><span class="w"> </span><span class="n">Init</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Random</span><span class="w"> </span><span class="mi">3</span><span class="err">}</span><span class="w"></span>
+<span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="w"></span>
+
+<span class="n">We</span><span class="w"> </span><span class="n">notice</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">evaluations</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="n">vary</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nc">bit</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="n">conditions</span><span class="p">,</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="n">there</span><span class="w"> </span><span class="n">seems</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">unique</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">minimum</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="k">search</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="n">conditions</span><span class="w"> </span><span class="n">invariably</span><span class="w"> </span><span class="n">converges</span><span class="w"> </span><span class="k">to</span><span class="p">.</span><span class="w"> </span><span class="n">Random</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="n">conditions</span><span class="w"> </span><span class="n">perform</span><span class="w"> </span><span class="n">reasonably</span><span class="w"> </span><span class="n">well</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">terms</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">evaluations</span><span class="p">.</span><span class="w"> </span><span class="n">Also</span><span class="p">,</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="n">performance</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">independent</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="k">condition</span><span class="p">,</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">expected</span><span class="p">.</span><span class="w"></span>
+
+<span class="err">\</span><span class="n">subsection</span><span class="err">{</span><span class="k">Value</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">gravity</span><span class="err">}</span><span class="w"></span>
+<span class="n">It</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">interesting</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">note</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">acceleration</span><span class="w"> </span><span class="n">due</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">gravity</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="ow">any</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">final</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">curve</span><span class="p">.</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">expected</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">analytical</span><span class="w"> </span><span class="n">solution</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">reassuring</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">optimization</span><span class="w"> </span><span class="n">solution</span><span class="w"> </span><span class="n">also</span><span class="w"> </span><span class="n">agrees</span><span class="p">.</span><span class="w"> </span><span class="k">Of</span><span class="w"> </span><span class="n">course</span><span class="p">,</span><span class="w"> </span><span class="n">gravity</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">affect</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">final</span><span class="w"> </span><span class="n">optimal</span><span class="w"> </span><span class="nc">time</span><span class="p">.</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">acceleration</span><span class="w"> </span><span class="n">due</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">gravity</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="err">$</span><span class="mi">10</span><span class="w"> </span><span class="n">m</span><span class="o">/</span><span class="n">s</span><span class="o">^</span><span class="mi">2</span><span class="err">$</span><span class="w"></span>
+</code></pre></div>
+
+<p>\section{Curves with Nonlinear Discretization}
+  Using the knowledge about the shape of the brachistochrone from the uniform discretization and looking at the error performance of the various curves, we can easily see that we should have finer discretization when the curvature of the brachistochrone is large in order to have better performance with the same number of variables. A closer look at the brachistochrone near the origin shows the root of the problem. The linear approximation is most error prone near the origin where the curvature is largest.</p>
+<div class="math">\begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=120mm]{brach_c0.eps}
+    \end{center}
+    \vspace{-35pt}
+    \caption{The source of the error}
+  \end{figure}</div>
+<p>This can be mitigated by having smaller horizontal divisions near the origin and near the end, where the curvature tends to be larger. This is achieved by defining intervals of the form shown below</p>
+<p>[
+    t = [0:pi/(numvar+1):pi]';
+  ]
+  [
+    x = L*(1 - cos(t))/2;
+  ]</p>
+<div class="math">\begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=60mm]{brach_c1.eps}
+      \includegraphics[width=60mm]{brach_c5.eps}
+    \end{center}
+    \vspace{-35pt}
+    \caption{The non-uniform horizontal spacing}
+  \end{figure}</div>
+<div class="math">\begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=120mm]{brach_c6.eps}
+    \end{center}
+    \vspace{-35pt}
+    \caption{Brachistochrone with non-uniform spacing}
+  \end{figure}</div>
+<p>We notice that this gives a good spacing near the origin and the end and an error performance which is better than the uniform spacing by at least an order of magnitude (-4.27 vs. -2.99). But sometimes, the fine spacing near the end is not always required. We can change the spacing using the knowledge of the curve near the optimal solution. For the final point under consideration, this suggests a non-uniform spacing of the form...</p>
+<div class="math">\begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=60mm]{brach_c2.eps}
+      \includegraphics[width=60mm]{brach_c4.eps}
+    \end{center}
+    \vspace{-35pt}
+    \caption{A better non-uniform horizontal spacing}
+  \end{figure}</div>
+<div class="math">\begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=120mm]{brach_c3.eps}
+    \end{center}
+    \vspace{-35pt}
+    \caption{Brachistochrone with the better non-uniform spacing}
+  \end{figure}</div>
+<p>We see that this gives a slightly better error performance (-4.4) for the same number of variables. We can see that the curve near the origin is much smoother.</p>
+<div class="math">\begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=120mm]{brach_c7.eps}
+    \end{center}
+    \vspace{-35pt}
+    \caption{The curve near the origin}
+  \end{figure}</div>
+<p>\section{Brachistochrone in 2 dimensions}
+  The solution of the brachistochrone in 2 dimensions gives an opportunity to see the contours of the function and the progress of the line search visually.</p>
+<div class="math">\begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=120mm]{brach_d0.eps}
+    \end{center}
+    \vspace{-35pt}
+    \caption{Brachistochrone in 2 variables}
+  \end{figure}</div>
+<p>\section{Brachistochrone with constraints}
+  We now add a twist and solve the problem with a constraint. Suppose the the particle has to pass through a particular point en-route to the destination under the influence of gravity, what is the brachistochrone? Figure 3.24 and 3.25 show two such paths with different constraints.</p>
+<div class="math">\begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=120mm]{brach_e0.eps}
+    \end{center}
+    \vspace{-35pt}
+    \caption{Brachistochrone with constraint (random init)}
+  \end{figure}</div>
+<div class="math">\begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=120mm]{brach_e1.eps}
+    \end{center}
+    \vspace{-35pt}
+    \caption{Brachistochrone with constraint}
+  \end{figure}</div>
+<p>It turns out that adding a constraint also answers another question - What is the brachistochrone if the particle does not start at rest but has an initial velocity (magnitude is specified)? The question can be answered by having a constraint as the first point after the origin, such that the difference in height between origin and constraint is deduced from the conservation of energy.</p>
+<div class="math">\begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=120mm]{brach_e2.eps}
+    \end{center}
+    \vspace{-35pt}
+    \caption{Brachistochrone with an initial velocity}
+  \end{figure}</div>
+<p>The destination point can now be higher than the starting location, but it still has to be lower than the origin. As expected we see that the point goes below its present position before rising to the destination point.</p>
+<p>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</p>
+<p>\chapter{Analysis}
+  \section{Order of algorithm}
+  A study of the graphs given in the appendix shows that the algorithm runs in <span class="math">\(\bigcirc (n^3)\)</span> and is at least as fast as matrix inversion solution of an N dimensional quadratic problem (assuming we dont really "invert" the matrix, but solve by factorization). The overall running time is very good considering the fact that the objective function is not quadratic.</p>
+<p>\section{Algorithm accuracy}
+  We saw that non-uniform discretization gives better results than uniform discretization for the same number of variables. The relative accuracy of the uniform-discretization is in the range of <span class="math">\(10^{-3}\)</span> to <span class="math">\(10^{-5}\)</span>, the model being most accurate when the optimal path is almost a straight line. The accuracy of the approximate curve becomes better as the number of variables is increased. This can be also be seen from the graphs in the appendix.</p>
+<p>Non-uniform discretization gives an accuracy which is at least an order of magnitude better than uniform discretization. The comparison is illustrated in Table 4.1.</p>
+<div class="math">\begin{table}
+    \begin{center}
+      \begin{tabular}{|r|r|r|r|r|}
+        \hline
+        &amp;&amp;&amp;&amp;\\
+        \vspace{-25pt}\\
+        $\theta$ &amp; $x$ &amp; $y$ &amp; $err_{ud}$ &amp; $err_{nud}$\\
+        &amp;&amp;&amp;&amp;\\
+        \vspace{-25pt}\\
+        \hline
+          0.4235 &amp;   71 &amp;  -500.0 &amp; -4.6286 &amp;  -6.3224\\
+          1.0570 &amp;  183 &amp;  -500.0 &amp; -3.8531 &amp;  -5.5364\\
+          1.6833 &amp;  310 &amp;  -500.0 &amp; -3.4842 &amp;  -5.1477\\
+          2.3123 &amp;  470 &amp;  -500.0 &amp; -3.2605 &amp;  -4.8941\\
+          2.9458 &amp;  500 &amp;  -360.0 &amp; -3.1201 &amp;  -4.7124\\
+          3.5675 &amp;  500 &amp;  -240.0 &amp; -3.0397 &amp;  -4.5789\\
+          4.1994 &amp;  500 &amp;  -147.0 &amp; -3.0025 &amp;  -4.4730\\
+          4.8278 &amp;  500 &amp;   -76.0 &amp; -3.0001 &amp;  -4.3839\\
+          5.4574 &amp;  500 &amp;   -26.0 &amp; -3.0179 &amp;  -4.2898\\
+          6.0823 &amp;  500 &amp;    -1.6 &amp; -2.9331 &amp;  -4.1137\\
+        \hline
+      \end{tabular}
+    \end{center}
+    \vspace{-10pt}
+    \caption{Error: uniform ($err_{ud}$) vs. non-uniform discretization ($err_{nud}$)}
+  \end{table}</div>
+<p>\section{Non-uniform Discretization}
+  Non uniform discretization is observed to give a better approximation to the analytical solution. The error is at least better by an order of magnitude. Though a good non-uniform discretization requires the knowledge of the curve near the optimal solution, this can be achieved by first solving the problem with uniform discretization and then using the solution as the starting point for the non-uniform discretization.</p>
+<p>\section{Path of fastest Ascent for an aeroplane}
+  The result from the "Brachistochrone with an inital velocity" suggests that a jet which would like to ascend to some height in the minimum time should follow the cycloidal path. Of course, this assumes that the jet does not accelerate and only expends fuel to offset the friction.</p>
+<p>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</p>
+<p>\appendix</p>
+<p>\chapter{Further Thoughts}
+  \section{Analytical Hessian}
+  The hessian can be computed analytically in case the approximate hessian is becoming ill conditioned near the solution. Also, it can be easily seen that the analytical hessian is tri-diagonal and hence is not very expensive to compute.</p>
+<p>\section{Optimal Discretization}
+  We showed that a uniform discretization in the horizontal direction is not optimal and a better solution is given by a non-uniform discretization based on the curvature of the brachistochrone. In order to reach the most optimal solution possible with 'n' variables, we need to optimize over the space of possible horizontal divisions. This just adds another n variables to the problem but is very similar to the original problem and can be solved by similar techniques.</p>
+<p>\section{Curve with constant acceleration}
+  The question, "If a constant acceleration is applied by a jet while ascending to some height, what is the curve of fastest ascent?", can also be solved by applying similar optimization techniques to an appropriate objective function. The solution of the brachistochrone problem also suggests the following hypothesis...</p>
+<p>Suppose there are 2 jet planes (same acceleration and capability) flying at the same height with same speed, which are racing each other to reach a point <span class="math">\(x\)</span> km away at the same horizontal level. The one which accelerates directly towards the point and takes a horizontal path shall not necessarily win. The path of shortest time actually requires the jet to dip to a lower level in order to speed up using gravity and then come back up. Even under acceleration, the curve of shortest time is never a straight line, unless the destination point is directly above or below.</p>
+<p>\section{Optimal path for space rocket}
+  The optimization technique used in this problem can be extended to find the optimal path for a rocket. We should keep in mind that there are lot more variables in this problem, e.g. acceleration, gravity and mass are changing (which probably leads to variable acceleration). Also, friction is changing as the rocket rises higher. Although there are more variables, the nature of the optimization problem remains essentially the same and can be attacked using the techniques described.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+
+             
+ 
+            
+            
+            
+
+
+
+
+
+
+<section>
+    <h6 style="display:none;">Comments</h6>
+    <p id="comment-message"> </p>
+
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle disqus-comment-count comment-count"
+                   data-toggle="collapse"
+                   data-parent="#accordion2"
+                   data-disqus-identifier="brachistochrone"
+                   href="/brachistochrone.html#comment_thread"
+                   id="comment-accordion-toggle">
+                    Comments
+                </a>
+            </div>
+            <div id="comment_thread" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="comments">
+                        <div id="disqus_thread"></div>
+                        <script>
+    var disqus_shortname = 'motleytech';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+
+    var disqus_identifier = 'brachistochrone';
+    var disqus_url = '/brachistochrone.html';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2009-05-13T03:45:00-07:00">May 13, 2009</time>
+            <h4>Category</h4>
+            <a class="category-link" href="/categories.html#blog-ref">Blog</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="/tags.html#mathematics-ref">Mathematics
+                    <span>4</span>
+</a></li>
+                <li><a href="/tags.html#optimization-ref">Optimization
+                    <span>1</span>
+</a></li>
+                <li><a href="/tags.html#physics-ref">Physics
+                    <span>3</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>

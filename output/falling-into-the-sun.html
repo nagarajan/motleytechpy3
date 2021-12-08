@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Nagarajan" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Physics, Mathematics, Gravity, Pi, Sun, Earth, Blog, " />
+
+<meta property="og:title" content="Falling into the sun "/>
+<meta property="og:url" content="/falling-into-the-sun.html" />
+<meta property="og:description" content="Recently, I came across a gem of a physics problem, which had the awesome combination of being easy to comprehend, yet being surprisingly difficult to solve. The problem is thus: The earth orbits around the sun because it has angular momentum. If we stopped the earth in orbit then let …" />
+<meta property="og:site_name" content="MotleyTech.net" />
+<meta property="og:article:author" content="Nagarajan" />
+<meta property="og:article:published_time" content="2013-12-03T10:20:00-08:00" />
+<meta name="twitter:title" content="Falling into the sun ">
+<meta name="twitter:description" content="Recently, I came across a gem of a physics problem, which had the awesome combination of being easy to comprehend, yet being surprisingly difficult to solve. The problem is thus: The earth orbits around the sun because it has angular momentum. If we stopped the earth in orbit then let …">
+
+        <title>Falling into the sun  · MotleyTech.net
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/theme/css/elegant.prod.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/theme/css/custom.css" media="screen">
+
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="/"><span class=site-name>MotleyTech.net</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       "/"
+                                    >Home</a>
+                                </li>
+                                <!-- <li ><a href="/categories.html">Categories</a></li>
+                                <li ><a href="/tags.html">Tags</a></li> -->
+                                <li ><a href="/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="/falling-into-the-sun.html">
+                Falling into  the sun
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <p>Recently, I came across a gem of a physics problem, which had the awesome combination of being easy to comprehend, yet being surprisingly difficult to solve.</p>
+<p>The problem is thus:</p>
+<p><em>The earth orbits around the sun because it has angular momentum. If we stopped the earth in orbit then let it fall straight towards the sun, then how long would it take to reach the sun in seconds?</em></p>
+<p>Now, I love physics and maths, and I believed that it would be a simple matter to knock this one off. Hah... was I mistaken.</p>
+<p><span class="img-center-92">
+<img alt="Alternate text" src="/images/corot_ill.jpg">
+</span></p>
+<hr>
+<p>All right... first, I did succeed in finding the answer and it turned out to be worthy of all the trouble. But before I tell you what it is, why don't you join me in the journey that starts from the first principles and leads to this <em>beautiful</em> result. If you are impatient, just scroll to the bottom for the answer... but if you can hold on to your horses (and don't mind some mathematics), you might enjoy yourself more.</p>
+<p>Ok, lets start.</p>
+<p>We want to find out the time taken by an object, <span class="math">\(m_e\)</span> ( the earth ), to fall towards a much heavier object, <span class="math">\(M_s\)</span> ( the sun ), purely under the force of gravity, given that <span class="math">\(m_e\)</span> starts to fall at time <span class="math">\(t = 0\)</span> from a stationary position a certain distance <span class="math">\((d = 150 \times 10^9 m)\)</span> away. Let us assume that the earth and the sun lie on the <span class="math">\(x\)</span> axis and at time <span class="math">\(t=0\)</span>, let the earth be located at at <span class="math">\(x=0\)</span> and the sun at <span class="math">\(x=d\)</span>.</p>
+<p>We know from Newton's Law of Gravitation that the force between the earth and the sun is given by</p>
+<div class="math">$$F = \frac{G M_s m_e}{r^2}$$</div>
+<p>where</p>
+<ul>
+<li><span class="math">\(F\)</span> : force in newtons (<span class="math">\(\text{kg}\text{ m}\text{ s}^{-2}\)</span>)</li>
+<li><span class="math">\(G\)</span> : gravitational constant : <span class="math">\(6.67384 \times 10^{-11}\text{ kg}^{-1}\text{m}^3\text{s}^{-2}\)</span></li>
+<li><span class="math">\(M_s\)</span> : mass of the sun : <span class="math">\(1.989 \times 10^{30}\text{ kg}\)</span></li>
+<li><span class="math">\(m_e\)</span> : mass of the earth : <span class="math">\(5.972 \times 10^{24}\text{ kg}\)</span></li>
+<li><span class="math">\(r\)</span> : distance between earth and sun in meters (changes as earth falls).</li>
+<li>at <span class="math">\(t=0\)</span>, <span class="math">\(r = d = 1.496 \times 10^{11}\text{ m}\)</span></li>
+</ul>
+<p>Also, let <span class="math">\(x\)</span> be the position of the earth on the <span class="math">\(x\text{-axis}\)</span>, such that, at any given time, <span class="math">\((d-x)\)</span> is the distance between the earth and the sun. Now, we try to solve this equation to find the time...</p>
+<div class="math">$$F = m_ea = \frac{GM_sm_e}{(d-x)^2}$$</div>
+<div class="math">$$\implies a = \frac{GM_s}{(d-x)^2}$$</div>
+<p>Now, we also know that</p>
+<div class="math">$$a = \frac{dv}{dt} = \frac{d^2x}{dt^2}$$</div>
+<p>and we can write</p>
+<div class="math">$$\frac{dv}{dt} = \frac{dv}{dx} \times \frac{dx}{dt} = \frac{dv}{dx} \times v$$</div>
+<p>The <span class="math">\(\frac{dv}{dt} = v \frac{dv}{dx}\)</span> was one of the <em>key</em> steps which enables us to separate the variables and solve the differential equation. Now,</p>
+<div class="math">$$v \frac{dv}{dx} = \frac{GM_s}{(d-x)^2}$$</div>
+<p>Separating the variables (moving dx to the right side) and integrating, we get</p>
+<div class="math">$$\int v\, dv = \int \frac{GM_s}{(d-x)^2} dx$$</div>
+<p>Performing the integration, we get</p>
+<div class="math">$$\frac{v^2}{2} = \frac{GM_s}{(d-x)} + C$$</div>
+<p>where <span class="math">\(C\)</span> is the constant of integration. We find <span class="math">\(C\)</span> by using the known condition that <span class="math">\(v = 0\)</span> at <span class="math">\(x = 0\)</span>,</p>
+<div class="math">$$ \implies C = \frac{-GM_s}{d}$$</div>
+<p>Putting this value of <span class="math">\(C\)</span> in the equation for <span class="math">\(v\)</span>,</p>
+<div class="math">$$\frac{v^2}{2} = \frac{GM_s}{(d-x)} - \frac{GM_s}{d}$$</div>
+<p>If you look closely, you might notice that the above equation is the <em>law of conservation of gravitational potential and kinetic energy</em>. Woohoo... we just derived a conservation law from first principles (Aside : this <em>intermediate</em> result probably keeps popping up in astronomical problems all the time, and was made into a law of it own. I could have used this law right in the beginning to find the velocity at any distance from the sun, but then, I would not have derived the conservation law by myself).  Ok... back to the problem.</p>
+<div class="math">$$v = \sqrt{2GM_s \left( \frac{1}{(d-x)} - \frac{1}{d} \right) }$$</div>
+<div class="math">$$\frac{dx}{dt} = \sqrt{\frac{2GM_s}{d} . \frac{x}{(d-x)}}$$</div>
+<p>Moving <span class="math">\(dt\)</span> to the right and variables involving <span class="math">\(x\)</span> to the left and integrating, we get</p>
+<div class="math">$$\int_0^d \sqrt{\frac{d- x}{x}} dx = \int_0^T \sqrt{\frac{2GM_s}{d}} dt $$</div>
+<p>This is where I hit another roadblock. The integral on the left side looked harmless enough, but was surprisingly difficult to solve (as we know well enough about integrals... if someone is getting too cocky about their mathematical abilities, give them a random integral, or a partial differential equation to solve). I finally took the help of Wolfram|Alpha to find the indefinite integral of the left side, and was pleasantly surprised that the function did exist (I differentiated it to make sure that it really was the right answer, and you should try it too. Just like in the spy movies... trust no one. In this case, not even yourself... so check your answer twice, and get it peer reviewed). We now have the following:</p>
+<div class="math">$$\left. \sqrt{x(d-x)} - \frac{d}{2} tan^{-1} \left( \frac{(d-2x)} {2 \sqrt{x(d - x)}} \right) \right\vert_0^d = \sqrt{\frac{2GM_s}{d}} T$$</div>
+<p>At both <span class="math">\(x=0\)</span> and <span class="math">\(x=d\)</span>, the term inside the <span class="math">\(tan^{-1}()\)</span> parentheses contains a division by zero. Usually, that is disastrous for a solution. However, in this case, its not too bad as <span class="math">\(tan^{-1}(\pm \infty)\)</span> is well defined. And to know whether the division by zero leads to a <span class="math">\(+\infty\)</span> or a <span class="math">\(-\infty\)</span>, we need to evaluate the LHS at <span class="math">\(x=0^+\)</span> and <span class="math">\(x=d^-\)</span>:</p>
+<div class="math">$$\left. \sqrt{x(d-x)} - \frac{d}{2} tan^{-1} \left( \frac{(d-2x)} {2 \sqrt{x(d - x)}} \right) \right\vert_{0^+}^{d^-}$$</div>
+<p>The term <span class="math">\(\sqrt{x(d-x)}\)</span> equals <span class="math">\(0^+\)</span>at both <span class="math">\(x=0^+\)</span> and <span class="math">\(x=d^-\)</span></p>
+<div class="math">$$\therefore LHS = -\frac{d}{2} tan^{-1}(-\infty) + \frac{d}{2} tan^{-1}(+\infty) $$</div>
+<div class="math">$$= -\frac{d}{2}(-\frac{\pi}{2}) + \frac{d}{2}(+\frac{\pi}{2})$$</div>
+<div class="math">$$= \pi \frac{d}{2}$$</div>
+<p>Putting the LHS and RHS together, we get
+</p>
+<div class="math">$$\pi \frac{d}{2} = \sqrt{\frac{2GM_s}{d}} T$$</div>
+<p>Rearranging the variables around, we finally get</p>
+<div class="noteworthy-equation">
+  $$T = \pi \frac{d^{3/2}}{\sqrt{8GM_s}}$$
+</div>
+
+<p>As often happens in interesting problems, we have journeyed from a simple equation (newton's law) to terrible looking intermediate results, divisions by zero, and challenging integrals... which all finally canceled out to give a simple answer.</p>
+<p><strong>Wait... there is a <span class="math">\(\pi\)</span> in the answer!!</strong> How in the frigging cosmos did <span class="math">\(\pi\)</span> make its way into the answer. Well, we can go back and look at where it exactly came in... through the <span class="math">\(tan^{-1}(+\infty)\)</span> and <span class="math">\(tan^{-1}(-\infty)\)</span>, which basically means that it popped out from a couple of singularities. It might also have something to do with the periodic oscillation that the earth might have experienced were it not going to be evaporated on contact with the sun. This is as close to magic as we get in mathematics, and yet another beautiful example of unexpected places where <span class="math">\(\pi\)</span> shows up.</p>
+<p>Now that we have done all the hard work of finding the general solution, its time to put in the values to get the figure of...</p>
+<div class="math">$$T = 5578237\text{ seconds} = 64.5629\text{ days}$$</div>
+<p>or about 2.1 months.</p>
+<hr>
+<p>All this is excellent but I also love programming. Its time to test this analytical solution with a numerical calculation.</p>
+<p>I wrote a small python program to calculate the time by simulating the acceleration, velocity and position of the earth as it falls towards the sun. I have also plotted a graph denoting the distance of earth from the sun <em>vs</em> time.</p>
+<hr>
+<div class="highlight"><pre><span></span><code><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+
+<span class="c1"># calculate time for earth to fall into sun...</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+
+<span class="c1"># physical constants/values</span>
+<span class="n">G</span> <span class="o">=</span> <span class="mf">6.67384e-11</span> <span class="c1"># gravitational constant</span>
+<span class="n">MS</span> <span class="o">=</span> <span class="mf">1.98855e30</span> <span class="c1"># mass of sun</span>
+<span class="n">esd</span> <span class="o">=</span> <span class="mf">149597870700.0</span> <span class="c1"># earth-sun distance in meters</span>
+
+<span class="c1"># program variables</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">1000000</span>
+<span class="n">myconst1</span> <span class="o">=</span> <span class="p">(</span><span class="n">G</span><span class="o">*</span><span class="n">MS</span><span class="o">*</span><span class="n">n</span><span class="o">*</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">esd</span><span class="o">*</span><span class="n">esd</span><span class="p">)</span>
+<span class="n">myconst2</span> <span class="o">=</span> <span class="n">esd</span><span class="o">/</span><span class="n">n</span>
+
+<span class="k">def</span> <span class="nf">getA</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; acceleration at distance (esd*k/n) from sun&quot;&quot;&quot;</span>
+    <span class="n">ak</span> <span class="o">=</span> <span class="n">myconst1</span><span class="o">/</span><span class="nb">pow</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ak</span>
+
+<span class="k">def</span> <span class="nf">getV</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; velocity at distance (esd*k/n) from sun&quot;&quot;&quot;</span>
+    <span class="n">vk</span> <span class="o">=</span> <span class="n">v</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span><span class="n">t</span>
+    <span class="k">return</span> <span class="n">vk</span>
+
+<span class="k">def</span> <span class="nf">getVAT</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">vold</span><span class="p">,</span> <span class="n">aold</span><span class="p">,</span> <span class="n">told</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; time to get from position (esd*k/n) to (esd*(k+1)/n)&quot;&quot;&quot;</span>
+    <span class="n">vk</span> <span class="o">=</span> <span class="n">getV</span><span class="p">(</span><span class="n">vold</span><span class="p">,</span> <span class="n">aold</span><span class="p">,</span> <span class="n">told</span><span class="p">)</span>
+    <span class="n">ak</span> <span class="o">=</span> <span class="n">getA</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+
+    <span class="n">tk</span> <span class="o">=</span> <span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vk</span><span class="o">*</span><span class="n">vk</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">ak</span><span class="o">*</span><span class="n">myconst2</span><span class="p">)</span> <span class="o">-</span> <span class="n">vk</span><span class="p">)</span><span class="o">/</span><span class="n">ak</span>
+    <span class="k">return</span> <span class="n">vk</span><span class="p">,</span> <span class="n">ak</span><span class="p">,</span> <span class="n">tk</span>
+
+<span class="n">stime</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+<span class="n">sts</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<span class="n">plotValues</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">getVAT</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">sts</span> <span class="o">+=</span> <span class="n">t</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">5000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">plotValues</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">sts</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">x</span><span class="p">))</span>
+<span class="n">plotValues</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">sts</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="nb">print</span> <span class="s2">&quot;Travel time = </span><span class="si">%.2f</span><span class="s2"> seconds</span><span class="se">\n</span><span class="s2">Days = </span><span class="si">%5.3f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">sts</span><span class="p">,</span> <span class="n">sts</span><span class="o">/</span><span class="p">(</span><span class="mf">60.0</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="p">))</span>
+<span class="nb">print</span> <span class="s2">&quot;Computation time = </span><span class="si">%5.4f</span><span class="s2"> seconds&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">stime</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>Travel time = 5578753.47 seconds
+Days = 64.569
+Computation time = 1.8074 seconds
+</code></pre></div>
+
+<p>Here's the plot of earth's approach towards the sun...</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">xvals</span> <span class="o">=</span> <span class="p">[</span><span class="n">sts</span> <span class="k">for</span> <span class="n">sts</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">plotValues</span><span class="p">]</span>
+<span class="n">yvals</span> <span class="o">=</span> <span class="p">[</span><span class="mf">149.597870</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">sts</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">plotValues</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Travel time (seconds)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Distance between earth / sun (km)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xvals</span><span class="p">,</span> <span class="n">yvals</span><span class="p">)</span>
+</code></pre></div>
+
+<p><img alt="Plot of earth's path" src="/images/earthpathplot.png"></p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+
+             
+ 
+            
+            
+            <hr />
+            
+
+
+
+
+
+
+<section>
+    <h6 style="display:none;">Comments</h6>
+    <p id="comment-message"> </p>
+
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle disqus-comment-count comment-count"
+                   data-toggle="collapse"
+                   data-parent="#accordion2"
+                   data-disqus-identifier="falling_into_the_sun"
+                   href="/falling-into-the-sun.html#comment_thread"
+                   id="comment-accordion-toggle">
+                    Comments
+                </a>
+            </div>
+            <div id="comment_thread" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="comments">
+                        <div id="disqus_thread"></div>
+                        <script>
+    var disqus_shortname = 'motleytech';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+
+    var disqus_identifier = 'falling_into_the_sun';
+    var disqus_url = '/falling-into-the-sun.html';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2013-12-03T10:20:00-08:00">Dec 3, 2013</time>
+            <!--             <h4>Category</h4>
+            <a class="category-link" href="/categories.html#blog-ref">Blog</a>
+ -->
+            <!--             <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="/tags.html#earth-ref">Earth
+                    <span>1</span>
+</a></li>
+                <li><a href="/tags.html#gravity-ref">Gravity
+                    <span>2</span>
+</a></li>
+                <li><a href="/tags.html#mathematics-ref">Mathematics
+                    <span>3</span>
+</a></li>
+                <li><a href="/tags.html#physics-ref">Physics
+                    <span>2</span>
+</a></li>
+                <li><a href="/tags.html#pi-ref">Pi
+                    <span>1</span>
+</a></li>
+                <li><a href="/tags.html#sun-ref">Sun
+                    <span>1</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+ -->
+        </section>
+</div>
+</article>
+                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+</html>

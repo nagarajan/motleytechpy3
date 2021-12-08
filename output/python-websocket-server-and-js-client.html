@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Nagarajan" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Computing, Python, JS, Websocket, Blog, " />
+
+<meta property="og:title" content="Python websocket server and JS client "/>
+<meta property="og:url" content="/python-websocket-server-and-js-client.html" />
+<meta property="og:description" content="Recently, I got down to writing a very simple python websocket server and JS web client. There are various solutions out there to get this done, but websocket_server is one of the simplest. Its pip installable and has a single source code file, which you can modify to your …" />
+<meta property="og:site_name" content="MotleyTech.net" />
+<meta property="og:article:author" content="Nagarajan" />
+<meta property="og:article:published_time" content="2014-09-03T19:54:00-07:00" />
+<meta name="twitter:title" content="Python websocket server and JS client ">
+<meta name="twitter:description" content="Recently, I got down to writing a very simple python websocket server and JS web client. There are various solutions out there to get this done, but websocket_server is one of the simplest. Its pip installable and has a single source code file, which you can modify to your …">
+
+        <title>Python websocket server and JS client  · MotleyTech.net
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/theme/css/elegant.prod.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/theme/css/custom.css" media="screen">
+
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="/"><span class=site-name>MotleyTech.net</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       "/"
+                                    >Home</a>
+                                </li>
+                                <!-- <li ><a href="/categories.html">Categories</a></li>
+                                <li ><a href="/tags.html">Tags</a></li> -->
+                                <li ><a href="/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="/python-websocket-server-and-js-client.html">
+                Python websocket server and JS client
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <p>Recently, I got down to writing a very simple python websocket server and JS web client. There are various solutions out there to get this done, but <code>websocket_server</code> is one of the simplest. Its pip installable and has a single source code file, which you can modify to your liking.</p>
+<p>Here is a simple python websocket server and JS client to get things started...</p>
+<hr>
+<h3>Install the websocket_server library</h3>
+<p>I like to work with <code>virtualenv</code> and if you have still not started using it, I highly suggest you give it a try. Steps to install virtualenv on ubuntu...</p>
+<div class="highlight"><pre><span></span><code><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">setuptools</span>
+<span class="n">sudo</span> <span class="n">easy_install</span> <span class="n">pip</span>
+<span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">pip</span>
+<span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">virtualenv</span>
+</code></pre></div>
+
+<p>Once you have virtualenv, you can run the following to install the requirements...</p>
+<div class="highlight"><pre><span></span><code>mkdir -p ~/dev/wsServer
+cd ~/dev/wsServer
+virtualenv venv
+source venv/bin/activate
+pip install websocket_server
+</code></pre></div>
+
+<p>These commands will create a virtualenv environment and install the <code>websocket_server</code> library in it.</p>
+<p>Now, we are ready to create our websocket based chat server.</p>
+<h3>Websocket server in python</h3>
+<p>In the <code>~/dev/wsServer</code> folder, create a <code>server.py</code> file and paste the following contents in it...</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">websocket_server</span> <span class="kn">import</span> <span class="n">WebsocketServer</span>
+
+<span class="n">clients</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">def</span> <span class="nf">client_left</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">server</span><span class="p">):</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Client (</span><span class="si">%s</span><span class="s2">) left&quot;</span> <span class="o">%</span> <span class="n">client</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+    <span class="nb">print</span> <span class="n">msg</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">clients</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">client</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="s2">&quot;Error in removing client </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">client</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">cl</span> <span class="ow">in</span> <span class="n">clients</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="n">server</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">cl</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">new_client</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">server</span><span class="p">):</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;New client (</span><span class="si">%s</span><span class="s2">) connected&quot;</span> <span class="o">%</span> <span class="n">client</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+    <span class="nb">print</span> <span class="n">msg</span>
+    <span class="k">for</span> <span class="n">cl</span> <span class="ow">in</span> <span class="n">clients</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="n">server</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">cl</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+    <span class="n">clients</span><span class="p">[</span><span class="n">client</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">client</span>
+
+
+<span class="k">def</span> <span class="nf">msg_received</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Client (</span><span class="si">%s</span><span class="s2">) : </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">client</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="n">msg</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="n">msg</span>
+    <span class="n">clientid</span> <span class="o">=</span> <span class="n">client</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">cl</span> <span class="ow">in</span> <span class="n">clients</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">cl</span> <span class="o">!=</span> <span class="n">clientid</span><span class="p">:</span>
+            <span class="n">cl</span> <span class="o">=</span> <span class="n">clients</span><span class="p">[</span><span class="n">cl</span><span class="p">]</span>
+            <span class="n">server</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">cl</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+
+<span class="n">server</span> <span class="o">=</span> <span class="n">WebsocketServer</span><span class="p">(</span><span class="mi">9001</span><span class="p">)</span>
+<span class="n">server</span><span class="o">.</span><span class="n">set_fn_client_left</span><span class="p">(</span><span class="n">client_left</span><span class="p">)</span>
+<span class="n">server</span><span class="o">.</span><span class="n">set_fn_new_client</span><span class="p">(</span><span class="n">new_client</span><span class="p">)</span>
+<span class="n">server</span><span class="o">.</span><span class="n">set_fn_message_received</span><span class="p">(</span><span class="n">msg_received</span><span class="p">)</span>
+<span class="n">server</span><span class="o">.</span><span class="n">run_forever</span><span class="p">()</span>
+</code></pre></div>
+
+<p>That's all there is to our websocket server!!</p>
+<h3>Javascript websocket client</h3>
+<p>Create a <code>client.html</code> file in <code>~/dev/wsServer</code> folder and paste in the following contents (derived from a stackoverflow answer)...</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;</span><span class="n">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">title</span><span class="o">&gt;</span><span class="n">Simple</span> <span class="n">client</span><span class="o">&lt;/</span><span class="n">title</span><span class="o">&gt;</span>
+
+  <span class="o">&lt;</span><span class="n">script</span> <span class="n">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span><span class="o">&gt;</span>
+
+    <span class="k">var</span> <span class="n">ws</span><span class="p">;</span>
+
+    <span class="n">function</span> <span class="n">init</span><span class="p">()</span> <span class="p">{</span>
+
+      <span class="o">//</span> <span class="n">Connect</span> <span class="n">to</span> <span class="n">Web</span> <span class="n">Socket</span>
+      <span class="n">ws</span> <span class="o">=</span> <span class="n">new</span> <span class="n">WebSocket</span><span class="p">(</span><span class="s2">&quot;ws://localhost:9001/&quot;</span><span class="p">);</span>
+
+      <span class="o">//</span> <span class="n">Set</span> <span class="n">event</span> <span class="n">handlers</span><span class="o">.</span>
+      <span class="n">ws</span><span class="o">.</span><span class="n">onopen</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">output</span><span class="p">(</span><span class="s2">&quot;onopen&quot;</span><span class="p">);</span>
+      <span class="p">};</span>
+
+      <span class="n">ws</span><span class="o">.</span><span class="n">onmessage</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="o">//</span> <span class="n">e</span><span class="o">.</span><span class="n">data</span> <span class="n">contains</span> <span class="n">received</span> <span class="n">string</span><span class="o">.</span>
+        <span class="n">output</span><span class="p">(</span><span class="s2">&quot;onmessage: &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="n">data</span><span class="p">);</span>
+      <span class="p">};</span>
+
+      <span class="n">ws</span><span class="o">.</span><span class="n">onclose</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">output</span><span class="p">(</span><span class="s2">&quot;onclose&quot;</span><span class="p">);</span>
+      <span class="p">};</span>
+
+      <span class="n">ws</span><span class="o">.</span><span class="n">onerror</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">output</span><span class="p">(</span><span class="s2">&quot;onerror&quot;</span><span class="p">);</span>
+        <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+      <span class="p">};</span>
+
+    <span class="p">}</span>
+
+    <span class="n">function</span> <span class="n">onSubmit</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">var</span> <span class="n">input</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">);</span>
+      <span class="o">//</span> <span class="n">You</span> <span class="n">can</span> <span class="n">send</span> <span class="n">message</span> <span class="n">to</span> <span class="n">the</span> <span class="n">Web</span> <span class="n">Socket</span> <span class="n">using</span> <span class="n">ws</span><span class="o">.</span><span class="n">send</span><span class="o">.</span>
+      <span class="n">ws</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">input</span><span class="o">.</span><span class="n">value</span><span class="p">);</span>
+      <span class="n">output</span><span class="p">(</span><span class="s2">&quot;send: &quot;</span> <span class="o">+</span> <span class="n">input</span><span class="o">.</span><span class="n">value</span><span class="p">);</span>
+      <span class="n">input</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+      <span class="n">input</span><span class="o">.</span><span class="n">focus</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="n">function</span> <span class="n">onCloseClick</span><span class="p">()</span> <span class="p">{</span>
+      <span class="n">ws</span><span class="o">.</span><span class="n">close</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="n">function</span> <span class="n">output</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">var</span> <span class="nb">log</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">);</span>
+      <span class="k">var</span> <span class="n">escaped</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="o">/&amp;/</span><span class="p">,</span> <span class="s2">&quot;&amp;amp;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="o">/&lt;/</span><span class="p">,</span> <span class="s2">&quot;&amp;lt;&quot;</span><span class="p">)</span><span class="o">.</span>
+        <span class="n">replace</span><span class="p">(</span><span class="o">/&gt;/</span><span class="p">,</span> <span class="s2">&quot;&amp;gt;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="o">/</span><span class="s2">&quot;/, &quot;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="s2">&quot;); // &quot;</span>
+      <span class="nb">log</span><span class="o">.</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="n">escaped</span> <span class="o">+</span> <span class="s2">&quot;&lt;br&gt;&quot;</span> <span class="o">+</span> <span class="nb">log</span><span class="o">.</span><span class="n">innerHTML</span><span class="p">;</span>
+    <span class="p">}</span>
+
+  <span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">body</span> <span class="n">onload</span><span class="o">=</span><span class="s2">&quot;init();&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">form</span> <span class="n">onsubmit</span><span class="o">=</span><span class="s2">&quot;onSubmit(); return false;&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">input</span> <span class="n">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="n">id</span><span class="o">=</span><span class="s2">&quot;input&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">input</span> <span class="n">type</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;Send&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">button</span> <span class="n">onclick</span><span class="o">=</span><span class="s2">&quot;onCloseClick(); return false;&quot;</span><span class="o">&gt;</span><span class="n">close</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">form</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">div</span> <span class="n">id</span><span class="o">=</span><span class="s2">&quot;log&quot;</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">html</span><span class="o">&gt;</span>
+</code></pre></div>
+
+<p>As you can see, the client is also very simple.</p>
+<h3>Test the client and server</h3>
+<p>Open 2 terminal tabs or windows. In the first, we will run our websocket server...</p>
+<div class="highlight"><pre><span></span><code>cd ~/dev/wsServer
+source venv/bin/activate
+python server.py
+</code></pre></div>
+
+<p>This will start the websocket server on port 9001. The client has this address hardcoded and knows to connect to this port. Now, in the second terminal tab / window, we will create a python http server to serve the client...</p>
+<div class="highlight"><pre><span></span><code>cd ~/dev/wsServer
+python -m SimpleHTTPServer
+</code></pre></div>
+
+<p>Now we are serving the contents of the current folder to the web on port 8000.</p>
+<p>Finally, open a web browser and visit <code>http://localhost:8000/client.html</code>. Open multiple tabs to the same web address, and you will see logs about these clients connecting in your first terminal (websocket server... not the python http server).</p>
+<p>If you type a messages in one of the client pages, it should appear in the other client pages <em>magically</em>. Give it a try.</p>
+<p><strong>Congatulations</strong> - you just wrote your first websocket chat server.</p>
+
+
+             
+ 
+            
+            
+            <hr />
+            
+
+
+
+
+
+
+<section>
+    <h6 style="display:none;">Comments</h6>
+    <p id="comment-message"> </p>
+
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle disqus-comment-count comment-count"
+                   data-toggle="collapse"
+                   data-parent="#accordion2"
+                   data-disqus-identifier="python-websocket-client-server"
+                   href="/python-websocket-server-and-js-client.html#comment_thread"
+                   id="comment-accordion-toggle">
+                    Comments
+                </a>
+            </div>
+            <div id="comment_thread" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="comments">
+                        <div id="disqus_thread"></div>
+                        <script>
+    var disqus_shortname = 'motleytech';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+
+    var disqus_identifier = 'python-websocket-client-server';
+    var disqus_url = '/python-websocket-server-and-js-client.html';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2014-09-03T19:54:00-07:00">Sep 3, 2014</time>
+            <!--             <h4>Category</h4>
+            <a class="category-link" href="/categories.html#blog-ref">Blog</a>
+ -->
+            <!--             <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="/tags.html#computing-ref">Computing
+                    <span>3</span>
+</a></li>
+                <li><a href="/tags.html#js-ref">JS
+                    <span>1</span>
+</a></li>
+                <li><a href="/tags.html#python-ref">Python
+                    <span>1</span>
+</a></li>
+                <li><a href="/tags.html#websocket-ref">Websocket
+                    <span>1</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+ -->
+        </section>
+</div>
+</article>
+                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+</html>

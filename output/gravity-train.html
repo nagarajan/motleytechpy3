@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Nagarajan" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Physics, Mathematics, Gravity, Train, Blog, " />
+
+<meta property="og:title" content="Gravity Train "/>
+<meta property="og:url" content="/gravity-train.html" />
+<meta property="og:description" content="Here is a really cool transportation idea - using gravity powered vacuum tubes to travel through the earth across long distances - and all of that in 42 minutes. You can see the relevant part of a discovery channel show on this topic in the following youtube snippet. Of course, there are …" />
+<meta property="og:site_name" content="MotleyTech.net" />
+<meta property="og:article:author" content="Nagarajan" />
+<meta property="og:article:published_time" content="2014-01-17T15:25:00-08:00" />
+<meta name="twitter:title" content="Gravity Train ">
+<meta name="twitter:description" content="Here is a really cool transportation idea - using gravity powered vacuum tubes to travel through the earth across long distances - and all of that in 42 minutes. You can see the relevant part of a discovery channel show on this topic in the following youtube snippet. Of course, there are …">
+
+        <title>Gravity Train  · MotleyTech.net
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/theme/css/elegant.prod.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/theme/css/custom.css" media="screen">
+
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="/"><span class=site-name>MotleyTech.net</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       "/"
+                                    >Home</a>
+                                </li>
+                                <!-- <li ><a href="/categories.html">Categories</a></li>
+                                <li ><a href="/tags.html">Tags</a></li> -->
+                                <li ><a href="/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="/gravity-train.html">
+                Gravity Train
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <p><span class="img-width-400">
+<img alt="Alternate text" src="/images/gravity_train_poster.jpg">
+</span></p>
+<p>Here is a really cool transportation idea - using gravity powered vacuum tubes to travel through the earth across long distances - and all of that in 42 minutes. You can see the relevant part of a discovery channel show on this topic in the following youtube snippet.</p>
+<div class="youtube youtube-16x9-640">
+  <iframe src="https://www.youtube.com/embed/EapvQ3ALYJY" allowfullscreen seamless frameBorder="0"></iframe>
+</div>
+
+<p>Of course, there are many problems : continental drift, rotation of the earth's inner layers w.r.t. the surface and the incredible pressure and temperature closer to the center of the earth that make this project completely infeasible.</p>
+<p>Irrespective of the hurdles, its still extremely interesting. Of all the coolness associated with this idea, the thing that really bakes ones noodle is the claim that any straight line journey through the earth takes 42 minutes. You don't need to be a Hitch Hiker's fan to be super excited by this. Additionally, the oldest records of this method of travel show that it was first proposed by Robert Hooke, for whom I have a soft spot in my heart (after reading <a href="http://www.amazon.com/The-Scientists-History-Greatest-Inventors/dp/0812967887" title="Amazon books link">The Scientists</a>).</p>
+<p>If you have read my other similarly themed <a href="http://www.motleytech.net/en/2015/03/20/falling-into-the-sun/">blog post</a>, you might already know that I love such things, and this was another opportunity to spend some time playing with physics, maths and programming. So I set out to find a closed form expression for the travel time across the earth and also verify the startling 42 minutes result.</p>
+<hr>
+<p>We will start from the first principles and derive the travel time. To make it possible to solve this problem analytically, we will assume that the density of the earth (<span class="math">\(d_e\)</span>) is uniform (which it is not and we will come to that bit later).</p>
+<p>Lets imagine that we want to travel from point <em>A</em> to point <em>B</em> on the surface of the earth and we plan to do so via a straight line path through the bulk of the earth. Let the length of this path be <em>d</em> and let the minimum distance of this path from the center of the earth be <em>p</em>. Here is a diagram which makes this easier to imagine...</p>
+<p><span class="img-width-400">
+  <img alt="Alternate text" src="/images/GravityTrain.png">
+</span></p>
+<p>To describe the remaining quantities in the diagram,</p>
+<ul>
+<li>d : straight line distance between <em>A</em> and <em>B</em>.</li>
+<li>p : minimum distance of the straight line path from center of earth.</li>
+<li>R : radius of the earth (<span class="math">\(6.371\times10^6\)</span> m)</li>
+<li>x : distance traveled by the train at time <span class="math">\(t_x\)</span>.</li>
+<li>h : distance of the train from the center of the earth at time <span class="math">\(t_x\)</span>.</li>
+<li><span class="math">\(\theta\)</span> : angle that the path at <span class="math">\(t_x\)</span> makes with the force of gravity.</li>
+</ul>
+<p>We will first find the time that the train takes to travel half of its path, and by symmetry, we know that the time of the other half is identical. This way, we won't have to muck around with the opposite acceleration (retardation) in the second half of the journey.</p>
+<p>We know from Newton's law of gravitation that the force on the train, is given by</p>
+<div class="math">$$F = \frac{G M_h m_t}{h^2} = m_t a_h$$</div>
+<p>where,</p>
+<ul>
+<li><span class="math">\(h\)</span> : distance of train from center of earth.</li>
+<li><span class="math">\(M_h = \frac{4}{3}\pi h^3 \times d_e\)</span> : mass of the earth within the sphere of radius h. The force on the train due to the mass outside this sphere is nil.</li>
+<li><span class="math">\(m_t\)</span> : mass of the train.</li>
+<li><span class="math">\(G\)</span> : Gravitational constant (<span class="math">\(6.67384\times10^{−11} kg^{−1} m^3s^{−2}\)</span>)</li>
+<li><span class="math">\(a_h\)</span> : acceleration of the train at distance h from center of the earth.</li>
+</ul>
+<div class="math">$$ m_t a_h = \frac{GM_h m_t}{h^2}$$</div>
+<div class="math">$$ \implies a_h = \frac{GM_h}{h^2} $$</div>
+<div class="math">$$ a_h = \frac{G}{h^2} \times \frac{4}{3}\pi h^3 \times d_e$$</div>
+<div class="math">$$ a_h = \frac{4}{3} \pi G h d_e = \frac{4}{3} \pi Gh \frac{M_e}{\frac{4}{3}\pi R^3}$$</div>
+<div class="math">$$ a_h = h \frac{GM_e}{R^3} = \frac {h}{R} \times \frac {GM_e}{R^2}$$</div>
+<p>but <span class="math">\(\frac {GM_e}{R^2} = g = 9.8 ms^{-2}\)</span>, the acceleration due to gravity at the earth's surface. So, we can rewrite <span class="math">\(a_h\)</span> as</p>
+<div class="math">$$\implies a_h = \frac {h}{R} g$$</div>
+<p>This result implies that the acceleration due to gravity decreases linearly to 0 as we get closer to the center of the earth.</p>
+<p>Now, <span class="math">\(a_h\)</span> is the acceleration of the train towards the center of the earth. The quantity which is much more relevant than <span class="math">\(a_h\)</span> is <span class="math">\(a_{h\theta}\)</span>, which is the acceleration of the train in the direction of travel.</p>
+<div class="math">$$a_{h\theta} = a_h \times Cos\theta = a_h \times \frac{\frac{d}{2} - x}{h}$$</div>
+<div class="math">$$a_{h\theta} = \frac {h}{R} g \times \frac{\frac{d}{2} - x}{h} = \frac{g}{2R} (d -  2x)$$</div>
+<p>We can use integral calculus to solve this (differential) equation to find the travel time.</p>
+<div class="math">$$a_{h\theta} = \frac{dv}{dt} = \frac{dv}{dx} \times \frac{dx}{dt} = \frac{dv}{dx} \times v = v \frac {dv}{dx}$$</div>
+<div class="math">$$v\frac{dv}{dx} = \frac{g}{2R}(d - 2x) $$</div>
+<p>Here, <span class="math">\(v\)</span> is the velocity of the train in the direction of the vacuum tube. Separating the variables and integrating, we get</p>
+<div class="math">$$ \frac{v^2}{2} = \frac{g}{2R} (dx - x^2) + C$$</div>
+<p>where <span class="math">\(C\)</span> is the constant of integration. We use the constraint that <span class="math">\(v=0\)</span> at <span class="math">\(x=0\)</span>, which gives <span class="math">\(C = 0\)</span>.</p>
+<div class="math">$$ \implies v = \sqrt{\frac{g}{R}x(d - x)}$$</div>
+<div class="math">$$ \frac{dx}{dt} = \sqrt{\frac{g}{R}x(d - x)}$$</div>
+<p>We separate the variables again and integrate (with the appropriate limits this time), to get</p>
+<div class="math">$$ \int^{d/2}_0 \frac{dx}{\sqrt{x(d-x)}} = \int_0^T \sqrt{\frac{g}{R}} dt$$</div>
+<div class="math">$$ \left. 2 * tan^{-1} \left( \sqrt{\frac{x}{d-x}} \right) \right\vert_{0}^{d/2}= \sqrt{\frac{g}{R}} T$$</div>
+<div class="math">$$ 2 * (tan^{-1}1 - tan^{-1}0)= \sqrt{\frac{g}{R}} T$$</div>
+<div class="math">$$ 2* \frac{\pi}{4} = \sqrt{\frac{g}{R}} T$$</div>
+<div class="math">$$ \implies T = \frac{\pi}{2} \sqrt{\frac{R}{g}}$$</div>
+<p>This is the time it takes the gravity train to reach the midpoint of its journey (which could be the center of the earth). The other half of the path is symmetrical and takes an identical time. The total travel time is twice of this...</p>
+<div class="noteworthy-equation">
+$$\implies \text{Total time} = 2*T = \pi \sqrt {\frac{R}{G}}$$
+</div>
+
+<p>What a beautiful and terse result. It is indeed a joy to see such an equation awaiting you at the end of all the complicated looking equations that we had to traverse. Also, the surprisingly unavoidable <span class="math">\(\pi\)</span> shows up yet again.</p>
+<p>Putting in the values
+</p>
+<div class="math">$$ \text{Total time} = 3.14159 * \sqrt{\frac{6371000}{9.8}} \text{ secs}$$</div>
+<div class="math">$$ \text{Total time} = 2533 \text{ secs} = 42.21 \text{ mins}$$</div>
+<p>Lets do a quick calculation to corroborate our analytical result. Why? Because we can double check our result (two different approaches to solve the same problem don't usually make the same mistake) and it is fun to write such programs.</p>
+<p>Additionally, we consider the practical situation of non-uniform density that exists in the real world and see how the travel time differs in that case. Spoiler alert: another beautiful and surprising result awaits us at the end of that journey as well. <em>Read on</em>.</p>
+<hr>
+<h2>Gravity Train calculations</h2>
+<p>We will calculate the time taken by a gravity train while journeying through different straight line paths through the earth. We start by defining some constants that we will be using in the calculations.</p>
+<div class="highlight"><pre><span></span><code><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="c1"># above line needs to be the first line in the notebook</span>
+<span class="c1"># it is required to show inline matplotlib plots.</span>
+
+<span class="c1"># we will use these imports in the code below</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span> <span class="k">as</span> <span class="n">pp</span>
+
+<span class="c1"># constants</span>
+<span class="n">dia</span> <span class="o">=</span> <span class="mi">12742000</span> <span class="c1"># diameter of the earth in meters</span>
+<span class="n">rad</span> <span class="o">=</span> <span class="n">dia</span><span class="o">/</span><span class="mf">2.0</span>
+<span class="n">me</span> <span class="o">=</span> <span class="mf">5.972e24</span>  <span class="c1"># mass of the earth in kg</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="mf">3.1415926</span>
+<span class="n">G</span> <span class="o">=</span> <span class="mf">6.67384e-11</span> <span class="c1"># gravitational constant</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mf">9.8</span>
+
+<span class="n">volume</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="nb">pow</span><span class="p">(</span><span class="n">rad</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span> <span class="o">/</span> <span class="mf">3.0</span>
+<span class="n">density</span> <span class="o">=</span> <span class="n">me</span> <span class="o">/</span> <span class="n">volume</span>
+</code></pre></div>
+
+<h3>Acceleration vs Distance from center of the earth (uniform density)</h3>
+<p>It will be interesting to see in a graphical form, how the acceleration due to gravity varies by depth as one goes deeper into the earth. Lets calculate and plot this first. From our analytical work (ah=hRgah=hRg), its expected to be a linear relationship (so its not all that interesting after all).</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">calc_acc_at_depth</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    returns the acceleration at distance d</span>
+<span class="sd">    from the center of the earth, assuming</span>
+<span class="sd">    uniform density</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">d</span> <span class="o">&gt;</span> <span class="n">rad</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">g</span>
+    <span class="k">if</span> <span class="n">d</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">rad</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">g</span>
+    <span class="n">vol_d</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="nb">pow</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span> <span class="o">/</span> <span class="mf">3.0</span>
+    <span class="n">md</span> <span class="o">=</span> <span class="n">density</span> <span class="o">*</span> <span class="n">vol_d</span>
+    <span class="n">acc</span> <span class="o">=</span> <span class="n">G</span><span class="o">*</span><span class="n">md</span> <span class="o">/</span> <span class="nb">pow</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">acc</span>
+
+<span class="n">acc_at_depth</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">dd</span> <span class="o">=</span> <span class="n">d</span><span class="o">*</span><span class="n">rad</span> <span class="o">/</span> <span class="mi">500</span>
+    <span class="n">acc_at_depth</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">dd</span><span class="p">,</span> <span class="n">calc_acc_at_depth</span><span class="p">(</span><span class="n">dd</span><span class="p">)))</span>
+
+<span class="n">xvals</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="ow">in</span> <span class="n">acc_at_depth</span><span class="p">]</span>
+<span class="n">yvals</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="ow">in</span> <span class="n">acc_at_depth</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Distance from center from earth (meters)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Acceleration due to gravity (m / s^2)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xvals</span><span class="p">,</span> <span class="n">yvals</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The above graph is, as expected, a straight line, though there was hardly any doubt about that outcome.</p>
+<p>Next, we will calculate and plot the travel time for 127 different tunnel lengths, uniformly distributed in their length, starting from 100 km and going up to 12700 km (almost equal to the diameter).</p>
+<p><span class="img-width-400">
+  <img alt="Alternate text" src="/images/gravitytrail_matplot1.png">
+</span></p>
+<p>The above graph is, as expected, a straight line, though there was hardly any doubt about that outcome.</p>
+<p>Next, we will calculate and plot the travel time for 127 different tunnel lengths, uniformly distributed in their length, starting from 100 km and going up to 12700 km (almost equal to the diameter).</p>
+<div class="highlight"><pre><span></span><code><span class="n">chord_lengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100000</span><span class="o">*</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">127</span><span class="p">)]</span>
+
+<span class="k">def</span> <span class="nf">get_acc</span><span class="p">(</span><span class="n">chlen</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    return acceleration at distance x</span>
+<span class="sd">    into a tunnel of length chlen</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">g</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">R</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="n">chlen</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_vt</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given the current velocity, acceleration a distance &#39;s&#39;,</span>
+<span class="sd">    returns the velocity after train covers the distance &#39;s&#39;</span>
+<span class="sd">    and the time take to cover the distance.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rv</span> <span class="o">=</span> <span class="n">rt</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">rv</span> <span class="o">=</span> <span class="n">v</span>
+        <span class="n">rt</span> <span class="o">=</span> <span class="n">s</span><span class="o">/</span><span class="n">v</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">rv</span><span class="p">,</span> <span class="n">rt</span><span class="p">)</span>
+    <span class="n">rt</span> <span class="o">=</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">v</span><span class="o">*</span><span class="n">v</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="n">v</span><span class="p">)</span> <span class="o">/</span> <span class="n">a</span>
+    <span class="n">rv</span> <span class="o">=</span> <span class="n">v</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span><span class="n">rt</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">rv</span><span class="p">,</span> <span class="n">rt</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_travel_time</span><span class="p">(</span><span class="n">chlen</span><span class="p">,</span> <span class="n">nparts</span><span class="p">,</span> <span class="n">acc_func</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    returns the total travel time for traversing the</span>
+<span class="sd">    tunnel, from beginning to end</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="n">chlen</span><span class="o">/</span><span class="mf">2.0</span>
+    <span class="n">curve_power</span> <span class="o">=</span> <span class="mf">2.0</span>
+    <span class="n">stfacs</span> <span class="o">=</span> <span class="p">[</span><span class="nb">pow</span><span class="p">((</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">nparts</span><span class="p">),</span> <span class="n">curve_power</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="n">nparts</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+    <span class="n">steps</span> <span class="o">=</span> <span class="p">[</span><span class="n">dist</span><span class="o">*</span><span class="n">xx</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">stfacs</span><span class="p">]</span>
+    <span class="n">total_time</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">cv</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">st1</span><span class="p">,</span> <span class="n">st2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">steps</span><span class="p">,</span> <span class="n">steps</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="n">st2</span> <span class="o">-</span> <span class="n">st1</span>
+        <span class="n">acc</span> <span class="o">=</span> <span class="n">acc_func</span><span class="p">(</span><span class="n">chlen</span><span class="p">,</span> <span class="n">rad</span><span class="p">,</span> <span class="n">st1</span><span class="p">)</span>
+        <span class="n">cv</span><span class="p">,</span> <span class="n">time_part</span> <span class="o">=</span> <span class="n">get_vt</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">cv</span><span class="p">,</span> <span class="n">acc</span><span class="p">)</span>
+        <span class="n">total_time</span> <span class="o">+=</span> <span class="n">time_part</span>
+
+    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">total_time</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="p">[(</span><span class="n">dist1</span><span class="p">,</span> <span class="n">get_travel_time</span><span class="p">(</span><span class="n">dist1</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="n">get_acc</span><span class="p">))</span> <span class="k">for</span> <span class="n">dist1</span> <span class="ow">in</span> <span class="n">chord_lengths</span><span class="p">]</span>
+
+<span class="c1"># plot of time vs chord length</span>
+<span class="n">yvals</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">/</span><span class="mf">60.0</span> <span class="k">for</span> <span class="n">d</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
+<span class="n">maxDiff</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">yvals</span><span class="p">)</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">yvals</span><span class="p">)</span>
+
+<span class="n">yvals</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%10.6f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">yvals</span><span class="p">]</span>
+<span class="n">xvals</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Length of tunnel (meters)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Travel time (minutes)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xvals</span><span class="p">,</span> <span class="n">yvals</span><span class="p">)</span>
+
+<span class="nb">print</span> <span class="s2">&quot;Difference between max and min travel times : </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">maxDiff</span>
+</code></pre></div>
+
+<p>Output: <code>Difference between max and min travel times : 2.69295696853e-12</code></p>
+<p><span class="img-width-400">
+  <img alt="Alternate text" src="/images/gravitytrail_matplot2.png">
+</span></p>
+<p>All right! This confirms our analytical solution. The travel time across chords of different length are indeed almost exactly the same. The differences in the max and min travel times is of the order of <span class="math">\(10^{−11}\)</span>, which is probably the best accuracy that we can get with double precision arithmetic on a computer.</p>
+<p>This is all well and good for the simplified case of the earth having uniform density. But that is not true for the real earth. In fact, we expect the density near the core to be larger due to the pressure of all the mass that is pressing down upon it.</p>
+<h3>Acceleration in non-uniform density</h3>
+<p>This website (http://geophysics.ou.edu/solid_earth/prem.html) gives us a table of acceleration vs depth for the earth.</p>
+<p>I copy pasted the table and cleaned up the data in a few lines of code below (python is awesome).</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># depth vs acceleration table from</span>
+<span class="c1"># http://geophysics.ou.edu/solid_earth/prem.html</span>
+
+<span class="n">g_at_depth</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;0.0 11266.20    3667.80 13088.48    1425.3  176.1   0.4407  363.850 0.0000</span>
+<span class="s2">200.0   11255.93    3663.42 13079.77    1423.1  175.5   0.4408  362.900 0.7311</span>
+<span class="s2">400.0   11237.12    3650.27 13053.64    1416.4  173.9   0.4410  360.030 1.4604</span>
+<span class="s2">600.0   11205.76    3628.35 13010.09    1405.3  171.3   0.4414  355.280 2.1862</span>
+<span class="s2">800.0   11161.86    3597.67 12949.12    1389.8  167.6   0.4420  348.670 2.9068</span>
+<span class="s2">1000.0  11105.42    3558.23 12870.73    1370.1  163.0   0.4428  340.240 3.6203</span>
+<span class="s2">1200.0  11036.43    3510.02 12774.93    1346.2  157.4   0.4437  330.050 4.3251</span>
+<span class="s2">1221.5  11028.27    3504.32 12763.60    1343.4  156.7   0.4438  328.850 4.4002</span>
+<span class="s2">1400.0  10249.59    0.00    12069.24    1267.9  0.0 0.5000  318.750 4.9413</span>
+<span class="s2">1600.0  10122.91    0.00    11946.82    1224.2  0.0 0.5000  306.150 5.5548</span>
+<span class="s2">1800.0  9985.54 0.00    11809.00    1177.5  0.0 0.5000  292.220 6.1669</span>
+<span class="s2">2000.0  9834.96 0.00    11654.78    1127.3  0.0 0.5000  277.040 6.7715</span>
+<span class="s2">2200.0  9668.65 0.00    11483.11    1073.5  0.0 0.5000  260.680 7.3645</span>
+<span class="s2">2400.0  9484.09 0.00    11292.98    1015.8  0.0 0.5000  243.250 7.9425</span>
+<span class="s2">2600.0  9278.76 0.00    11083.35    954.2   0.0 0.5000  224.850 8.5023</span>
+<span class="s2">2800.0  9050.15 0.00    10853.21    888.9   0.0 0.5000  205.600 9.0414</span>
+<span class="s2">3000.0  8795.73 0.00    10601.52    820.2   0.0 0.5000  185.640 9.5570</span>
+<span class="s2">3200.0  8512.98 0.00    10327.26    748.4   0.0 0.5000  165.120 10.0464</span>
+<span class="s2">3400.0  8199.39 0.00    10029.40    674.3   0.0 0.5000  144.190 10.5065</span>
+<span class="s2">3480.0  8064.82 0.00    9903.49 644.1   0.0 0.5000  135.750 10.6823</span>
+<span class="s2">3600.0  13687.53    7265.75 5506.42 644.0   290.7   0.3038  128.710 10.5204</span>
+<span class="s2">3630.0  13680.41    7265.97 5491.45 641.2   289.9   0.3035  126.970 10.4844</span>
+<span class="s2">3800.0  13447.42    7188.92 5406.81 609.5   279.4   0.3012  117.350 10.3095</span>
+<span class="s2">4000.0  13245.32    7099.74 5307.24 574.4   267.5   0.2984  106.390 10.1580</span>
+<span class="s2">4200.0  13015.79    7010.53 5207.13 540.9   255.9   0.2957  95.760  10.0535</span>
+<span class="s2">4400.0  12783.89    6919.57 5105.90 508.5   244.5   0.2928  85.430  9.9859</span>
+<span class="s2">4600.0  12544.66    6825.12 5002.99 476.6   233.1   0.2898  75.360  9.9474</span>
+<span class="s2">4800.0  12293.16    6725.48 4897.83 444.8   221.5   0.2864  65.520  9.9314</span>
+<span class="s2">5000.0  12024.45    6618.91 4789.83 412.8   209.8   0.2826  55.900  9.9326</span>
+<span class="s2">5200.0  11733.57    6563.70 4678.44 380.3   197.9   0.2783  46.490  9.9467</span>
+<span class="s2">5400.0  11415.60    6378.13 4563.07 347.1   185.6   0.2731  37.290  9.9698</span>
+<span class="s2">5600.0  11065.57    6240.46 4443.17 313.3   173.0   0.2668  28.290  9.9985</span>
+<span class="s2">5701.0  10751.31    5945.08 4380.71 299.9   154.8   0.2798  23.830  10.0143</span>
+<span class="s2">5771.0  10157.82    5516.01 3975.84 248.9   121.0   0.2909  21.040  10.0038</span>
+<span class="s2">5701.0  10751.31    5945.08 4380.71 299.9   154.8   0.2798  23.830  10.0143</span>
+<span class="s2">5771.0  10157.82    5516.01 3975.84 248.9   121.0   0.2909  21.040  10.0038</span>
+<span class="s2">5871.0  9645.88 5224.28 3849.80 218.1   105.1   0.2924  17.130  9.9883</span>
+<span class="s2">5971.0  9133.97 4932.59 3723.78 189.9   90.6    0.2942  13.350  9.9686</span>
+<span class="s2">6061.0  8732.09 4706.90 3489.51 163.0   77.3    0.2952  10.200  9.9361</span>
+<span class="s2">6151.0  8558.96 4643.91 3435.78 152.9   74.1    0.2914  7.110   9.9048</span>
+<span class="s2">6221.0  8033.70 4443.61 3367.10 128.7   66.5    0.2796  4.780   9.8783</span>
+<span class="s2">6291.0  8076.88 4469.53 3374.71 130.3   67.4    0.2793  2.450   9.8553</span>
+<span class="s2">6346.6  8110.61 4490.94 3380.76 131.5   68.2    0.2789  0.604   9.8394</span>
+<span class="s2">6356.0  6800.00 3900.00 2900.00 75.3    44.1    0.2549  0.337   9.8332</span>
+<span class="s2">6368.0  5800.00 3200.00 2600.00 52.0    26.6    0.2812  0.300   9.8222</span>
+<span class="s2">6371.0  1450.00 0.00    1020.00 2.1 0.0 0.5000  0.000   9.8156&quot;&quot;&quot;</span>
+
+<span class="n">g_at_depth</span> <span class="o">=</span> <span class="n">g_at_depth</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">g_at_depth</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">g_at_depth</span><span class="p">]</span>
+<span class="n">g_at_depth</span> <span class="o">=</span> <span class="p">[(</span><span class="nb">float</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">g_at_depth</span><span class="p">]</span>
+<span class="n">g_at_depth</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">g_at_depth</span><span class="p">))</span>
+
+<span class="n">xvals</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">g_at_depth</span><span class="p">]</span>
+<span class="n">yvals</span> <span class="o">=</span> <span class="p">[</span><span class="n">g</span> <span class="k">for</span> <span class="n">d</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">g_at_depth</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Distance from center from earth (kms)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Acceleration due to gravity (m / s^2)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xvals</span><span class="p">,</span> <span class="n">yvals</span><span class="p">)</span>
+</code></pre></div>
+
+<p><span class="img-width-400">
+  <img alt="Alternate text" src="/images/gravitytrail_matplot3.png">
+</span></p>
+<p>The PREM data only gives the acceleration at discrete intervals. We will write an interpolation method which will do a linear interpolation of the acceleration based on the PREM table.</p>
+<p>After doing that, we can find the travel times for different chord lengths and plot it.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># find correct acceleration at varying depths</span>
+<span class="n">dtable</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">g_at_depth</span><span class="p">]</span>
+<span class="n">gtable</span> <span class="o">=</span> <span class="p">[</span><span class="n">g</span> <span class="k">for</span> <span class="n">d</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">g_at_depth</span><span class="p">]</span>
+
+<span class="kn">from</span> <span class="nn">bisect</span> <span class="kn">import</span> <span class="n">bisect_left</span>
+
+<span class="k">def</span> <span class="nf">get_real_acc_at_depth</span><span class="p">(</span><span class="n">depth</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    using linear interpolation of the PREM table, find the</span>
+<span class="sd">    acceleration due to gravity at given depth and return it.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">dtable</span><span class="p">,</span> <span class="n">depth</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">idx</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">dtable</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">gtable</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">gl</span><span class="p">,</span> <span class="n">gh</span> <span class="o">=</span> <span class="n">gtable</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">gtable</span><span class="p">[</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">dl</span><span class="p">,</span> <span class="n">dh</span> <span class="o">=</span> <span class="n">dtable</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">dtable</span><span class="p">[</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">fac</span> <span class="o">=</span> <span class="p">(</span><span class="n">d</span> <span class="o">-</span> <span class="n">dl</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">dh</span> <span class="o">-</span> <span class="n">dl</span><span class="p">)</span>
+    <span class="n">rg</span> <span class="o">=</span> <span class="n">gl</span> <span class="o">+</span> <span class="n">fac</span><span class="o">*</span><span class="p">(</span><span class="n">gh</span> <span class="o">-</span> <span class="n">gl</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rg</span>
+
+<span class="k">def</span> <span class="nf">get_actual_acc</span><span class="p">(</span><span class="n">chlen</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    return real world acceleration at distance x</span>
+<span class="sd">    into a tunnel of length chlen</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">depth</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">R</span><span class="o">*</span><span class="n">R</span> <span class="o">+</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">chlen</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">gd</span> <span class="o">=</span> <span class="n">get_real_acc_at_depth</span><span class="p">(</span><span class="n">depth</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">gd</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">depth</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="n">chlen</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+
+
+
+<span class="n">results</span> <span class="o">=</span> <span class="p">[(</span><span class="n">dist1</span><span class="p">,</span> <span class="n">get_travel_time</span><span class="p">(</span><span class="n">dist1</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="n">get_actual_acc</span><span class="p">))</span> <span class="k">for</span> <span class="n">dist1</span> <span class="ow">in</span> <span class="n">chord_lengths</span><span class="p">]</span>
+
+<span class="c1"># plot of time vs chord length</span>
+<span class="n">xvals</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
+<span class="n">yvals</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">/</span><span class="mf">60.0</span> <span class="k">for</span> <span class="n">d</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Tunnel length (meters)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Travel time (minutes)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xvals</span><span class="p">,</span> <span class="n">yvals</span><span class="p">)</span>
+</code></pre></div>
+
+<p><span class="img-width-400">
+  <img alt="Alternate text" src="/images/gravitytrail_matplot4.png">
+</span></p>
+<h2>Whoa.... this is damn cool!</h2>
+<p>The graph above shows that we can travel to the opposite side of the earth in ~37 minutes, while it takes 42 minutes to travel to nearby places. This is the kind of result that makes one fall in love with physics and maths.</p>
+<p>Maybe someday, we can find such a shortcut through space which allows us to jump to far away galaxies faster than we can travel in our own solar system.</p>
+<p>If you look closely, you will also see that this is the essence of gravity assisted slingshot mechanisms that space rockets use to their advantage for gaining speed and venturing into outer space.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+
+             
+ 
+            
+            
+            <hr />
+            
+
+
+
+
+
+
+<section>
+    <h6 style="display:none;">Comments</h6>
+    <p id="comment-message"> </p>
+
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle disqus-comment-count comment-count"
+                   data-toggle="collapse"
+                   data-parent="#accordion2"
+                   data-disqus-identifier="gravity_train"
+                   href="/gravity-train.html#comment_thread"
+                   id="comment-accordion-toggle">
+                    Comments
+                </a>
+            </div>
+            <div id="comment_thread" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="comments">
+                        <div id="disqus_thread"></div>
+                        <script>
+    var disqus_shortname = 'motleytech';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+
+    var disqus_identifier = 'gravity_train';
+    var disqus_url = '/gravity-train.html';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2014-01-17T15:25:00-08:00">Jan 17, 2014</time>
+            <!--             <h4>Category</h4>
+            <a class="category-link" href="/categories.html#blog-ref">Blog</a>
+ -->
+            <!--             <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="/tags.html#gravity-ref">Gravity
+                    <span>2</span>
+</a></li>
+                <li><a href="/tags.html#mathematics-ref">Mathematics
+                    <span>3</span>
+</a></li>
+                <li><a href="/tags.html#physics-ref">Physics
+                    <span>2</span>
+</a></li>
+                <li><a href="/tags.html#train-ref">Train
+                    <span>1</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+ -->
+        </section>
+</div>
+</article>
+                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+</html>

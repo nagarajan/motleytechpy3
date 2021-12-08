@@ -1,0 +1,52 @@
+.bezierContainer {
+    width: 100%;
+    height: 60vh;
+    min-width: 400px;
+    min-height: 400px;
+    font-size: small;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid lightgray;
+}
+
+.playground {
+    width: 100%;
+    position: relative;
+    flex-grow: 1;
+}
+
+.thecurve {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.thepoints, .cpoints1, .cpoints2, .clines1, .clines2 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.svgcode {
+    border: 1px solid lightgray;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: rgb(204, 231, 255);
+}
+
+.svgcode p {
+    margin: 0 0 5px 0;
+}
+
+.svgcode input {
+    width: 100%;
+    font-size: x-small;
+}
+
+.svgcode div {
+    padding-right: 5px;
+}
