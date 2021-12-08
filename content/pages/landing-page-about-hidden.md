@@ -7,13 +7,13 @@ status: hidden
 slug: landing-page-about-hidden
 ---
 
-Hi visitor... welcome to <b>Nagarajan</b>'s website. I am a programmer with an affinity towards Web apps, Python, Javascript and Applied Mathematics. I also greatly enjoy the works of Douglas Adams and Monty Python (title of this page is a portmanteaux from their works).
+Hello visitor!
 
-Here you will find some random thoughts, ramblings and explorations that I found interesting and had the time/inclination to pen them down. Its a mish-mash of Maths, Physics, Puzzles, History and Programming.
+Welcome to <b>Nagarajan</b>'s website. I am a programmer with an affinity towards web apps, Python, Javascript and applied mathematics. I also greatly enjoy the works of Douglas Adams and Monty Python (you probably got that from the title - a portmanteaux from their works).
 
-I hope you too find them interesting and possibly useful. On the right sidebar, you can also find links to some interesting content on the web.
+On this blog, you will find some random thoughts, ramblings and explorations that I found interesting and had the time/inclination to pen them down. Its a mish-mash of Maths, Physics, Puzzles, History and Programming.
 
-Would love to hear any feedback - there is a comment section at the bottom of each page.
+I hope you too find them interesting and possibly useful. On the right sidebar (or below, if you are on mobile), you can find links to some interesting content on the web.
 
 Enjoy!
 
