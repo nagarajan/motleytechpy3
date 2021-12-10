@@ -43,7 +43,7 @@ PLUGINS = [
 ]
 
 # Landing Page
-PROJECTS_TITLE = "Other interesting things..."
+PROJECTS_TITLE = "Other distractions..."
 PROJECTS = [
     {
         "name": "Veritasium",
