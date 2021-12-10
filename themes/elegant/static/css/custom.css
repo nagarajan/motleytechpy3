@@ -300,3 +300,25 @@ a {
   background-color: #bfa57d;
 }
 
+@media (max-width: 768px) {
+  #over768px {
+    display: none;
+  }
+  #under768px {
+    display: block;
+  }
+}
+
+@media (min-width: 768px) {
+  #over768px {
+    display: block;
+  }
+  #under768px {
+    display: none;
+  }
+}
+
+h2 {
+  line-height: 1.5em;
+  font-size: 1.5rem;
+}

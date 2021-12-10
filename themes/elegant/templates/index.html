@@ -73,9 +73,9 @@
         {% if PROJECTS and LANDING_PAGE_TITLE %}
         {% set css_class = 'span4' %}
         {% endif %}
-        <div class="{{css_class}}">
+        <div id="over768px" class="{{css_class}}">
             <header>
-            <h1 id="my-projects">{{ PROJECTS_TITLE }}</h1>
+            <h2 id="my-projects">{{ PROJECTS_TITLE }}</h2>
             </header>
             {% for project in PROJECTS %}
             <ul class="list-all-articles">
@@ -94,11 +94,11 @@
     {% set css_class = 'span12' %}
     {% endif %}
     {% from '_includes/_defaults.html' import RECENT_ARTICLES_COUNT, ARCHIVES_URL, CATEGORIES_URL with context %}
-    <div style="height: 2rem"></div>
+    <div style="height: 1rem"></div>
     <div class="row-fluid">
         <div class="{{css_class}}">
             <header>
-            <h1 id="recent-posts">Recent Posts <a id="allposts" href="{{ SITEURL }}/{{ ARCHIVES_URL }}">all posts</a></h1>
+            <h2 id="recent-posts">Recent Posts <a id="allposts" href="{{ SITEURL }}/{{ ARCHIVES_URL }}">all posts</a></h2>
             </header>
         <div class="recent-posts">
             {% for article in articles %}
@@ -129,6 +129,23 @@
         </div>
     </div>
     {% endif %}
+
+    {% if PROJECTS %}
+    <div id="under768px">
+        <div style="height: 1rem"></div>
+        <header>
+        <h2 id="my-projects">{{ PROJECTS_TITLE }}</h2>
+        </header>
+        {% for project in PROJECTS %}
+        <ul class="list-all-articles">
+            <li>
+            <a href="{{ project.url }}" title="{{ project.name }}">{{ project.name }}</a> <span class="proj-desc">{{ project.description }}</span>
+            </li>
+        </ul>
+        {%endfor %}
+    </div>
+    {% endif %}
+
 </div>
 {% endblock content %}
 

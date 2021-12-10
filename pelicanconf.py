@@ -1,5 +1,6 @@
 AUTHOR = 'Nagarajan'
-SITENAME = 'MotleyTech.net'
+SITENAME = 'MotleyTech'
+TITLE = 'MotleyTech - variegated, technical and interesting'
 SITEURL = ''
 
 PATH = 'content'
@@ -68,11 +69,6 @@ PROJECTS = [
         "name": "JSConf",
         "url": "https://www.youtube.com/c/JSConfEU",
         "description": "Useful for JS knowledge",
-    },
-    {
-        "name": "Vercel (NextJS) Youtube Channel",
-        "url": "https://www.youtube.com/channel/UCLq8gNoee7oXM7MvTdjyQvA",
-        "description": "Useful for Next.js knowledge",
     },
     {
         "name": "Pycon",
