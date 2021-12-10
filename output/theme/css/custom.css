@@ -96,22 +96,26 @@ CSS for Images
 
 .img-width-400 {
   width: 400px;
+  max-width: 100%;
   display: block;
   margin: 0px auto;
 }
 
 .img-width-400 img {
   width: 400px;
+  max-width: calc(100% - 14px);
 }
 
 .img-width-600 {
   width: 600px;
+  max-width: 100%;
   display: block;
   margin: 0px auto;
 }
 
 .img-width-600 img {
   width: 600px;
+  max-width: calc(100% - 14px);
 }
 
 #btngenerate {
@@ -152,7 +156,6 @@ CSS for Images
     padding: 0px;
     margin: 0px;
 }
-
 
 
 /*dropdown submenu related stuff*/
@@ -321,4 +324,12 @@ a {
 h2 {
   line-height: 1.5em;
   font-size: 1.5rem;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+.container-fluid .row-fluid .span1 {
+  min-height: 15px;
 }
