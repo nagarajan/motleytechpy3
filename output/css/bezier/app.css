@@ -1,6 +1,6 @@
 .bezierContainer {
     width: 100%;
-    height: 60vh;
+    height: 50vh;
     min-width: 400px;
     min-height: 400px;
     font-size: small;
@@ -39,14 +39,44 @@
 }
 
 .svgcode p {
-    margin: 0 0 5px 0;
+    margin: 5px 0;
 }
 
-.svgcode input {
+.svgcodeText {
+    /* easy way to plop the elements on top of each other and have them both sized based on the tallest one's height */
+    display: grid;
+}
+
+.svgcodeText::after {
+    /* Note the weird space! Needed to preventy jumpy behavior */
+    content: attr(data-replicated-value) " ";
+
+    /* This is how textarea text behaves */
+    white-space: pre-wrap;
+
+    /* Hidden from view, clicks, and screen readers */
+    visibility: hidden;
+}
+
+.svgcodeText > textarea {
+    /* You could leave this, but after a user resizes, then it ruins the auto sizing */
+    resize: none;
+
+    /* Firefox shows scrollbar on growth, you can hide like this. */
+    overflow: hidden;
+}
+
+.svgcodeText > textarea,
+.svgcodeText::after {
+    /* Identical styling required!! */
+    border: 1px solid black;
+    padding: 0.5rem;
+    font: inherit;
+    font-size: 12px;
     width: 100%;
-    font-size: x-small;
-}
+    box-sizing: border-box;
+    margin-bottom: 0;
 
-.svgcode div {
-    padding-right: 5px;
+    /* Place on top of each other */
+    grid-area: 1 / 1 / 2 / 2;
 }

@@ -13,12 +13,12 @@
 
 <meta property="og:title" content="Bezier curve playground "/>
 <meta property="og:url" content="/bezier-curve-playground.html" />
-<meta property="og:description" content="Bezier curves are one of the cooler things in the web browser. Now, there are a huge number of descriptions, explanations and animations of bezier curves on the internet. So why make one more webpage related to them? I didn&#39;t find many places where I could play around with bezier …" />
+<meta property="og:description" content="Bezier curves are one of the cooler things with built-in support in the web browser - which makes it easier to create this demo in the browser (vs a custom native UI). Below is a playground to tinker with cubic bezier curves. You can add new points - click on a empty …" />
 <meta property="og:site_name" content="MotleyTech" />
 <meta property="og:article:author" content="Nagarajan" />
 <meta property="og:article:published_time" content="2020-04-16T12:59:00-07:00" />
 <meta name="twitter:title" content="Bezier curve playground ">
-<meta name="twitter:description" content="Bezier curves are one of the cooler things in the web browser. Now, there are a huge number of descriptions, explanations and animations of bezier curves on the internet. So why make one more webpage related to them? I didn&#39;t find many places where I could play around with bezier …">
+<meta name="twitter:description" content="Bezier curves are one of the cooler things with built-in support in the web browser - which makes it easier to create this demo in the browser (vs a custom native UI). Below is a playground to tinker with cubic bezier curves. You can add new points - click on a empty …">
 
         <title>Bezier curve playground  · MotleyTech - variegated, technical and interesting
 </title>
@@ -76,10 +76,14 @@
 <div class="row-fluid">
         <div class="span10 offset1 article-content">
             
-            <p>Bezier curves are one of the <em>cooler</em> things in the web browser. Now, there are a huge number of descriptions, explanations and animations of bezier curves on the internet. So why make one more webpage related to them?</p>
-<p>I didn't find many places where I could play around with bezier curves with multiple points, and make some silly curves. I could do it with an app like illustrator or inkscape, but I was looking for a browser based solution.</p>
-<p>Then I thought that I could make one myself - specially given the excellent support for svg bezier curves in the browser.
-These curves are some of the <em>coolest</em> and seemingly complicated things in the web frontend. I say <em>seemingly</em> because once you have seen some of them visually at work, it starts making a lot more sense.</p>
+            <p>Bezier curves are one of the <em>cooler</em> things with built-in support in the web browser - which makes it easier to create this demo in the browser (vs a custom native UI). Below is a playground to tinker with cubic bezier curves.</p>
+<p>You can</p>
+<ul>
+<li>add new points - click on a empty area</li>
+<li>move the existing points (blue dots) - click and drag</li>
+<li>move the control points (the points with circles) - again, click and drag</li>
+</ul>
+<p>Have a go... try adding a couple of points and dragging the resulting control points.</p>
 <div class='bezierContainer'>
     <div class="playground">
         <svg class='thecurve'>
@@ -96,14 +100,15 @@ These curves are some of the <em>coolest</em> and seemingly complicated things i
         <svg class='clines2'>
         </svg>
     </div>
-    <div class="svgcode">
-        <p>SVG Path for the curve</p>
-        <div>
-            <input readonly />
-        </div>
+</div>
+<div class="svgcode">
+    <p>SVG Path for the curve</p>
+    <div class="svgcodeText">
+        <textarea onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
     </div>
 </div>
 
+<p>If you are wondering how they work, there are a huge number of <a href="https://en.wikipedia.org/wiki/B%C3%A9zier_curve">articles</a>, explanations and animations of bezier curves on the internet (this article adds one more to the demos) - and <a href="https://en.wikipedia.org/wiki/B%C3%A9zier_curve#Higher-order_curves">this section on the wikipedia article</a> does a great job of explaining cubic+ bezier curves using animations. I refreshed my knowledge on the topic from that very article.</p>
 <p><link rel="stylesheet" href="/css/bezier/app.css"></p>
 <script src='/js/bezier/bezier.js'></script>
 

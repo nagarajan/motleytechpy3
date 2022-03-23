@@ -47,9 +47,10 @@
     }
 
     function updateOutput () {
-        const el = document.querySelector('.svgcode input')
+        const el = document.querySelector('.svgcodeText textarea')
         const path = document.querySelector('.thecurve path')
         el.value = path.getAttribute('d')
+        el.parentNode.dataset.replicatedValue = el.value;
     }
 
     function plotLines () {
@@ -245,7 +246,7 @@
         updateView()
     }
 
-    let points = JSON.parse('[{"pos":{"x":112,"y":108},"cp1":null,"cp2":{"x":214,"y":185}},{"pos":{"x":290,"y":116},"cp1":{"x":205,"y":52},"cp2":null}]')
+    let points = JSON.parse('[{"pos":{"x":150,"y":200},"cp1":null,"cp2":{"x":300,"y":50}},{"pos":{"x":455,"y":200},"cp1":{"x":300,"y":350},"cp2":null}]')
     let objectUnderMouse = null
 
     let mouseDown = false
