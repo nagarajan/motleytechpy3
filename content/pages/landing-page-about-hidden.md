@@ -9,10 +9,10 @@ slug: landing-page-about-hidden
 
 Hello visitor!
 
-Welcome to MotleyTech, a blog containing a mish-mash of selected topics from Maths, Physics, Puzzles, History and Programming - a random assortment of things I found interesting and I had the time/inclination to pen down.
+Welcome to MotleyTech, a blog consisting of a mish-mash of selected topics from Maths, Physics, Puzzles, History and Programming - a random assortment of things that I found interesting and had the time/inclination to pen down.
 
-I hope you too find them interesting and possibly useful. You can also find links to a few other interesting things in the right sidebar (or below, if you are on mobile).
+I hope you too find them interesting and possibly useful. You can also find links to a few other interesting things in the right sidebar (or below, in case of small width screens).
 
 Enjoy!
 
-<i>About the author</i>: My name is <b>Nagarajan</b>, and I am a programmer with an affinity towards web apps, Python, Javascript and applied mathematics. I also greatly enjoy the works of Douglas Adams and Monty Python (you probably got that from the title - a portmanteaux from their works). I currently (late 2021) work as a programmer in the SF Bay Area. I can be contacted at '<i>nag dot rajan at gmail dot com</i>'.
+<i>About the author</i>: My name is <b>Nagarajan</b>, and I am a programmer with an affinity towards web apps, Python, Javascript, applied mathematics and 3D graphics (in no particular order). I also greatly enjoy the works of Douglas Adams and Monty Python (you probably got that from the title - a portmanteaux from their works). I currently (last updated March 2022) work as a programmer in the SF Bay Area. I can be contacted at '<i>nag dot rajan at gmail dot com</i>'.
