@@ -4,17 +4,13 @@ Category: Blog
 Tags: Javascript, CSS, Bezier curves
 Authors: Nagarajan
 Disqus_Identifier: bezierPlayground
-Status: draft
 
 Bezier curves are one of the *cooler* things in the web browser. Now, there are a huge number of descriptions, explanations and animations of bezier curves on the internet. So why make one more webpage related to them?
 
+I didn't find many places where I could play around with bezier curves with multiple points, and make some silly curves. I could do it with an app like illustrator or inkscape, but I was looking for a browser based solution.
 
-I didn't find many places where I could play around with bezier curves with multiple points, and make some silly curves. I could do it with an app like illustrator or inkscape, but I was looking on a browser based solution.
-
-Then I thought that I could make one myself - specially given the svg support for cubic bezier curves.
-Bezier curves are some of the *coolest* and seemingly complicate things in the web frontend. I say *seemingly* because once you see a couple of animations showing the math behind it visually at work, it starts making a lot more sense.
-
-
+Then I thought that I could make one myself - specially given the excellent support for svg bezier curves in the browser.
+These curves are some of the *coolest* and seemingly complicated things in the web frontend. I say *seemingly* because once you have seen some of them visually at work, it starts making a lot more sense.
 
 
 <div class='bezierContainer'>
@@ -43,4 +39,3 @@ Bezier curves are some of the *coolest* and seemingly complicate things in the w
 
 <link rel="stylesheet" href="/css/bezier/app.css">
 <script src='/js/bezier/bezier.js'></script>
-

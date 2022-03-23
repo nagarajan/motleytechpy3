@@ -9,18 +9,18 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Javascript, React, CSS, LocalStorage, Blog, " />
+<meta name="keywords" content="Javascript, CSS, Bezier curves, Blog, " />
 
-<meta property="og:title" content="Todo list with React and LocalStorage "/>
-<meta property="og:url" content="/todo-list-with-react-and-localstorage.html" />
-<meta property="og:description" content="Some time ago, I had built a simple standalone ToDo list in React, which stores its data in the browser localstorage, and I thought it came together quite neatly. Its actually less than 200 lines of javascript code (wasn&#39;t deliberately trying to play golf with the line count - link to …" />
+<meta property="og:title" content="Bezier curve playground "/>
+<meta property="og:url" content="/bezier-curve-playground.html" />
+<meta property="og:description" content="Bezier curves are one of the cooler things in the web browser. Now, there are a huge number of descriptions, explanations and animations of bezier curves on the internet. So why make one more webpage related to them? I didn&#39;t find many places where I could play around with bezier …" />
 <meta property="og:site_name" content="MotleyTech" />
 <meta property="og:article:author" content="Nagarajan" />
-<meta property="og:article:published_time" content="2020-02-26T03:45:00-08:00" />
-<meta name="twitter:title" content="Todo list with React and LocalStorage ">
-<meta name="twitter:description" content="Some time ago, I had built a simple standalone ToDo list in React, which stores its data in the browser localstorage, and I thought it came together quite neatly. Its actually less than 200 lines of javascript code (wasn&#39;t deliberately trying to play golf with the line count - link to …">
+<meta property="og:article:published_time" content="2020-04-16T12:59:00-07:00" />
+<meta name="twitter:title" content="Bezier curve playground ">
+<meta name="twitter:description" content="Bezier curves are one of the cooler things in the web browser. Now, there are a huge number of descriptions, explanations and animations of bezier curves on the internet. So why make one more webpage related to them? I didn&#39;t find many places where I could play around with bezier …">
 
-        <title>Todo list with React and LocalStorage  · MotleyTech - variegated, technical and interesting
+        <title>Bezier curve playground  · MotleyTech - variegated, technical and interesting
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="/theme/css/elegant.prod.css" media="screen">
@@ -65,10 +65,10 @@
 <div class="row-fluid">
     <header class="page-header span10 offset1">
         <h1>
-            Todo list with React and LocalStorage
+            Bezier curve playground
         </h1>
             <small class="subtitle">
-                <time itemprop="dateCreated" datetime="2020-02-26T03:45:00-08:00">Published : Feb 26, 2020</time>
+                <time itemprop="dateCreated" datetime="2020-04-16T12:59:00-07:00">Published : Apr 16, 2020</time>
             </small>
 </header>
 </div>
@@ -76,19 +76,36 @@
 <div class="row-fluid">
         <div class="span10 offset1 article-content">
             
-            <p>Some time ago, I had built a simple standalone ToDo list in React, which stores its data in the browser localstorage, and I thought it came together quite neatly. Its actually less than 200 lines of javascript code (wasn't deliberately trying to play golf with the line count - link to the code near the bottom).</p>
-<p>The use of local storage allows the list to retain its data across client restarts. So it kind of works like the apps of old days, when we didn't have a backend server syncing the data on different devices.</p>
-<p>Try it out below...</p>
-<p>Some features : You can click on an item text to modify it. You can also move items across lists by clicking on the arrows. Item deletion uses the red 'x'.</p>
-<div id='appContainer'>You need Javascript to run this program</div>
+            <p>Bezier curves are one of the <em>cooler</em> things in the web browser. Now, there are a huge number of descriptions, explanations and animations of bezier curves on the internet. So why make one more webpage related to them?</p>
+<p>I didn't find many places where I could play around with bezier curves with multiple points, and make some silly curves. I could do it with an app like illustrator or inkscape, but I was looking for a browser based solution.</p>
+<p>Then I thought that I could make one myself - specially given the excellent support for svg bezier curves in the browser.
+These curves are some of the <em>coolest</em> and seemingly complicated things in the web frontend. I say <em>seemingly</em> because once you have seen some of them visually at work, it starts making a lot more sense.</p>
+<div class='bezierContainer'>
+    <div class="playground">
+        <svg class='thecurve'>
+            <path stroke-width="2px" stroke='#555' fill='transparent'></path>
+        </svg>
+        <svg class='thepoints'>
+        </svg>
+        <svg class='cpoints1'>
+        </svg>
+        <svg class='cpoints2'>
+        </svg>
+        <svg class='clines1'>
+        </svg>
+        <svg class='clines2'>
+        </svg>
+    </div>
+    <div class="svgcode">
+        <p>SVG Path for the curve</p>
+        <div>
+            <input readonly />
+        </div>
+    </div>
+</div>
 
-<script src="/js/react.production.min.js"></script>
-<script src="/js/react-dom.production.min.js"></script>
-
-<script src="/js/reactToDoList/index.js"> </script>
-
-<p><link rel='stylesheet' type='text/css' href="/css/reactToDoList/app.css" /></p>
-<p>The source code for the todo list is <a href="https://gitlab.com/motleytech/mtOnPelican/-/raw/master/motleytechnet/content/js/reactToDoList/index.js">here</a> (or view source in dev tools - its unminified). Also, this is without using webpack, so all the components are in a single file. Its terrible... I know (the horror :-)). I am also loading React and Babel from CDNs - probably the laziest way to get up and runnning with React ;-)).</p>
+<p><link rel="stylesheet" href="/css/bezier/app.css"></p>
+<script src='/js/bezier/bezier.js'></script>
 
 
              
@@ -113,8 +130,8 @@
                 <a class="accordion-toggle disqus-comment-count comment-count"
                    data-toggle="collapse"
                    data-parent="#accordion2"
-                   data-disqus-identifier="reactToDoList"
-                   href="/todo-list-with-react-and-localstorage.html#comment_thread"
+                   data-disqus-identifier="bezierPlayground"
+                   href="/bezier-curve-playground.html#comment_thread"
                    id="comment-accordion-toggle">
                     Comments
                 </a>
@@ -132,8 +149,8 @@
         (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
     }());
 
-    var disqus_identifier = 'reactToDoList';
-    var disqus_url = '/todo-list-with-react-and-localstorage.html';
+    var disqus_identifier = 'bezierPlayground';
+    var disqus_url = '/bezier-curve-playground.html';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -156,22 +173,19 @@
         </div>
         <!-- <section id="article-sidebar" class="span2">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2020-02-26T03:45:00-08:00">Feb 26, 2020</time>
+            <time itemprop="dateCreated" datetime="2020-04-16T12:59:00-07:00">Apr 16, 2020</time>
             <h4>Category</h4>
             <a class="category-link" href="/categories.html#blog-ref">Blog</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
+                <li><a href="/tags.html#bezier-curves-ref">Bezier curves
+                    <span>1</span>
+</a></li>
                 <li><a href="/tags.html#css-ref">CSS
                     <span>3</span>
 </a></li>
                 <li><a href="/tags.html#javascript-ref">Javascript
                     <span>3</span>
-</a></li>
-                <li><a href="/tags.html#localstorage-ref">LocalStorage
-                    <span>1</span>
-</a></li>
-                <li><a href="/tags.html#react-ref">React
-                    <span>1</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
