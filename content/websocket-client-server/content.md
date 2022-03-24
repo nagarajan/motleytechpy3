@@ -4,6 +4,7 @@ Category: Blog
 Tags: Computing, Python, JS, Websocket
 Authors: Nagarajan
 Disqus_Identifier: python-websocket-client-server
+Status: draft
 
 Recently, I got down to writing a very simple python websocket server and JS web client. There are various solutions out there to get this done, but `websocket_server` is one of the simplest. Its pip installable and has a single source code file, which you can modify to your liking.
 

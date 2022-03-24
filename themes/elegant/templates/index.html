@@ -98,34 +98,37 @@
     <div class="row-fluid">
         <div class="{{css_class}}">
             <header>
-            <h2 id="recent-posts">Recent Posts <a id="allposts" href="{{ SITEURL }}/{{ ARCHIVES_URL }}">all posts</a></h2>
+            <h2 id="recent-posts">Recent Posts</h2>
             </header>
-        <div class="recent-posts">
-            {% for article in articles %}
-            {% if loop.index0 < RECENT_ARTICLES_COUNT %}
-            <div itemscope class="recent-posts-article">
-                <a href="{{ SITEURL }}/{{ article.url }}">
-                    {{ article.title }}
-                    {%if article.subtitle %}
-                    <small class="subtitle">
-                        {{ article.subtitle }}
-                    </small>
-                    {% endif %}
-                </a>
-                <div class="recent-posts-posted">
-                    posted in
-                    <a href="{{ SITEURL }}/{{ CATEGORIES_URL }}#{{ article.category.slug }}-ref">{{ article.category }}</a>
-                    <div class="recent-posts-time">
-                        <time itemprop="dateCreated" datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
+            <div class="recent-posts">
+                {% for article in articles %}
+                {% if loop.index0 < RECENT_ARTICLES_COUNT %}
+                <div itemscope class="recent-posts-article">
+                    <a href="{{ SITEURL }}/{{ article.url }}">
+                        {{ article.title }}
+                        {%if article.subtitle %}
+                        <small class="subtitle">
+                            {{ article.subtitle }}
+                        </small>
+                        {% endif %}
+                    </a>
+                    <div class="recent-posts-posted">
+                        posted in
+                        <a href="{{ SITEURL }}/{{ CATEGORIES_URL }}#{{ article.category.slug }}-ref">{{ article.category }}</a>
+                        <div class="recent-posts-time">
+                            <time itemprop="dateCreated" datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
+                        </div>
                     </div>
+                    {% if RECENT_ARTICLE_SUMMARY %}
+                        <p>{{article.summary}}</p>
+                    {% endif %}
                 </div>
-                {% if RECENT_ARTICLE_SUMMARY %}
-                    <p>{{article.summary}}</p>
                 {% endif %}
+                {% endfor %}
             </div>
-            {% endif %}
-            {% endfor %}
-        </div>
+            <div id="allposts">
+                <a href="{{ SITEURL }}/{{ ARCHIVES_URL }}">all posts</a>
+            </div>
         </div>
     </div>
     {% endif %}

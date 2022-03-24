@@ -76,6 +76,11 @@ PROJECTS = [
         "description": "PyCon youtube channel",
     },
     {
+        "name": "Mandelbrot zoom",
+        "url": "https://youtu.be/LhOSM6uCWxk",
+        "description": "The best Mandelbrot fractal zoom out there"
+    },
+    {
         "name": "Douglas adams videos",
         "url": "https://www.youtube.com/watch?v=_ZG8HBuDjgc&list=PLlfk9bqzo-ZlpfJoGaMgyo_b5gTYS0-OX&index=1",
         "description": "Bunch of Douglas Adam's videos on youtube",

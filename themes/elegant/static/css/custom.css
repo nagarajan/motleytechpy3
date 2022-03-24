@@ -251,6 +251,7 @@ body {
 .navbar-inner {
   background-image: none;
   background-color: #d0bc9f;
+  padding: 15px 0;
 }
 
 #content .top-menu .active a {
@@ -263,6 +264,7 @@ body {
 
 .navbar .brand {
   color: #6d5736;
+  font-size: 30px;
 }
 
 hr {
@@ -324,6 +326,7 @@ a {
 h2 {
   line-height: 1.5em;
   font-size: 1.5rem;
+  border-bottom: 1px solid #800;
 }
 
 h1 {
@@ -368,4 +371,30 @@ article
   &:focus {
     text-decoration: none;
   }
+}
+
+footer {
+  background-color: #d0bc9f;
+  margin-top: 50px;
+  margin-bottom: 0;
+  min-height: auto;
+}
+
+footer .container-fluid {
+  width: 100%;
+  text-align: end;
+}
+
+footer .container-fluid .row-fluid div {
+  min-height: 10px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#allposts {
+  padding-top: .3em;
+  float: none;
+  font-size: 100%;
+  font-weight: 400;
+  padding-left: .2em;
 }
