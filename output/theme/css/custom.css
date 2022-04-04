@@ -245,12 +245,12 @@ i.hlitalics {
 }
 
 body {
-  background-color: #ece4d8;
+  background-color: #fff9ee;
 }
 
 .navbar-inner {
   background-image: none;
-  background-color: #d0bc9f;
+  background-color: #d1bc74;
   padding: 15px 0;
 }
 
@@ -374,7 +374,7 @@ article
 }
 
 footer {
-  background-color: #d0bc9f;
+  background-color: #d1bc74;
   margin-top: 50px;
   margin-bottom: 0;
   min-height: auto;
@@ -397,4 +397,31 @@ footer .container-fluid .row-fluid div {
   font-size: 100%;
   font-weight: 400;
   padding-left: .2em;
+}
+
+#aboutme {
+  font-size: 0.9rem;
+  color: #666;
+  padding: 20px;
+  border: 1px dashed #aaa;
+  background-color: #efe9de;
+}
+
+#aboutme p {
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  footer {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+
+  footer .container-fluid {
+    padding: 0 20px;
+  }
+
+  .navbar-inner .container-fluid {
+    padding: 0 20px;
+  }
 }

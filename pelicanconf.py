@@ -58,7 +58,7 @@ PROJECTS = [
     {
         "name": "Mathologer",
         "url": "https://www.youtube.com/c/Mathologer",
-        "description": "Better and more mathy than numberphile",
+        "description": "Mathy stuff - better than Numberphile",
     },
     {
         "name": "Numberphile",
@@ -68,7 +68,7 @@ PROJECTS = [
     {
         "name": "JSConf",
         "url": "https://www.youtube.com/c/JSConfEU",
-        "description": "Useful for JS knowledge",
+        "description": "JSConf youtube channel",
     },
     {
         "name": "Pycon",
@@ -78,17 +78,17 @@ PROJECTS = [
     {
         "name": "Mandelbrot zoom",
         "url": "https://youtu.be/LhOSM6uCWxk",
-        "description": "The best Mandelbrot fractal zoom out there"
+        "description": "Mesmerizing Mandelbrot fractal zoom"
     },
     {
         "name": "Douglas adams videos",
         "url": "https://www.youtube.com/watch?v=_ZG8HBuDjgc&list=PLlfk9bqzo-ZlpfJoGaMgyo_b5gTYS0-OX&index=1",
-        "description": "Bunch of Douglas Adam's videos on youtube",
+        "description": "A playlist of Douglas Adam's videos on youtube",
     },
     {
-        "name": "Best of Monty Python",
-        "url": "https://www.youtube.com/watch?v=imhrDrE4-mI&list=PLhboEWcuNB1__DiH8Z5MLYigS-KVxWktS&index=1",
-        "description": "Bunch of clips from Monty Python",
+        "name": "Mr Bean",
+        "url": "https://www.youtube.com/user/MrBean/videos",
+        "description": "Mr Bean's channel on Youtube",
     },
 ]
 
