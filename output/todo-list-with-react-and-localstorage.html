@@ -27,7 +27,15 @@
         <link rel="stylesheet" type="text/css" href="/theme/css/custom.css" media="screen">
 
         <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V8WZYM91B4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-V8WZYM91B4');
+</script>
 
     </head>
     <body>
@@ -85,7 +93,7 @@
             <p>Some time ago, I had built a simple standalone ToDo list in React, which stores its data in the browser localstorage, and I thought it came together quite neatly. Its actually less than 200 lines of javascript code (wasn't deliberately trying to play golf with the line count - link to the code near the bottom).</p>
 <p>The use of local storage allows the list to retain its data across client restarts. So it kind of works like the apps of old days, when we didn't have a backend server syncing the data on different devices.</p>
 <p>Try it out below...</p>
-<p>Some features : You can click on an item text to modify it. You can also move items across lists by clicking on the arrows. Item deletion uses the red 'x'.</p>
+<p>Some features : You can click on an item text to modify it. You can also move items across lists by clicking on the arrows. Item deletion uses the red 'x'. Doesn't have drag and drop as yet.</p>
 <div id='appContainer'>You need Javascript to run this program</div>
 
 <script src="/js/react.production.min.js"></script>
@@ -94,7 +102,7 @@
 <script src="/js/reactToDoList/index.js"> </script>
 
 <p><link rel='stylesheet' type='text/css' href="/css/reactToDoList/app.css" /></p>
-<p>The source code for the todo list is <a href="https://gitlab.com/motleytech/mtOnPelican/-/raw/master/motleytechnet/content/js/reactToDoList/index.js">here</a> (or view source in dev tools - its unminified). Also, this is without using webpack, so all the components are in a single file. Its terrible... I know (the horror :-)). I am also loading React and Babel from CDNs - probably the laziest way to get up and runnning with React ;-)).</p>
+<p>The source code for the todo list is <a href="https://gitlab.com/motleytech/mtOnPelican/-/raw/master/motleytechnet/content/js/reactToDoList/index.js">here</a> (or view source in dev tools - its unminified). Also, all the components are in a single file (there are only a few), but I am not using webpack, so had little option. Its terrible... I know (the horror :-)). Before the latest changes, I was loading React and Babel from CDNs, but that was turning out to be big/slow (specially Babel) - so turned to using imporing React - now using an online babel babel compiler to get the transpiled code.</p>
 
 
              

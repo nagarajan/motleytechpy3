@@ -1,5 +1,5 @@
 Title: Bezier curve playground
-Date: 2020-04-16 12:59
+Date: 2018-04-16 12:59
 Category: Blog
 Tags: Javascript, CSS, Bezier curves
 Authors: Nagarajan

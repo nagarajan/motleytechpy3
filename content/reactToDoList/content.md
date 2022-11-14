@@ -12,7 +12,7 @@ The use of local storage allows the list to retain its data across client restar
 
 Try it out below...
 
-Some features : You can click on an item text to modify it. You can also move items across lists by clicking on the arrows. Item deletion uses the red 'x'.
+Some features : You can click on an item text to modify it. You can also move items across lists by clicking on the arrows. Item deletion uses the red 'x'. Doesn't have drag and drop as yet.
 
 
 <div id='appContainer'>You need Javascript to run this program</div>
@@ -24,4 +24,4 @@ Some features : You can click on an item text to modify it. You can also move it
 
 <link rel='stylesheet' type='text/css' href="/css/reactToDoList/app.css" />
 
-The source code for the todo list is [here](https://gitlab.com/motleytech/mtOnPelican/-/raw/master/motleytechnet/content/js/reactToDoList/index.js) (or view source in dev tools - its unminified). Also, this is without using webpack, so all the components are in a single file. Its terrible... I know (the horror :-)). I am also loading React and Babel from CDNs - probably the laziest way to get up and runnning with React ;-)).
+The source code for the todo list is [here](https://gitlab.com/motleytech/mtOnPelican/-/raw/master/motleytechnet/content/js/reactToDoList/index.js) (or view source in dev tools - its unminified). Also, all the components are in a single file (there are only a few), but I am not using webpack, so had little option. Its terrible... I know (the horror :-)). Before the latest changes, I was loading React and Babel from CDNs, but that was turning out to be big/slow (specially Babel) - so turned to using imporing React - now using an online babel babel compiler to get the transpiled code.
