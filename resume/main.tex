@@ -1,0 +1,247 @@
+% Last updated on 16 Nov 2006
+% LaTeX resume using res.sty
+% MODIFIED TO PUT NAME AND ADDRESS ON ALL PAGES
+% \documentstyle[line,fancyheadings]{res}
+\documentclass[line, 11pt]{res}
+\usepackage{fancyheadings}
+\usepackage{hyperref}
+\usepackage{bchart}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+}
+
+%\lhead{\opening}                % put \opening (name) at top of every page
+\rhead{}                        % right head empty
+\cfoot{}                        % the footer is empty
+\pagestyle{fancy}               % set pagestyle for the document
+
+\setlength{\headheight}{-0.3in}   % make room for header
+\setlength{\headrulewidth}{0pt} % suppress line drawn by default with fancyhead
+\setlength{\textheight}{9.8in}  % reduce textheight because of header
+% Redefine resume environment so it doesn't start with \opening
+\renewenvironment{resume}{\begingroup}{\endgroup}
+\renewcommand{\namefont}{\LARGE\emph}
+
+\newcommand{\skillTScale}{0.9}
+\newcommand{\skillTMaxVal}{10}
+\newcommand{\skillTGap}{3pt}
+
+
+%\definecolor{mycolor1}{rgb}{0.396, 0.6, 1}
+%\definecolor{mycolor2}{rgb}{0.514, 1, 0.965}
+%\definecolor{mycolor3}{rgb}{0.635, 1, 0.706}
+%\definecolor{mycolor4}{rgb}{0.886, 1, 0.757}
+%\definecolor{mycolor5}{rgb}{1, 0.965, 0.878}
+%\definecolor{mycolor6}{rgb}{1,1,1}
+
+%\definecolor{mycolor1}{RGB}{179, 236, 255}
+%\definecolor{mycolor2}{RGB}{179, 186, 255}
+%\definecolor{mycolor3}{RGB}{221, 179, 255}
+%\definecolor{mycolor4}{RGB}{255, 179, 239}
+%\definecolor{mycolor5}{RGB}{255, 179, 189}
+%\definecolor{mycolor6}{RGB}{255, 218, 179}
+
+\definecolor{mycolor1}{RGB}{246, 170, 161}
+\definecolor{mycolor2}{RGB}{246, 237, 159}
+\definecolor{mycolor3}{RGB}{185, 247, 156}
+\definecolor{mycolor4}{RGB}{171, 249, 207}
+\definecolor{mycolor5}{RGB}{174, 231, 249}
+\definecolor{mycolor6}{RGB}{179, 178, 250}
+
+
+
+
+
+
+\begin{document}
+
+{\huge Nagarajan} % \hspace{10pt} {\large - Senior Software Engineer}
+
+% \name{Nagarajan - Full stack / Frontend Senior Engineer}
+% \address used twice to have two lines of address
+%\address{10/231 DDA Flats, Madangir, New Delhi, India - 110062}
+% \address{\href{mailto:nag.rajan@gmail.com}{nag.rajan@gmail.com}, +1 650 704 6280}
+% \address{\href{http://www.motleytech.net}{http://www.motleytech.net}}
+
+\begin{resume}
+% \opening
+
+\vspace{5pt}
+\hrule
+\vspace{-5pt}
+I have deep interest in CS and Mathematics, and I love solving problems \& delighting clients. I create apps combining skills from frontend, backend and graphics to dazzle customers. I am looking for an tech lead or IC role with a strong technical focus.
+
+\vspace{8pt}
+\hrule
+
+\vspace{-7pt}
+\section{Skill overview}
+    \begin{itemize}
+        \item \textbf{Frontend: } \\
+        NEXT{\tiny.JS}, React, EmberJS, JavaScript, CSS, OpenGL/WebGL
+        \item \textbf{Backend: } \\
+        Python, Flask, Django, SQL, MongoDB, Cassandra, NGINX, C
+        \item \textbf{Others: } \\
+        Networking, 3D graphics, Grafana, Kibana, Mode, Kubernetes, a11y
+    \end{itemize}
+
+\vspace{5pt}
+\hrule
+
+\vspace{-7pt}
+\section{Educational Background}
+    \begin{itemize}
+        \item \textbf{M.S. - Stanford University} \\
+        Computational and Mathematical Engineering (iCME), Dec 2009
+        \item \textbf{B.Engg. - Delhi Institute of Technology} \\ Instrumentation and Control Engineering, June 2002 \\
+    \end{itemize}
+
+\vspace{-5pt}
+\hrule
+\vspace{-7pt}
+
+\section{Work Experience}
+    \begin{itemize}
+        \item{\sl Senior Software Engineer} \hfill July 27, 2020 - Current\\
+        Lyft Inc, SF, California
+
+        % \item{\sl Senior Software Engineer} \hfill April 27, 2020 - July 24, 2020\\
+        % Thousand Eyes, SF, California
+
+        \item{\sl Senior Software Engineer} \hfill February 16, 2010 - March 27, 2020\\
+        Ciena / Cyan (Ciena acquired Cyan in Aug 2015), SF, California
+
+        \item{\sl Research Assistant} \hfill July 2007 - August 2009\\
+        Department of Mathematics, Stanford University
+
+        \item{\sl Software Design Engineer} \hfill July 01, 2002 - June 06, 2007\\
+        Texas Instruments, Bangalore, India\\
+    \end{itemize}
+
+\hrule
+
+\vspace{-7pt}
+\section{Lyft projects}
+    \begin{itemize}
+        \item \textbf{Lyft's Web Support portal}\\
+Tech Lead of a team of 4 which created Lyft's web help portal -  https://help.lyft.com - on Lyft's internal infrastructure (previously hosted on Zendesk). It was built using NEXT{\tiny.JS}, Python and Contentful. Designed, specced and implemented the solution and worked with cross-functional teams to deliver the product in a timely manner. Earned a 30k merit bonus for ownership and execution on this project.
+    \end{itemize}
+
+% \vspace{-12pt}
+% \section{ThousandEyes projects}
+%     \begin{itemize}
+%         \item \textbf{Browser Synthetics}\\
+% Responsible for developing key parts of the Browser Synthetics tool, and associated reports for the ThousandEyes network monitoring system. The project uses a combination of Javascript, Python, VueJS and D3JS.
+%     \end{itemize}
+
+\vspace{-12pt}
+\section{Ciena/Cyan Projects}
+    \begin{itemize}
+        \item \textbf{3D Network Map}\\
+In a team of two, we developed a 3D Graphical front end for the network management client. Working in Python and OpenGL, I developed higher level abstraction layers (graphical objects for the 3D viewer) over OpenGL primitives. I also developed tools for multi layered visualization of network entities. Later, I was the architect and a developer for the project that ported this work to a web browser front-end using React and ThreeJS.
+
+        \item \textbf{Trail Analyzer}\\
+Network service providers had long requested better tools to efficiently debug network problems (they still do). To solve a frequently faced issue of discovering root cause on disrupted services, I developed a tool (Trail Analyzer) to visualize a network service from end to end, while displaying all network devices that it passes through and highlighting any alarms on each of those, with real time updates. This tool was highly appreciated by the customers and saved them significant time in debugging problems.
+
+        \item \textbf{Large graph visualization}\\
+As networks grew larger, it became ineffective to visualize the whole network all at once. I developed an algorithm to effectively visualize large sparsely connected graphs. I also developed a protocol to efficiently transmit relevant parts of the network graph, and updates, from the server to the client. I filed a patent for \href{https://patentscope.wipo.int/search/en/detail.jsf?docId=WO2015041751&tab=PCTBIBLIO}{Network Visualization System and Method} based on this work.
+
+
+        \item \textbf{Hiring screening tool}\\
+    I created a web application for the hiring team at Cyan to screen prospective employees. Using this app, the hiring team could email homework problems to applicants. The recipient could then work on the problem on their own time and submit the solutions into the app (online code editor for C and Python). The app would run linting checks and automated tests to rank and rate the submission, and send emails to notify the hiring team of submissions. This was my first web application project, and it got deployed and used for many years at Cyan. The project was made using Python, Flask, SQL and Javascript.
+
+    \end{itemize}
+
+\vspace{-10pt}
+\section{Stanford University Projects}
+    \begin{itemize}
+        \item \textbf{Cloth Simulation}\\
+        Wrote a cloth simulation framework in C++, which solves a partial
+        differential equation based on the physics of the cloth ( Baraff and
+        Witkin, 1998, \emph{Large Steps in cloth simulation} ).
+        The implicit solver uses the conjugate gradient iterative algorithm
+        at every step and also takes friction into account while interacting
+        with objects in the environment.
+
+        \item \textbf{Optimization - Brachistochrone}\\
+        Implemented a numerical optimization tool in Matlab and used it to
+        solve the brachistochrone problem (the path of least time for a
+        particle under the effect of gravity). The tool implemented the
+        linesearch using gamma conditions and BFGS based direction.
+
+    \end{itemize}
+
+\vspace{-10pt}
+\section{Texas Instruments Projects}
+    \begin{itemize}
+        \item \textbf{Pocket Imager Handheld Projector - DLP Group, Texas Instruments}\\
+        Joint effort between TI and Samsung, the DLP technology based Samsung
+        Pocket Imager (P300 model) was the smallest and world's first LED
+        based projector. I implemented new modules for controlling the LED
+        driver, characterizing LED output color and dynamic feedback control
+        of White Point. I also closely assisted Samsung in South Korea to solve
+        critical last minute issues and bring the product to market in time
+        and preventing release slippage. Received the \textbf{DLP Silver
+        Olympian} award for execution - awarded to top 3\% of DLP employees worldwide.
+
+        % \item \textbf{Business Projector - DLP Group, Texas Instruments}\\
+        % Responsible for modification of Image improvement algorithms, drivers and
+        % the color wheel motor control algorithm. Designed and implemented driver
+        % module for new color wheel motor driver, feedback speed control algorithm
+        % and the Dynamic Black algorithm.
+
+        \item \textbf{DSL modem firmware - ADSL Group, Texas Instruments}\\
+        Our team modified an existing TI DSL implementation to work in the
+        Japanese ISDN noise environment and to interoperate with existing third
+        party solutions. I worked on the Handshake, Power Spectrum Management
+        and Dynamic rate adaptation modules over a 2 year period.
+    \end{itemize}
+
+
+% \vspace{-10pt}
+% \section{Previous Projects}
+%     \begin{itemize}
+%         \item \textbf{Design of an autonomous Hexapod robot}\\
+%         As the undergraduate final year project, we designed a Hexapod - six
+%         legged robot - with autonomous motion capability. The robot used
+%         ultrasonic and infrared sensors to sense its surroundings, could avoid
+%         obstacles and was also programmed to escape from simple mazes.\\
+
+%         %\item \textbf{Optimizer for C language}\\
+%         %Developed a parser analyzer for C programs which could also suggest optimizations, indent the code and remove recursion from a recursive function. It could also implement naming conventions. This project won the first prize in the fortnight programming contest at NSIT.
+
+%         %\item \textbf{LDPC Encoder and Decoder}\\
+%         %Implemented encoder and soft and hard Decoders for LDPC codes. Also implemented graph algorithms to find loops of minimum length in the parity check matrix, which gives the error resilience of the codes.
+%     \end{itemize}
+
+\vspace{8pt}
+\hrule
+% \vspace{-5pt}
+
+% \section{Awards}
+%     \begin{enumerate}
+%         \item 2006 : Won the TI DLP Silver Olympian award for execution on the Samsung Pocket Imager.
+%         \item 2001 : First prize in DITECH Samadhan, the fortnight programming contest organized by NSIT, sponsored and judged by Hughes Software Systems. Project - Optimizer for C language.
+%         \item 2001 : Second prize in DITECH Overnight programming contest organized by NSIT.
+%     \end{enumerate}
+
+\vspace{-3pt}
+\section{Contact}
+    \vspace{5pt}
+    \begin{tabular}{ll}
+    \textbf{Phone} & +1 650 704 6280\\
+    \textbf{Email address} & \href{mailto:nag.rajan@gmail.com}{nag.rajan@gmail.com}\\
+    \textbf{Website} & \href{http://www.motleytech.net}{http://www.motleytech.net}\\
+    \textbf{Visa Status} & H1B required, I-140 approved\\
+    \end{tabular}
+
+% \address{\href{mailto:nag.rajan@gmail.com}{nag.rajan@gmail.com}, +1 650 704 6280}
+% \address{\href{http://www.motleytech.net}{http://www.motleytech.net}}
+
+\end{resume}
+
+\end{document}
