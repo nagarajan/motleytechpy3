@@ -79,7 +79,7 @@ Figuring out the exact rotations turned out to be a nice little challenge, but t
 
 ```
 
-The souce code for the above demo can be found in my github repos here.
+The souce code for the above demo can be found in my github repo [here](https://github.com/nagarajan/motleytechpy3/blob/master/content/js/orbit-camera/controls.js).
 
 Please feel free to go ahead and use it in your non-commercial code. Please drop me a line to let me know if you found it useful and are using it. For commercial code, please contact me directly at my [email address](mailto:nag.rajan@gmail.com).
 
