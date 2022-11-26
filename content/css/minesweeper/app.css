@@ -1,0 +1,30 @@
+.minefield {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid black;
+}
+
+.minefield div,
+.minefield button {
+    flex: 0 0 auto;
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.buttonsContainer button {
+    max-width: 300px;
+    margin: 0 5px 0 0;
+    padding: 10px 16px;
+}
+
+.redMine {
+    background-color: red;
+}
