@@ -1,5 +1,21 @@
 const useState = React.useState;
 
+const FLAGGED = 'f';
+const MINE = 'm';
+const CLOSED = 'c';
+const EMPTY = 'e';
+const BAD_FLAG = 'x';
+
+const GAME_WON = 'win';
+const GAME_LOST = 'loss';
+const GAME_NOT_STARTED = 'not started'
+const GAME_PLAYING = 'playing'
+
+const prepad = (num, afterDecimal, total) => {
+    const s = '000000' + num.toFixed(afterDecimal);
+    return s.slice(s.length - total);
+}
+
 const getNeighboringPositions = (gameState, pos) => {
     const neighboringPositions = [];
     const { rows, columns, squares } = gameState;
@@ -35,7 +51,7 @@ const getNeighboringFlaggedCount = (gameState, pos, nPositions) => {
     let flaggedCount = 0;
     const nPos = nPositions || getNeighboringPositions(gameState, pos);
     nPos.forEach((p) => {
-        if (gameState.squares[p] === 'f') {
+        if (gameState.squares[p] === FLAGGED) {
             flaggedCount += 1;
         }
     });
@@ -47,11 +63,11 @@ const createShadowMinefield = (gameState) => {
         ...Array(gameState.rows * gameState.columns).keys(),
     ].map((pos) => {
         if (gameState.minePositions[pos]) {
-            return 'm';
+            return MINE;
         }
         const numMines = getNeighboringMines(gameState, pos);
         if (numMines === 0) {
-            return 'e';
+            return EMPTY;
         }
         return numMines;
     });
@@ -94,7 +110,7 @@ const getNeighborsOfEmpty = (gameState, pos) => {
 
     const handlePosition = (newPosition) => {
         const count = shadowMinefield[newPosition];
-        if (count === 'e' && !alreadyExplored[newPosition]) {
+        if (count === EMPTY && !alreadyExplored[newPosition]) {
             positionsToExplore.push(newPosition);
         }
         neighbors[newPosition] = true;
@@ -104,7 +120,7 @@ const getNeighborsOfEmpty = (gameState, pos) => {
         const currentPosition = positionsToExplore.shift();
         alreadyExplored[currentPosition] = true;
 
-        if (shadowMinefield[currentPosition] === 'e') {
+        if (shadowMinefield[currentPosition] === EMPTY) {
             const nPositions = getNeighboringPositions(
                 gameState,
                 currentPosition
@@ -118,40 +134,40 @@ const getNeighborsOfEmpty = (gameState, pos) => {
 
 const exposeAllUnmarkedMines = (gameState) => {
     Object.keys(gameState.minePositions).forEach((pos) => {
-        if (gameState.squares[pos] === 'c') {
-            gameState.squares[pos] = 'm';
+        if (gameState.squares[pos] === CLOSED) {
+            gameState.squares[pos] = MINE;
         }
     });
     gameState.squares.forEach((v, p) => {
-        if (!gameState.minePositions[p] && v === 'f') {
-            gameState.squares[p] = 'x';
+        if (!gameState.minePositions[p] && v === FLAGGED) {
+            gameState.squares[p] = BAD_FLAG;
         }
     });
 };
 
 const MineFieldController = ({ gameState, setGameState }) => {
     const onLeftClick = (pos) => {
-        if (['win', 'loss'].includes(gameState.condition)) {
+        if ([GAME_WON, GAME_LOST].includes(gameState.condition)) {
             return;
         }
-        if (gameState.squares[pos] === 'c') {
-            if (gameState.condition === 'not started') {
-                gameState.condition = 'playing';
+        if (gameState.squares[pos] === CLOSED) {
+            if (gameState.condition === GAME_NOT_STARTED) {
+                gameState.condition = GAME_PLAYING;
                 gameState.timeStarted = Date.now();
                 fillMines(gameState, pos);
                 createShadowMinefield(gameState);
                 // todo : start the clock
             }
-            if (gameState.shadowMinefield[pos] === 'm') {
-                gameState.squares[pos] = 'm';
+            if (gameState.shadowMinefield[pos] === MINE) {
+                gameState.squares[pos] = MINE;
                 gameState.firstMine = pos;
-                gameState.condition = 'loss';
+                gameState.condition = GAME_LOST;
                 gameState.timeEnded = Date.now();
                 exposeAllUnmarkedMines(gameState);
                 // todo : stop the clock
             } else {
                 const current = gameState.shadowMinefield[pos];
-                if (current === 'e') {
+                if (current === EMPTY) {
                     // get neighboring locations near empty positions
                     const neighborsOfEmpty = getNeighborsOfEmpty(
                         gameState,
@@ -159,24 +175,23 @@ const MineFieldController = ({ gameState, setGameState }) => {
                     );
                     // open neighboring positions
                     Object.keys(neighborsOfEmpty).forEach((np) => {
-                        if (gameState.squares[np] === 'c') {
+                        if (gameState.squares[np] === CLOSED) {
                             gameState.remainingSquares -= 1;
                         }
                         gameState.squares[np] = gameState.shadowMinefield[np];
                     });
                 }
-                if (gameState.squares[pos] === 'c') {
+                if (gameState.squares[pos] === CLOSED) {
                     gameState.remainingSquares -= 1;
                 }
                 gameState.squares[pos] = current;
             }
             if (gameState.remainingSquares === 0) {
-                gameState.condition = 'win';
+                gameState.condition = GAME_WON;
                 gameState.timeEnded = Date.now();
-                console.log('game won');
             }
             if (gameState.remainingSquares < 0) {
-                console.log('Remaining Squares less than 0', {
+                console.error('Remaining Squares less than 0', {
                     remainingSquares,
                 });
             }
@@ -187,22 +202,21 @@ const MineFieldController = ({ gameState, setGameState }) => {
 
     const onRightClick = (e, pos) => {
         e.preventDefault();
-        if (['win', 'loss'].includes(gameState.condition)) {
+        if ([GAME_WON, GAME_LOST].includes(gameState.condition)) {
             return;
         }
-        if (gameState.squares[pos] === 'c') {
-            gameState.squares[pos] = 'f';
+        if (gameState.squares[pos] === CLOSED) {
+            gameState.squares[pos] = FLAGGED;
             gameState.minesMarked += 1;
             setGameState({ ...gameState });
-        } else if (gameState.squares[pos] === 'f') {
-            gameState.squares[pos] = 'c';
+        } else if (gameState.squares[pos] === FLAGGED) {
+            gameState.squares[pos] = CLOSED;
             gameState.minesMarked -= 1;
             setGameState({ ...gameState });
         }
     };
 
     const onDoubleClick = (pos) => {
-        console.log('double click on : ', pos);
         // if mines near pos == the number in pos, open all squares near pos
         const number = gameState.squares[pos];
         const nPositions = getNeighboringPositions(gameState, pos);
@@ -216,19 +230,19 @@ const MineFieldController = ({ gameState, setGameState }) => {
             // open all closed neighbors
             const { shadowMinefield, squares } = gameState;
             nPositions.forEach((p1) => {
-                if (squares[p1] === 'c') {
+                if (squares[p1] === CLOSED) {
                     gameState.remainingSquares -= 1;
                     squares[p1] = shadowMinefield[p1];
-                    if (squares[p1] === 'm') {
-                        if (gameState.condition !== 'loss') {
+                    if (squares[p1] === MINE) {
+                        if (gameState.condition !== GAME_LOST) {
                             gameState.firstMine = pos;
-                            gameState.condition = 'loss';
+                            gameState.condition = GAME_LOST;
                             gameState.timeEnded = Date.now();
                             exposeAllUnmarkedMines(gameState);
                         }
                     } else {
                         const current = gameState.shadowMinefield[p1];
-                        if (current === 'e') {
+                        if (current === EMPTY) {
                             // get neighboring locations near empty positions
                             const neighborsOfEmpty = getNeighborsOfEmpty(
                                 gameState,
@@ -236,7 +250,7 @@ const MineFieldController = ({ gameState, setGameState }) => {
                             );
                             // open neighboring positions
                             Object.keys(neighborsOfEmpty).forEach((noe) => {
-                                if (gameState.squares[noe] === 'c') {
+                                if (gameState.squares[noe] === CLOSED) {
                                     gameState.remainingSquares -= 1;
                                 }
                                 gameState.squares[noe] =
@@ -247,12 +261,11 @@ const MineFieldController = ({ gameState, setGameState }) => {
                 }
             });
             if (gameState.remainingSquares === 0) {
-                gameState.condition = 'win';
+                gameState.condition = GAME_WON;
                 gameState.timeEnded = Date.now();
-                console.log('game won');
             }
             if (gameState.remainingSquares < 0) {
-                console.log('Remaining Squares less than 0', {
+                console.error('Remaining Squares less than 0', {
                     remainingSquares,
                 });
             }
@@ -285,7 +298,7 @@ const MineField = ({ gameState, onLeftClick, onRightClick, onDoubleClick }) => {
             {gameState.squares.map((sq, i) => {
                 return (
                     <>
-                        {sq === 'c' && (
+                        {sq === CLOSED && (
                             <button
                                 onClick={(event) => {
                                     if (event.detail === 1) {
@@ -300,15 +313,15 @@ const MineField = ({ gameState, onLeftClick, onRightClick, onDoubleClick }) => {
 
                             </button>
                         )}
-                        {sq === 'f' && (
+                        {sq === FLAGGED && (
                             <button onContextMenu={(e) => onRightClick(e, i)}>
                                 ⛳️
                             </button>
                         )}
-                        {sq === 'e' && (
+                        {sq === EMPTY && (
                             <div onContextMenu={dummyRightClick}></div>
                         )}
-                        {sq === 'x' && (
+                        {sq === BAD_FLAG && (
                             <button
                                 onContextMenu={dummyRightClick}
                                 style={{ backgroundColor: 'red' }}
@@ -316,7 +329,7 @@ const MineField = ({ gameState, onLeftClick, onRightClick, onDoubleClick }) => {
                                 x
                             </button>
                         )}
-                        {sq === 'm' && (
+                        {sq === MINE && (
                             <div
                                 className={
                                     i === gameState.firstMine
@@ -388,19 +401,19 @@ const Timer = ({ timeStarted, timeEnded }) => {
 
     let displayTime;
     if (timeEnded) {
-        displayTime = ((timeEnded - timeStarted) / 1000).toFixed(2);
+        displayTime = (timeEnded - timeStarted) / 1000.0;
         if (inTimer) {
             window.clearInterval(inTimer);
             setInTimer(undefined);
         }
     } else {
         if (!timeStarted || !elapsedTime) {
-            displayTime = '-.--';
+            displayTime = 0;
         } else {
-            displayTime = ((Date.now() - timeStarted) / 1000).toFixed(2);
+            displayTime = (Date.now() - timeStarted) / 1000;
         }
     }
-    return <div>{displayTime}</div>;
+    return <div>{prepad(displayTime, 2, 6)}</div>;
 };
 
 const getNewGameState = (gameSize) => {
@@ -409,14 +422,14 @@ const getNewGameState = (gameSize) => {
         rows,
         columns,
         nMines,
-        condition: 'not started',
+        condition: GAME_NOT_STARTED,
         minePositions: {},
         timeStarted: undefined,
         timeEnded: undefined,
         minesMarked: 0,
         firstMine: undefined,
         remainingSquares: rows * columns - nMines,
-        squares: [...Array(rows * columns).keys()].map((x) => 'c'),
+        squares: [...Array(rows * columns).keys()].map((x) => CLOSED),
     };
 };
 
@@ -436,11 +449,11 @@ const App = () => {
                 <div className="gameOuterWrapper">
                     <div className="gameWrapper">
                         <div className="gameControls">
-                            <div>{gameState.nMines - gameState.minesMarked}</div>
+                            <div>{prepad(gameState.nMines - gameState.minesMarked, 0, 3)}</div>
                             <button className="resetButton" onClick={() => resetGameToSize([...gameSize])}>
-                                {gameState.condition === 'win'
+                                {gameState.condition === GAME_WON
                                     ? '😎'
-                                    : gameState.condition === 'loss'
+                                    : gameState.condition === GAME_LOST
                                     ? '🙁'
                                     : '😐'}
                             </button>
@@ -462,5 +475,3 @@ const App = () => {
 
 const container = document.getElementById('minesweeper');
 const root = ReactDOM.render(<App />, container);
-
-console.log('end');
