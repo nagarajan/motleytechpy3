@@ -1,16 +1,86 @@
 .minefield {
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid black;
+    border-top: 5px solid #8a8d93;
+    border-left: 5px solid #8a8d93;
+    border-right: 5px solid #fdfeff;
+    border-bottom: 5px solid #fdfeff;
+    cursor: default;
 }
 
-.minefield div,
+.minefield div {
+    flex: 0 0 auto;
+    width: 20px;
+    height: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid #8a8d93;
+    border-bottom: 1px solid #8a8d93;
+    border-top: 0;
+    border-left: 0;
+    cursor: default;
+}
+
 .minefield button {
     flex: 0 0 auto;
     width: 20px;
     height: 20px;
-    border: 1px solid black;
     box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 3px solid #8a8d93;
+    border-right: 3px solid #8a8d93;
+    border-left: 3px solid #fdfeff;
+    border-top: 3px solid #fdfeff;
+    background-color: #c3c6cc;
+    cursor: default;
+}
+
+.gameControls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    border-top: 5px solid #8a8d93;
+    border-left: 5px solid #8a8d93;
+    border-right: 5px solid #fdfeff;
+    border-bottom: 5px solid #fdfeff;
+    padding: 5px 10px;
+}
+
+.gameControls :first-child {
+    flex: 1;
+}
+
+.gameControls :last-child {
+    flex: 1;
+    text-align: right;
+}
+
+.gameCenteringDiv {
+    display: flex;
+    justify-content: center;
+}
+
+.gameOuterWrapper {
+    display: flex;
+    border: 1px solid black;
+}
+
+.gameWrapper {
+    display: inline-block;
+    border-bottom: 5px solid #8a8d93;
+    border-right: 5px solid #8a8d93;
+    border-left: 5px solid #fdfeff;
+    border-top: 5px solid #fdfeff;
+    padding: 10px;
+    background-color: #c3c6cc;
 }
 
 .buttonsContainer {
@@ -27,4 +97,14 @@
 
 .redMine {
     background-color: red;
+}
+
+.resetButton {
+    border-bottom: 3px solid #8a8d93;
+    border-right: 3px solid #8a8d93;
+    border-left: 3px solid #fdfeff;
+    border-top: 3px solid #fdfeff;
+    padding: 2px;
+    background-color: #c3c6cc;
+    font-size: 20px;
 }

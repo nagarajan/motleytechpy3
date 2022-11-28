@@ -297,7 +297,7 @@ const MineField = ({ gameState, onLeftClick, onRightClick, onDoubleClick }) => {
                                 }}
                                 onContextMenu={(e) => onRightClick(e, i)}
                             >
-                                c
+
                             </button>
                         )}
                         {sq === 'f' && (
@@ -309,12 +309,12 @@ const MineField = ({ gameState, onLeftClick, onRightClick, onDoubleClick }) => {
                             <div onContextMenu={dummyRightClick}></div>
                         )}
                         {sq === 'x' && (
-                            <div
+                            <button
                                 onContextMenu={dummyRightClick}
                                 style={{ backgroundColor: 'red' }}
                             >
                                 x
-                            </div>
+                            </button>
                         )}
                         {sq === 'm' && (
                             <div
@@ -336,6 +336,7 @@ const MineField = ({ gameState, onLeftClick, onRightClick, onDoubleClick }) => {
                                         onDoubleClick(i);
                                     }
                                 }}
+                                style={{ userSelect: 'none'}}
                             >
                                 {sq}
                             </div>
@@ -431,26 +432,30 @@ const App = () => {
     return (
         <>
             <ButtonsContainer resetGameToSize={resetGameToSize} />
-            <div style={{ display: 'flex', gap: '20px' }}>
-                <div>Rem : {gameState.nMines - gameState.minesMarked}</div>
-                <div>
-                    <button onClick={() => resetGameToSize([...gameSize])}>
-                        {gameState.condition === 'win'
-                            ? '😎'
-                            : gameState.condition === 'loss'
-                            ? '🙁'
-                            : '😐'}
-                    </button>
+            <div className="gameCenteringDiv">
+                <div className="gameOuterWrapper">
+                    <div className="gameWrapper">
+                        <div className="gameControls">
+                            <div>{gameState.nMines - gameState.minesMarked}</div>
+                            <button className="resetButton" onClick={() => resetGameToSize([...gameSize])}>
+                                {gameState.condition === 'win'
+                                    ? '😎'
+                                    : gameState.condition === 'loss'
+                                    ? '🙁'
+                                    : '😐'}
+                            </button>
+                            <Timer
+                                timeStarted={gameState.timeStarted}
+                                timeEnded={gameState.timeEnded}
+                            />
+                        </div>
+                        <MineFieldController
+                            gameState={gameState}
+                            setGameState={setGameState}
+                        />
+                    </div>
                 </div>
-                <Timer
-                    timeStarted={gameState.timeStarted}
-                    timeEnded={gameState.timeEnded}
-                />
             </div>
-            <MineFieldController
-                gameState={gameState}
-                setGameState={setGameState}
-            />
         </>
     );
 };
