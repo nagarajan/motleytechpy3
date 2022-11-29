@@ -6,7 +6,7 @@ Authors: Nagarajan
 Disqus_Identifier: cmsplugin-disqus-62
 
 
-I bet you have not heard the name **Leo Szilard** - I can safely make this bet because even with my degrees in physics and engineering (plus a fairly deep interest in history) it took me a very long time to hear about him. Neither had any of my friends heard about him. Given how well the world knows about his inventions and the effect of this actions, it truly is surprising how little known this person is. Read on to find out how one man changed the world and impacted it in the most profound ways.
+I bet you have not heard the name **Leo Szilard** - I feel safe making this bet because even with a deep interest in physics, engineering and a fair interest in scientific history, it took me an unfortunately long time to hear about him (and I feel good losing this bet to a knowledgeable person :-) ). Given how well the world knows about his inventions and the effect of this actions, it truly is surprising how little known this person is. Read on to find out how one man changed the world and impacted it in the most profound ways.
 
 <span class="img-width-400">
 ![Alternate text]({static}/images/Szilard-portrait.jpg)
@@ -82,7 +82,7 @@ Of all of Szilard's inventions and actions, his greatest gift to humanity is *pe
 
 It is not a coincidence that there have been no major wars between nations having atomic weapons. It is not the case that the world discovered brotherly love or learnt to hold hands while singing the Kumbaya after 1945. It is the fear of total and complete annihilation from a nuclear war that holds nations at bay.
 
-Leo Szilard is responsible for eradicating large scale conflicts and World Wars, inventing nuclear power plants, and on top of all that, he also invented a radiotherapy regimen to cure some cancers. Few famous people have had such a huge impact on the world and it saddens me that he is so obscure.
+Leo Szilard is very much responsible for eradicating large scale conflicts and World Wars, inventing nuclear power plants, and on top of all that, he also invented a radiotherapy regimen to cure some cancers. Few famous people have had such a huge impact on the world and it saddens me that he is so obscure.
 
 <span class="img-width-600">
 ![Alternate text]({static}/images/szilard-portrait2.jpg)

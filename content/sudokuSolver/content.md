@@ -1,5 +1,5 @@
 Title: Sudoku solver
-Date: 2015-07-02 11:19
+Date: 2017-07-02 11:19
 Category: Blog
 Tags: Sudoku, Computing
 Authors: Nagarajan

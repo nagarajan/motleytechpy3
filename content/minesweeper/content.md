@@ -18,7 +18,7 @@ Rules and Controls
 - **Double clicking** on a numbered square, which has an equal number of neighboring flagged squares, will open all the unflagged neighboring closed squares. This speeds up the process considerably.
 - If a square has been incorrectly flagged, it will be highlighted with an <span style="background-color: red">&nbsp;x&nbsp;</span> at the end of the game.
 
-
+The source code for the game is available under my github page [here](https://github.com/nagarajan/motleytechpy3/blob/master/content/js/minesweeper/app.js).
 
 <link rel="stylesheet" href="/css/minesweeper/app.css">
 
