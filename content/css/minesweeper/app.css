@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "D7MB";
+    src: url("/DSEG7Modern-Bold.woff") format('woff');
+}
+
 .minefield {
     display: flex;
     flex-wrap: wrap;
@@ -45,22 +50,24 @@
 
 .gameControls {
     display: flex;
-    gap: 10px;
+    gap: 5px;
     margin-bottom: 10px;
     border-top: 5px solid #8a8d93;
     border-left: 5px solid #8a8d93;
     border-right: 5px solid #fdfeff;
     border-bottom: 5px solid #fdfeff;
-    padding: 5px 10px;
+    padding: 5px 5px;
 }
 
-.gameControls :first-child {
+.gameControls > div:first-child {
     flex: 1;
 }
 
-.gameControls :last-child {
+.gameControls > div:last-child {
     flex: 1;
     text-align: right;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .gameCenteringDiv {
@@ -92,7 +99,7 @@
 .buttonsContainer button {
     max-width: 300px;
     margin: 0 5px 0 0;
-    padding: 10px 16px;
+    padding: 5px 8px;
 }
 
 .redMine {
@@ -107,4 +114,35 @@
     padding: 2px;
     background-color: #c3c6cc;
     font-size: 20px;
+}
+
+.remainingMines, .timer {
+    position: relative;
+    border-top: 1px solid #8a8d93;
+    border-left: 1px solid #8a8d93;
+    border-right: 1px solid #fdfeff;
+    border-bottom: 1px solid #fdfeff;
+    background-color: black;
+    height: 28px;
+    width: 51px;
+}
+
+.remainingMines > span:first-child, .timer > span:first-child {
+    z-index: 50;
+    position: absolute;
+    top: -2px;
+    left: 1px;
+    color: rgba(255, 0, 0, 0.3);
+    font-family: D7MB;
+    font-size: 20px;
+}
+
+.remainingMines > span:last-child, .timer > span:last-child {
+    z-index: 100;
+    position: absolute;
+    top: -2px;
+    left: 1px;
+    color: rgba(255, 0, 0, 1);
+    font-size: 20px;
+    font-family: D7MB;
 }

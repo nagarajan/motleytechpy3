@@ -8,13 +8,13 @@ const BAD_FLAG = 'x';
 
 const GAME_WON = 'win';
 const GAME_LOST = 'loss';
-const GAME_NOT_STARTED = 'not started'
-const GAME_PLAYING = 'playing'
+const GAME_NOT_STARTED = 'not started';
+const GAME_PLAYING = 'playing';
 
 const prepad = (num, afterDecimal, total) => {
     const s = '000000' + num.toFixed(afterDecimal);
     return s.slice(s.length - total);
-}
+};
 
 const getNeighboringPositions = (gameState, pos) => {
     const neighboringPositions = [];
@@ -309,9 +309,7 @@ const MineField = ({ gameState, onLeftClick, onRightClick, onDoubleClick }) => {
                                     }
                                 }}
                                 onContextMenu={(e) => onRightClick(e, i)}
-                            >
-
-                            </button>
+                            ></button>
                         )}
                         {sq === FLAGGED && (
                             <button onContextMenu={(e) => onRightClick(e, i)}>
@@ -349,7 +347,7 @@ const MineField = ({ gameState, onLeftClick, onRightClick, onDoubleClick }) => {
                                         onDoubleClick(i);
                                     }
                                 }}
-                                style={{ userSelect: 'none'}}
+                                style={{ userSelect: 'none' }}
                             >
                                 {sq}
                             </div>
@@ -413,7 +411,20 @@ const Timer = ({ timeStarted, timeEnded }) => {
             displayTime = (Date.now() - timeStarted) / 1000;
         }
     }
-    return <div>{prepad(displayTime, 2, 6)}</div>;
+    if (displayTime < 10) {
+        displayTime = prepad(displayTime, 2, 4);
+    } else if (displayTime < 100) {
+        displayTime = prepad(displayTime, 1, 4);
+    } else {
+        displayTime = prepad(displayTime, 0, 3);
+    }
+
+    return (
+        <div className="timer">
+            <span>888</span>
+            <span>{displayTime}</span>
+        </div>
+    );
 };
 
 const getNewGameState = (gameSize) => {
@@ -433,6 +444,28 @@ const getNewGameState = (gameSize) => {
     };
 };
 
+const RemainingMinesCount = ({ gameState }) => {
+    const count = gameState.nMines - gameState.minesMarked;
+    let displayCount;
+    if (count >= 0) {
+        displayCount = prepad(count, 0, 3);
+    } else {
+        if (count >= -9) {
+            displayCount = '-' + count;
+        } else {
+            displayCount = count;
+        }
+    }
+    return (
+        <div className="remainingMines">
+            <span>888</span>
+            <span>
+                {displayCount}
+            </span>
+        </div>
+    );
+};
+
 const App = () => {
     const [gameSize, setGameSize] = useState([8, 8, 10]);
     const [gameState, setGameState] = useState(getNewGameState(gameSize));
@@ -449,18 +482,25 @@ const App = () => {
                 <div className="gameOuterWrapper">
                     <div className="gameWrapper">
                         <div className="gameControls">
-                            <div>{prepad(gameState.nMines - gameState.minesMarked, 0, 3)}</div>
-                            <button className="resetButton" onClick={() => resetGameToSize([...gameSize])}>
+                            <div>
+                                <RemainingMinesCount gameState={gameState} />
+                            </div>
+                            <button
+                                className="resetButton"
+                                onClick={() => resetGameToSize([...gameSize])}
+                            >
                                 {gameState.condition === GAME_WON
                                     ? '😎'
                                     : gameState.condition === GAME_LOST
                                     ? '🙁'
                                     : '😐'}
                             </button>
-                            <Timer
-                                timeStarted={gameState.timeStarted}
-                                timeEnded={gameState.timeEnded}
-                            />
+                            <div>
+                                <Timer
+                                    timeStarted={gameState.timeStarted}
+                                    timeEnded={gameState.timeEnded}
+                                />
+                            </div>
                         </div>
                         <MineFieldController
                             gameState={gameState}
