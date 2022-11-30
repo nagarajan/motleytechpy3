@@ -94,6 +94,7 @@ PROJECTS = [
 
 LANDING_PAGE_TITLE = "And now, for something almost entirely unlike tea..."
 USE_SHORTCUT_ICONS = True
+RECENT_ARTICLE_SUMMARY = True
 
 DISQUS_SITENAME = "motleytech"
 GOOGLE_ANALYTICS = "G-V8WZYM91B4"

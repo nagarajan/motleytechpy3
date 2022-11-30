@@ -1,13 +1,21 @@
-Title: Balanced binary tree (AVL tree) animation
+Title: Balanced binary tree (AVL tree) operations visualized
 Date: 2020-04-8 18:45
 Category: Blog
 Tags: Javascript, CSS, Balanced Binary Tree, AVL, Animation
 Authors: Nagarajan
 Disqus_Identifier: balancedAVLTree
 
-I made an animation of items being added to a [balanced binary tree (specifically AVL tree)](https://en.wikipedia.org/wiki/AVL_tree), and rotations of the tree nodes as the tree balances itself.
+The balanced binary tree is an exremely useful data structure which promises excellent **insert**, **find** and **delete** performance guarantees.
 
-The number in the subscript is the height of a node (its distance from its deepest descendent leaf). The tree uses the height detail to balance itself. Essentially, balancing in the tree is achieved by making sure that for each node, the heights of its child nodes do not differ by more than one. If they do, the tree performs rotations to lower this difference. The animation shows some typical rotations as the tree balances itself.
+<div style="display: flex">
+    <img style="width: 640px; border: 2px solid gray" src="/Balanced tree screenshot.png" />
+</div>
+
+The key to this performance is the balancing property which makes sure that the tree does not get too lopsided (leading to bad performance) - and the key to balancing the tree are the rotation operations. This animation gives a visual demonstration of insertions, rotations, and tree balancing at work.
+
+There are a few slightly different varieties of a balanced tree... we use an [AVL tree](https://en.wikipedia.org/wiki/AVL_tree) for this particular example.
+
+The number in the subscript is the height of a node (its distance from its deepest descendent leaf). The tree uses the height detail to balance itself. Essentially, balancing in the tree is achieved by making sure that for each node, the heights of its child nodes do not differ by more than one. If they do, the tree performs rotations to lower this difference. The animation shows some typical rotations as the tree balances itself. If you look closely, you might notice that some insertions end up requiring 2 rotations for balancing the tree.
 
 Using the input data field, you can try your own numbers to see how items are inserted into the tree. Enter your custom values (comma separated), and hit enter to restart the animation with the new data.
 

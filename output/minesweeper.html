@@ -13,12 +13,12 @@
 
 <meta property="og:title" content="Minesweeper "/>
 <meta property="og:url" content="/minesweeper.html" />
-<meta property="og:description" content="The classic Minesweeper game implemented with React, Javascript and CSS. Rules and Controls Left clicking on a closed square opens it, possibly revealing a number, a mine or an empty square. The number in a square denotes the number of mines that are in the neighboring squares (horizontal, vertical and …" />
+<meta property="og:description" content="The classic Minesweeper game implemented with Javascript, React and CSS. Rules, Controls and Tips Left clicking on a closed square opens it, possibly revealing a number, a mine or an empty square. The number in a square denotes the number of mines that are in the neighboring squares (horizontal, vertical …" />
 <meta property="og:site_name" content="MotleyTech" />
 <meta property="og:article:author" content="Nagarajan" />
 <meta property="og:article:published_time" content="2020-01-18T11:43:00-08:00" />
 <meta name="twitter:title" content="Minesweeper ">
-<meta name="twitter:description" content="The classic Minesweeper game implemented with React, Javascript and CSS. Rules and Controls Left clicking on a closed square opens it, possibly revealing a number, a mine or an empty square. The number in a square denotes the number of mines that are in the neighboring squares (horizontal, vertical and …">
+<meta name="twitter:description" content="The classic Minesweeper game implemented with Javascript, React and CSS. Rules, Controls and Tips Left clicking on a closed square opens it, possibly revealing a number, a mine or an empty square. The number in a square denotes the number of mines that are in the neighboring squares (horizontal, vertical …">
 
         <title>Minesweeper  · MotleyTech - variegated, technical and interesting
 </title>
@@ -90,18 +90,20 @@
 <div class="row-fluid">
         <div class="span10 offset1 article-content">
             
-            <p>The classic Minesweeper game implemented with React, Javascript and CSS.</p>
+            <p>The classic Minesweeper game implemented with Javascript, React and CSS.</p>
 <div id="minesweeper"></div>
 
-<p>Rules and Controls</p>
+<p>Rules, Controls and Tips</p>
 <ul>
 <li><strong>Left clicking</strong> on a closed square opens it, possibly revealing a number, a mine or an empty square.</li>
 <li>The number in a square denotes the number of mines that are in the neighboring squares (horizontal, vertical and diagonal neighbors). An empty square has no mines neighboring it (hence its neighbors are automatically opened).</li>
 <li><strong>Right clicking</strong> a square marks it with a flag (used to denote a mine). Left clicking on a flagged square will not open it. Double clicking a flagged square will remove the flag.</li>
-<li>Exposing a mine detonates all unflagged mines. You also lose the game.</li>
+<li>Exposing a mine detonates all unflagged mines. As a side effect, you also lose the game (in addition to dying). Thankfully, a click of a button reincarnates you to fight another day.</li>
 <li><strong>Double clicking</strong> on a numbered square, which has an equal number of neighboring flagged squares, will open all the unflagged neighboring closed squares. This speeds up the process considerably.</li>
 <li>If a square has been incorrectly flagged, it will be highlighted with an <span style="background-color: red">&nbsp;x&nbsp;</span> at the end of the game.</li>
+<li>The first square to be opened in a game will never be a mine.</li>
 </ul>
+<p>All the best!</p>
 <p>The source code for the game is available under my github page <a href="https://github.com/nagarajan/motleytechpy3/blob/master/content/js/minesweeper/app.js">here</a>.</p>
 <p><link rel="stylesheet" href="/css/minesweeper/app.css"></p>
 <script src="/js/react.production.min.js"></script>
@@ -111,7 +113,7 @@
 <!-- <script src="/js/babel.min.js"></script>
 <script type="text/babel" src="/js/minesweeper/app.js"></script> -->
 
-<!-- Uncomment lines below to make changes-->
+<!-- Comment the line below to make changes-->
 <script src="/js/minesweeper/app-transpiled.js"></script>
 
 
