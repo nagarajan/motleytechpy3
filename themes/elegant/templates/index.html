@@ -98,7 +98,7 @@
     <div class="row-fluid">
         <div class="{{css_class}}">
             <header>
-            <h2 id="recent-posts">Recent Posts</h2>
+                <h2 id="recent-posts">Recent Posts</h2>
             </header>
             <div class="recent-posts">
                 {% for article in articles %}
@@ -122,6 +122,7 @@
                     {% if RECENT_ARTICLE_SUMMARY %}
                         <p>{{article.summary}}</p>
                     {% endif %}
+                    <p><a href="{{ SITEURL }}/{{ article.url }}">Read more...</a></p>
                 </div>
                 {% endif %}
                 {% endfor %}

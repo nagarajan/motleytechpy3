@@ -425,3 +425,15 @@ footer .container-fluid .row-fluid div {
     padding: 0 20px;
   }
 }
+
+div.recent-posts-article {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid brown;
+}
+
+.recent-posts-article > a {
+    display: block;
+    padding: 20px 0px 8px 0px;
+    font-size: 2em;
+}

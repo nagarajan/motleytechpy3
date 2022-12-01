@@ -1,4 +1,4 @@
-Title: Balanced binary tree (AVL tree) operations visualized
+Title: Balanced binary tree visualized
 Date: 2020-04-8 18:45
 Category: Blog
 Tags: Javascript, CSS, Balanced Binary Tree, AVL, Animation

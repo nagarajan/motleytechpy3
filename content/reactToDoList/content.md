@@ -1,5 +1,5 @@
 Title: Todo list with React and LocalStorage
-Date: 2020-02-26 03:45
+Date: 2020-01-26 03:45
 Category: Blog
 Tags: Javascript, React, CSS, LocalStorage
 Authors: Nagarajan
