@@ -8,6 +8,10 @@
   line-height: 1em;
 }
 
+.treeContainer > div {
+    overflow: hidden;
+}
+
 .tree {
   height: 100%;
   width: 100%;

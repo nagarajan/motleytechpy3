@@ -4,6 +4,8 @@ Category: Blog
 Tags: Javascript, CSS, Bezier curves
 Authors: Nagarajan
 Disqus_Identifier: bezierPlayground
+Summary: Bezier curves are one of the *cooler* things with built-in support in the web browser - which makes it easier to create this demo in the browser (vs a custom native UI).<br /> <div style="display: flex; justify-content: center"><img style="width: 400px; border: 2px solid gray; padding: 15px" src="/Bezier curve screenshot.png" /></div>
+
 
 Bezier curves are one of the *cooler* things with built-in support in the web browser - which makes it easier to create this demo in the browser (vs a custom native UI). Below is a playground to tinker with cubic bezier curves.
 

@@ -13,12 +13,12 @@
 
 <meta property="og:title" content="Balanced binary tree (AVL tree) operations visualized "/>
 <meta property="og:url" content="/balanced-binary-tree-avl-tree-operations-visualized.html" />
-<meta property="og:description" content="The balanced binary tree is an exremely useful data structure which promises excellent insert, find and delete performance guarantees. The key to this performance is the balancing property which makes sure that the tree does not get too lopsided (leading to bad performance) - and the key to balancing the tree …" />
+<meta property="og:description" content="The balanced binary tree is an exremely useful data structure which promises excellent insert, find and delete performance guarantees. The key to this performance is the balancing property which makes sure that the tree does not get too lopsided (leading to bad performance) - and the key to balancing the tree are the rotation operations." />
 <meta property="og:site_name" content="MotleyTech" />
 <meta property="og:article:author" content="Nagarajan" />
 <meta property="og:article:published_time" content="2020-04-08T18:45:00-07:00" />
 <meta name="twitter:title" content="Balanced binary tree (AVL tree) operations visualized ">
-<meta name="twitter:description" content="The balanced binary tree is an exremely useful data structure which promises excellent insert, find and delete performance guarantees. The key to this performance is the balancing property which makes sure that the tree does not get too lopsided (leading to bad performance) - and the key to balancing the tree …">
+<meta name="twitter:description" content="The balanced binary tree is an exremely useful data structure which promises excellent insert, find and delete performance guarantees. The key to this performance is the balancing property which makes sure that the tree does not get too lopsided (leading to bad performance) - and the key to balancing the tree are the rotation operations.">
 
         <title>Balanced binary tree (AVL tree) operations visualized  · MotleyTech - variegated, technical and interesting
 </title>
@@ -90,12 +90,7 @@
 <div class="row-fluid">
         <div class="span10 offset1 article-content">
             
-            <p>The balanced binary tree is an exremely useful data structure which promises excellent <strong>insert</strong>, <strong>find</strong> and <strong>delete</strong> performance guarantees.</p>
-<div style="display: flex">
-    <img style="width: 640px; border: 2px solid gray" src="/Balanced tree screenshot.png" />
-</div>
-
-<p>The key to this performance is the balancing property which makes sure that the tree does not get too lopsided (leading to bad performance) - and the key to balancing the tree are the rotation operations. This animation gives a visual demonstration of insertions, rotations, and tree balancing at work.</p>
+            <p>The balanced binary tree is an exremely useful data structure which promises excellent <strong>insert</strong>, <strong>find</strong> and <strong>delete</strong> performance guarantees. The key to this performance is the balancing property which makes sure that the tree does not get too lopsided (leading to bad performance) - and the key to balancing the tree are the rotation operations. The animation below gives a visual demonstration of insertions, rotations, and tree balancing at work.</p>
 <p>There are a few slightly different varieties of a balanced tree... we use an <a href="https://en.wikipedia.org/wiki/AVL_tree">AVL tree</a> for this particular example.</p>
 <p>The number in the subscript is the height of a node (its distance from its deepest descendent leaf). The tree uses the height detail to balance itself. Essentially, balancing in the tree is achieved by making sure that for each node, the heights of its child nodes do not differ by more than one. If they do, the tree performs rotations to lower this difference. The animation shows some typical rotations as the tree balances itself. If you look closely, you might notice that some insertions end up requiring 2 rotations for balancing the tree.</p>
 <p>Using the input data field, you can try your own numbers to see how items are inserted into the tree. Enter your custom values (comma separated), and hit enter to restart the animation with the new data.</p>

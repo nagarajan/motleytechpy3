@@ -4,6 +4,8 @@ Category: Blog
 Tags: Minesweeper
 Authors: Nagarajan
 Disqus_Identifier: minesweeper
+Summary: The classic Minesweeper game implemented with Javascript, React and CSS. <br /> <div style="display: flex; justify-content: center"><img style="width: 320px; border: 2px solid gray; padding: 12px" src="/Minesweeper screenshot.png" /></div>
+
 
 The classic Minesweeper game implemented with Javascript, React and CSS.
 

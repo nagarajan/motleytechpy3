@@ -4,10 +4,11 @@ Category: Blog
 Tags: 3D, camera, orbit
 Authors: Nagarajan
 Disqus_Identifier: 3dOrbitCamera
+Summary: A set of orbit controls, which allow the object under the mouse pointer to be the 'object of interest' with respect to which the camera then rotates / zooms. <div style="display: flex; justify-content: center; margin-bottom: 15px"><img style="width: 400px; border: 2px solid gray; padding: 10px" src="/Orbit camera screenshot.png" /></div>
 
 Recently, I was playing with the [Zygote body Google Experiments](https://experiments.withgoogle.com/body-browser), and noticed that the supported camera controls were quite constrained. The zoom-in, zoom-out and rotation were all centered around the Y axis, rather than the object underneath the mouse pointer. This made it difficult to focus on parts relatively far from the Y axis (shoulders for example). The Y axis is effectively locked as the "object of interest".
 
-We have already seen 'better' orbit controls in CAD software like AutoCAD, etc... so its clearly not a new idea - on the contrary, its has existed for as long as 3D CAD software - probably longer than the internet itself. Looking around at different free 3D graphics related programs online, this pattern seems to repeat itself (looking at other chrome experiments, BlocksCAD3d, etc).
+We have already seen 'better' orbit controls in CAD software like AutoCAD, etc... so its clearly not a new idea - on the contrary, its has existed for as long as 3D CAD software - probably longer than the internet itself. Looking around at different free 3D graphics related programs online, this pattern seems to repeat itself (looking at other 3D chrome experiments, BlocksCAD3d, etc).
 
 I decided to implement such a set of orbit controls, which allow the object under the mouse pointer to be the 'object of interest' with respect to which the camera then rotates / zooms.
 
@@ -22,7 +23,7 @@ Controls:
     <canvas id="playground" style="width: 800px; height 600px; display: block"></canvas>
 </div>
 
-Figuring out the exact rotations turned out to be a nice little challenge - however, the final code turned out to be fairly straight forward. The three.js matrix operations make it fairly easy to implement the new orbiting manipulations (once the required rotations have been figured out). The code is well commented and should be fairly self explanatory.
+Figuring out the exact rotations turned out to be a nice little challenge - however, the final solution was fairly straight forward (as it often happens in mathematical maniputations). The three.js matrix operations make it fairly easy to implement the new orbiting manipulations (once the required rotations have been figured out). The code is well commented and should be fairly self explanatory.
 
 ```
 

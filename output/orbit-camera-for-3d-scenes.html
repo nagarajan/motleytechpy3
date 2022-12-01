@@ -13,12 +13,12 @@
 
 <meta property="og:title" content="Orbit Camera for 3D scenes "/>
 <meta property="og:url" content="/orbit-camera-for-3d-scenes.html" />
-<meta property="og:description" content="Recently, I was playing with the Zygote body Google Experiments, and noticed that the supported camera controls were quite constrained. The zoom-in, zoom-out and rotation were all centered around the Y axis, rather than the object underneath the mouse pointer. This made it difficult to focus on parts relatively far …" />
+<meta property="og:description" content="A set of orbit controls, which allow the object under the mouse pointer to be the &#39;object of interest&#39; with respect to which the camera then rotates / zooms." />
 <meta property="og:site_name" content="MotleyTech" />
 <meta property="og:article:author" content="Nagarajan" />
 <meta property="og:article:published_time" content="2016-08-12T17:22:00-07:00" />
 <meta name="twitter:title" content="Orbit Camera for 3D scenes ">
-<meta name="twitter:description" content="Recently, I was playing with the Zygote body Google Experiments, and noticed that the supported camera controls were quite constrained. The zoom-in, zoom-out and rotation were all centered around the Y axis, rather than the object underneath the mouse pointer. This made it difficult to focus on parts relatively far …">
+<meta name="twitter:description" content="A set of orbit controls, which allow the object under the mouse pointer to be the &#39;object of interest&#39; with respect to which the camera then rotates / zooms.">
 
         <title>Orbit Camera for 3D scenes  · MotleyTech - variegated, technical and interesting
 </title>
@@ -91,7 +91,7 @@
         <div class="span10 offset1 article-content">
             
             <p>Recently, I was playing with the <a href="https://experiments.withgoogle.com/body-browser">Zygote body Google Experiments</a>, and noticed that the supported camera controls were quite constrained. The zoom-in, zoom-out and rotation were all centered around the Y axis, rather than the object underneath the mouse pointer. This made it difficult to focus on parts relatively far from the Y axis (shoulders for example). The Y axis is effectively locked as the "object of interest".</p>
-<p>We have already seen 'better' orbit controls in CAD software like AutoCAD, etc... so its clearly not a new idea - on the contrary, its has existed for as long as 3D CAD software - probably longer than the internet itself. Looking around at different free 3D graphics related programs online, this pattern seems to repeat itself (looking at other chrome experiments, BlocksCAD3d, etc).</p>
+<p>We have already seen 'better' orbit controls in CAD software like AutoCAD, etc... so its clearly not a new idea - on the contrary, its has existed for as long as 3D CAD software - probably longer than the internet itself. Looking around at different free 3D graphics related programs online, this pattern seems to repeat itself (looking at other 3D chrome experiments, BlocksCAD3d, etc).</p>
 <p>I decided to implement such a set of orbit controls, which allow the object under the mouse pointer to be the 'object of interest' with respect to which the camera then rotates / zooms.</p>
 <p>The demo below shows such a set of controls at work. The crucial parts of the source code for the controls follows below the demo (built on top of three.js).</p>
 <p>Controls:</p>
@@ -103,7 +103,7 @@
     <canvas id="playground" style="width: 800px; height 600px; display: block"></canvas>
 </div>
 
-<p>Figuring out the exact rotations turned out to be a nice little challenge - however, the final code turned out to be fairly straight forward. The three.js matrix operations make it fairly easy to implement the new orbiting manipulations (once the required rotations have been figured out). The code is well commented and should be fairly self explanatory.</p>
+<p>Figuring out the exact rotations turned out to be a nice little challenge - however, the final solution was fairly straight forward (as it often happens in mathematical maniputations). The three.js matrix operations make it fairly easy to implement the new orbiting manipulations (once the required rotations have been figured out). The code is well commented and should be fairly self explanatory.</p>
 <div class="highlight"><pre><span></span><code>  <span class="n">function</span> <span class="n">orbit</span><span class="p">(</span><span class="n">xRot</span><span class="p">,</span> <span class="n">yRot</span><span class="p">,</span> <span class="n">camPos</span><span class="p">,</span> <span class="n">camLookAt</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">const</span> <span class="n">newXAxis</span> <span class="o">=</span> <span class="n">camLookAt</span><span class="o">.</span><span class="n">clone</span><span class="p">();</span>
     <span class="k">const</span> <span class="n">lx</span> <span class="o">=</span> <span class="n">camLookAt</span><span class="o">.</span><span class="n">x</span><span class="p">;</span>
