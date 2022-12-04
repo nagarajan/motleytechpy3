@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Tech-notes
+{% endblock title %}
+
+{% block meta_tags_in_head %}
+{{ super() }}
+<meta property="og:article:author" content="{{ AUTHOR }}" />
+{% endblock meta_tags_in_head %}
+
+{% block content %}
+
+<div class="row-fluid">
+    {% set css_class = 'span12' %}
+    <header class="page-header {{css_class}}">
+        <h1>Tech-notes</h1>
+    </header>
+
+    {% if articles %}
+    {% set css_class = 'span8 offset2' %}
+    {% if articles and PROJECTS and LANDING_PAGE_TITLE %}
+    {% set css_class = 'span12' %}
+    {% endif %}
+    {% from '_includes/_defaults.html' import RECENT_ARTICLES_COUNT, ARCHIVES_URL, CATEGORIES_URL with context %}
+    <div class="row-fluid">
+        <div class="{{css_class}}">
+            <div class="recent-posts">
+                {% for article in articles %}
+                {% if 'technotes' in article.tags %}
+                {% if loop.index0 < RECENT_ARTICLES_COUNT %}
+                <div itemscope class="recent-posts-article">
+                    <a href="{{ SITEURL }}/{{ article.url }}">
+                        {{ article.title }}
+                        {%if article.subtitle %}
+                        <small class="subtitle">
+                            {{ article.subtitle }}
+                        </small>
+                        {% endif %}
+                    </a>
+                    <div class="recent-posts-posted">
+                        posted in
+                        <a href="{{ SITEURL }}/{{ CATEGORIES_URL }}#{{ article.category.slug }}-ref">{{ article.category }}</a>
+                        <div class="recent-posts-time">
+                            <time itemprop="dateCreated" datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
+                        </div>
+                    </div>
+                    {% if RECENT_ARTICLE_SUMMARY %}
+                        <p>{{article.summary}}</p>
+                    {% endif %}
+                    <p><a href="{{ SITEURL }}/{{ article.url }}">Read more...</a></p>
+                </div>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock content %}
+
+
+{% block script %}
+    {{ super() }}
+    {% from '_includes/comments.html' import comments_script with context %}
+    {{ comments_script() }}
+    {% include '_includes/photos_footer.html' %}
+{% endblock script %}

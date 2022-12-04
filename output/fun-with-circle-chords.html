@@ -9,18 +9,18 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Minesweeper, Blog, " />
+<meta name="keywords" content="Circle, Chords, Blog, " />
 
-<meta property="og:title" content="Minesweeper "/>
-<meta property="og:url" content="/minesweeper.html" />
-<meta property="og:description" content="The classic Minesweeper game implemented with Javascript, React and CSS." />
+<meta property="og:title" content="Fun with circle chords "/>
+<meta property="og:url" content="/fun-with-circle-chords.html" />
+<meta property="og:description" content="A fun little program to discover shapes conjured up drawing periodic chords in a circle. I made this for my kids to enjoy." />
 <meta property="og:site_name" content="MotleyTech" />
 <meta property="og:article:author" content="Nagarajan" />
-<meta property="og:article:published_time" content="2020-02-18T11:43:00-08:00" />
-<meta name="twitter:title" content="Minesweeper ">
-<meta name="twitter:description" content="The classic Minesweeper game implemented with Javascript, React and CSS.">
+<meta property="og:article:published_time" content="2014-03-22T04:33:00-07:00" />
+<meta name="twitter:title" content="Fun with circle chords ">
+<meta name="twitter:description" content="A fun little program to discover shapes conjured up drawing periodic chords in a circle. I made this for my kids to enjoy.">
 
-        <title>Minesweeper  · MotleyTech - variegated, technical and interesting
+        <title>Fun with circle chords  · MotleyTech - variegated, technical and interesting
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="/theme/css/elegant.prod.css" media="screen">
@@ -81,10 +81,10 @@
 <div class="row-fluid">
     <header class="page-header span10 offset1">
         <h1>
-            Minesweeper
+            Fun with circle chords
         </h1>
             <small class="subtitle">
-                <time itemprop="dateCreated" datetime="2020-02-18T11:43:00-08:00">Published : Feb 18, 2020</time>
+                <time itemprop="dateCreated" datetime="2014-03-22T04:33:00-07:00">Published : Mar 22, 2014</time>
             </small>
 </header>
 </div>
@@ -92,31 +92,125 @@
 <div class="row-fluid">
         <div class="span10 offset1 article-content">
             
-            <p>The classic Minesweeper game implemented with Javascript, React and CSS.</p>
-<div id="minesweeper"></div>
+            <p>A fun little program to discover shapes conjured up drawing periodic chords in a circle. I made this for my kids to enjoy.</p>
+<style>
+    #DemoCanvas {
+        border: 1px solid #ddd;
+    }
+</style>
+<body>
+<canvas id="DemoCanvas" style="width: 100%"></canvas>
 
-<p>Rules, Controls and Tips</p>
-<ul>
-<li><strong>Left clicking</strong> on a closed square opens it, possibly revealing a number, a mine or an empty square.</li>
-<li>The number in a square denotes the number of mines that are in the neighboring squares (horizontal, vertical and diagonal neighbors). An empty square has no mines neighboring it (hence its neighbors are automatically opened).</li>
-<li><strong>Right clicking</strong> a square marks it with a flag (used to denote a mine). Left clicking on a flagged square will not open it. Double clicking a flagged square will remove the flag.</li>
-<li>Exposing a mine detonates all unflagged mines. As a side effect, you also lose the game (in addition to dying). Thankfully, a click of a button reincarnates you to fight another day.</li>
-<li><strong>Double clicking</strong> on a numbered square, which has an equal number of neighboring flagged squares, will open all the unflagged neighboring closed squares. This speeds up the process considerably.</li>
-<li>If a square has been incorrectly flagged, it will be highlighted with an <span style="background-color: red">&nbsp;x&nbsp;</span> at the end of the game.</li>
-<li>The first square to be opened in a game will never be a mine.</li>
-</ul>
-<p>All the best!</p>
-<p>The source code for the game is available under my github page <a href="https://github.com/nagarajan/motleytechpy3/blob/master/content/js/minesweeper/app.js">here</a>.</p>
-<p><link rel="stylesheet" href="/css/minesweeper/app.css"></p>
-<script src="/js/react.production.min.js"></script>
-<script src="/js/react-dom.production.min.js"></script>
+<br />
+<div style="text-align: start">Number of points : </div>
+<input type="range" min="1" max="5000" value="200" class="slider" id="numPointsSlider" style="width:100%">
+<div id="numPointsDisplay" style="text-align: end"></div>
+<div style="text-align: start">Jump Size : </div>
+<input type="range" min="1" max="5000" value="40" class="slider" id="kJumpSlider" style="width:100%">
+<div id="jumpSizeDisplay" style="text-align: end"></div>
 
-<!-- Uncomment lines below to make changes-->
-<!-- <script src="/js/babel.min.js"></script>
-<script type="text/babel" src="/js/minesweeper/app.js"></script> -->
+<script>
 
-<!-- Comment the line below to make changes-->
-<script src="/js/minesweeper/app-transpiled.js"></script>
+    let width = 800
+    let height = 600
+    let nCirPts = 100
+    let kJump = 4
+
+
+    const wb2 = width / 2
+    const hb2 = height / 2
+    const cRadius = 0.8 * hb2
+
+    let canvas = document.getElementById('DemoCanvas');
+    let numPointsSlider = document.getElementById('numPointsSlider');
+    let kJumpSlider = document.getElementById('kJumpSlider');
+    let numPointsDisplay = document.getElementById('numPointsDisplay')
+    let jumpSizeDisplay = document.getElementById('jumpSizeDisplay')
+
+    canvas.setAttribute('width', width)
+    canvas.setAttribute('height', height)
+
+    numPointsSlider.oninput = function () {
+        nCirPts = parseInt(this.value)
+        const context = canvas.getContext('2d')
+        context.clearRect(0, 0, canvas.width, canvas.height)
+        numPointsDisplay.innerHTML = this.value
+
+        drawFig(nCirPts, cRadius, kJump, canvas)
+    }
+
+    kJumpSlider.oninput = function () {
+        kJump = parseFloat(this.value)/10.0
+        const context = canvas.getContext('2d')
+        context.clearRect(0, 0, canvas.width, canvas.height)
+        jumpSizeDisplay.innerHTML = kJump.toString()
+
+        drawFig(nCirPts, cRadius, kJump, canvas)
+    }
+
+
+
+    //Always check for properties and methods, to make sure your code doesn't break in other browsers.
+    function line(x1, y1, x2, y2, canvas) {
+        if (canvas.getContext) {
+            var context = canvas.getContext('2d');
+            context.beginPath();
+            context.moveTo(x1, y1);
+            context.lineTo(x2, y2);
+            context.stroke();
+        }
+    }
+
+    function offsetLine(p1, p2, canvas) {
+        let  [x1, y1] = p1
+        let [x2, y2] = p2
+        x1 = wb2 + x1
+        x2 = wb2 + x2
+        y1 = hb2 - y1
+        y2 = hb2 - y2
+        line(x1, y1, x2, y2, canvas)
+    }
+
+
+    function getCircPts(nps, radius) {
+        const scale = 2*Math.PI/nps
+        const points = [];
+        [...Array(nps).keys()].forEach(x => {
+            const xs = x*scale
+            const px = Math.cos(xs) * radius
+            const py = Math.sin(xs) * radius
+            points.push([px, py])
+        })
+        return points
+    }
+
+
+    function drawFig(nps, radius, jump, canvas) {
+        const cPtsLocs = getCircPts(nps, radius);
+        [...Array(nps).keys()].forEach( x => {
+            const l1 = x + 1
+            const l2 = Math.round(l1*jump)
+            const p1 = cPtsLocs[l1 - 1]
+            const p2 = cPtsLocs[(l2 - 1) % nps]
+            offsetLine(p1, p2, canvas)
+        })
+    }
+
+    function sleep(milliseconds) {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds) {
+            break;
+            }
+        }
+    }
+
+    drawFig(nCirPts, cRadius, kJump, canvas)
+    numPointsDisplay.innerHTML = nCirPts.toString()
+    jumpSizeDisplay.innerHTML = kJump.toString()
+
+</script>
+</body>
 
 
              
@@ -141,8 +235,8 @@
                 <a class="accordion-toggle disqus-comment-count comment-count"
                    data-toggle="collapse"
                    data-parent="#accordion2"
-                   data-disqus-identifier="minesweeper"
-                   href="/minesweeper.html#comment_thread"
+                   data-disqus-identifier="circle_chord_fun"
+                   href="/fun-with-circle-chords.html#comment_thread"
                    id="comment-accordion-toggle">
                     Comments
                 </a>
@@ -160,8 +254,8 @@
         (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
     }());
 
-    var disqus_identifier = 'minesweeper';
-    var disqus_url = '/minesweeper.html';
+    var disqus_identifier = 'circle_chord_fun';
+    var disqus_url = '/fun-with-circle-chords.html';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -184,12 +278,15 @@
         </div>
         <!-- <section id="article-sidebar" class="span2">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2020-02-18T11:43:00-08:00">Feb 18, 2020</time>
+            <time itemprop="dateCreated" datetime="2014-03-22T04:33:00-07:00">Mar 22, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="/categories.html#blog-ref">Blog</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="/tags.html#minesweeper-ref">Minesweeper
+                <li><a href="/tags.html#chords-ref">Chords
+                    <span>1</span>
+</a></li>
+                <li><a href="/tags.html#circle-ref">Circle
                     <span>1</span>
 </a></li>
             </ul>

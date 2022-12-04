@@ -299,6 +299,11 @@ a {
     border-top: 1px solid #bfa57d;
     border-bottom: 1px solid #bfa57d;
   }
+
+  .nav-collapse > .nav {
+    padding-top: 15px;
+    margin-bottom: 0px;
+  }
 }
 
 .nav-collapse .nav>li>a:hover {
@@ -334,7 +339,7 @@ h1 {
 }
 
 .container-fluid .row-fluid .span1 {
-  min-height: 15px;
+  min-height: 0px;
 }
 
 article p:not(#list-of-translations):not(#post-share-links) a:not(.ampl),
@@ -434,6 +439,7 @@ div.recent-posts-article {
 
 .recent-posts-article > a {
     display: block;
-    padding: 20px 0px 8px 0px;
+    padding: 20px 0px 4px 0px;
     font-size: 2em;
+    line-height: 1.2em;
 }

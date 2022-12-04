@@ -4,7 +4,7 @@ Category: Blog
 Tags: 3D, camera, orbit
 Authors: Nagarajan
 Disqus_Identifier: 3dOrbitCamera
-Summary: A set of orbit controls, which allow the object under the mouse pointer to be the 'object of interest' with respect to which the camera then rotates / zooms. <div style="display: flex; justify-content: center; margin-bottom: 15px"><img style="width: 400px; border: 2px solid gray; padding: 10px" src="/Orbit camera screenshot.png" /></div>
+Summary: A set of orbit controls, which allow the object under the mouse pointer to be the 'object of interest' with respect to which the camera then rotates / zooms. <div style="display: flex; justify-content: center; margin-bottom: 15px"><img style="width: 400px; border: 2px solid gray; padding: 10px; box-sizing: border-box" src="/Orbit camera screenshot.png" /></div>
 
 Recently, I was playing with the [Zygote body Google Experiments](https://experiments.withgoogle.com/body-browser), and noticed that the supported camera controls were quite constrained. The zoom-in, zoom-out and rotation were all centered around the Y axis, rather than the object underneath the mouse pointer. This made it difficult to focus on parts relatively far from the Y axis (shoulders for example). The Y axis is effectively locked as the "object of interest".
 

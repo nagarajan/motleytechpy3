@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}
+About Motleytech
+{% endblock title %}
+
+{% block content %}
+{% from '_includes/_defaults.html' import LANDING_PAGE_TITLE with context %}
+{% from '_includes/_defaults.html' import PROJECTS with context %}
+{% from '_includes/_defaults.html' import PROJECTS_TITLE with context %}
+
+{% set landing_page = namespace(page=false) %}
+{% for p in hidden_pages if p.slug == "landing-page-about-hidden" %}
+{% set landing_page.page = p %}
+{% endfor %}
+
+<div class="row-fluid">
+    {% if LANDING_PAGE_TITLE %}
+    {% set css_class = 'span10 offset2' %}
+    {% if PROJECTS and LANDING_PAGE_TITLE %}
+    {% set css_class = 'span12' %}
+    {% endif %}
+    <header class="page-header {{css_class}}">
+        <h1>{{ LANDING_PAGE_TITLE }}</h1>
+    </header>
+    {% endif %}
+
+    <div class="row-fluid">
+        {% if LANDING_PAGE_TITLE and landing_page.page %}
+        {% set css_class = 'span8 offset2' %}
+        {% if PROJECTS and LANDING_PAGE_TITLE %}
+        {% set css_class = 'span8' %}
+        {% endif %}
+        <div class="{{css_class}}">
+            <!-- <header>
+                <h1 id="about-me">{{landing_page.page.title}}</h1>
+            </header> -->
+            <div class="article-content">
+                {{ landing_page.page.content }}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if PROJECTS %}
+        {% set css_class = 'span8 offset2' %}
+        {% if PROJECTS and LANDING_PAGE_TITLE %}
+        {% set css_class = 'span4' %}
+        {% endif %}
+        <div id="over768px" class="{{css_class}}">
+            <header>
+            <h2 id="my-projects">{{ PROJECTS_TITLE }}</h2>
+            </header>
+            {% for project in PROJECTS %}
+            <ul class="list-all-articles">
+                <li>
+                <a href="{{ project.url }}" title="{{ project.name }}">{{ project.name }}</a> <span class="proj-desc">{{ project.description }}</span>
+                </li>
+            </ul>
+            {%endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    {% if PROJECTS %}
+    <div id="under768px">
+        <div style="height: 1rem"></div>
+        <header>
+        <h2 id="my-projects">{{ PROJECTS_TITLE }}</h2>
+        </header>
+        {% for project in PROJECTS %}
+        <ul class="list-all-articles">
+            <li>
+            <a href="{{ project.url }}" title="{{ project.name }}">{{ project.name }}</a> <span class="proj-desc">{{ project.description }}</span>
+            </li>
+        </ul>
+        {%endfor %}
+    </div>
+    {% endif %}
+
+</div>
+{% endblock content %}

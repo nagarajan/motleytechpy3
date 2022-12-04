@@ -4,7 +4,7 @@ Category: Blog
 Tags: Physics, Mathematics, Gravity, Pi, Sun, Earth
 Authors: Nagarajan
 Disqus_Identifier: falling_into_the_sun
-Summary: The earth orbits around the sun because it has angular momentum. If we stopped the earth in orbit then let it fall straight towards the sun, then how long would it take to reach the sun in seconds? <br /> <div style="display: flex; justify-content: center"><img style="width: 600px; border: 2px solid gray; padding: 12px" src="/images/corot_ill.jpg" /></div> <br />
+Summary: The earth orbits around the sun because it has angular momentum. If we stopped the earth in orbit then let it fall straight towards the sun, then how long (in seconds) would it take to reach the sun? <br /> <div style="display: flex; justify-content: center"><img style="width: 600px; border: 2px solid gray; padding: 12px; box-sizing: border-box" src="/images/corot_ill.jpg" /></div> <br />
 
 
 Recently, I came across a gem of a physics problem, which had the awesome combination of being easy to comprehend, yet being surprisingly difficult to solve.

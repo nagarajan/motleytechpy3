@@ -4,7 +4,7 @@ Category: Blog
 Tags: Javascript, React, CSS, LocalStorage
 Authors: Nagarajan
 Disqus_Identifier: reactToDoList
-Summary: A simple client side TODO list created using React and localstorage. Due to using localstorage, the list will retain any changes across tabs in the same browser (even after closing and opening tabs). <br /> <div style="display: flex; justify-content: center"><img style="width: 720px; border: 2px solid gray" src="/Todo list screenshot.png" /></div>
+Summary: A simple client side TODO list created using React and localstorage. Due to using localstorage, the list will retain any changes across tabs in the same browser (even after closing and opening tabs). <br /> <div style="display: flex; justify-content: center"><img style="width: 720px; border: 2px solid gray; box-sizing: border-box" src="/Todo list screenshot.png" /></div>
 
 
 Some time ago, I had built a simple standalone ToDo list in React, which stores its data in the browser localstorage, and I thought it came together quite neatly. Its actually less than 200 lines of javascript code (wasn't deliberately trying to play golf with the line count - link to the code near the bottom).

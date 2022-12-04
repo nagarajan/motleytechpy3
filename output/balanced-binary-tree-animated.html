@@ -9,18 +9,18 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Minesweeper, Blog, " />
+<meta name="keywords" content="Javascript, CSS, Balanced Binary Tree, AVL, Animation, Blog, " />
 
-<meta property="og:title" content="Minesweeper "/>
-<meta property="og:url" content="/minesweeper.html" />
-<meta property="og:description" content="The classic Minesweeper game implemented with Javascript, React and CSS." />
+<meta property="og:title" content="Balanced binary tree animated "/>
+<meta property="og:url" content="/balanced-binary-tree-animated.html" />
+<meta property="og:description" content="The balanced binary tree is an exremely useful data structure which promises excellent insert, find and delete performance guarantees. The key to this performance is the balancing property which makes sure that the tree does not get too lopsided (leading to bad performance) - and the key to balancing the tree are the rotation operations." />
 <meta property="og:site_name" content="MotleyTech" />
 <meta property="og:article:author" content="Nagarajan" />
-<meta property="og:article:published_time" content="2020-02-18T11:43:00-08:00" />
-<meta name="twitter:title" content="Minesweeper ">
-<meta name="twitter:description" content="The classic Minesweeper game implemented with Javascript, React and CSS.">
+<meta property="og:article:published_time" content="2020-04-08T18:45:00-07:00" />
+<meta name="twitter:title" content="Balanced binary tree animated ">
+<meta name="twitter:description" content="The balanced binary tree is an exremely useful data structure which promises excellent insert, find and delete performance guarantees. The key to this performance is the balancing property which makes sure that the tree does not get too lopsided (leading to bad performance) - and the key to balancing the tree are the rotation operations.">
 
-        <title>Minesweeper  · MotleyTech - variegated, technical and interesting
+        <title>Balanced binary tree animated  · MotleyTech - variegated, technical and interesting
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="/theme/css/elegant.prod.css" media="screen">
@@ -81,10 +81,10 @@
 <div class="row-fluid">
     <header class="page-header span10 offset1">
         <h1>
-            Minesweeper
+            Balanced binary tree animated
         </h1>
             <small class="subtitle">
-                <time itemprop="dateCreated" datetime="2020-02-18T11:43:00-08:00">Published : Feb 18, 2020</time>
+                <time itemprop="dateCreated" datetime="2020-04-08T18:45:00-07:00">Published : Apr 8, 2020</time>
             </small>
 </header>
 </div>
@@ -92,31 +92,19 @@
 <div class="row-fluid">
         <div class="span10 offset1 article-content">
             
-            <p>The classic Minesweeper game implemented with Javascript, React and CSS.</p>
-<div id="minesweeper"></div>
+            <p>The balanced binary tree is an exremely useful data structure which promises excellent <strong>insert</strong>, <strong>find</strong> and <strong>delete</strong> performance guarantees. The key to this performance is the balancing property which makes sure that the tree does not get too lopsided (leading to bad performance) - and the key to balancing the tree are the rotation operations. The animation below gives a visual demonstration of insertions, rotations, and tree balancing at work.</p>
+<p>There are a few slightly different varieties of a balanced tree... we use an <a href="https://en.wikipedia.org/wiki/AVL_tree">AVL tree</a> for this particular example.</p>
+<p>The number in the subscript is the height of a node (its distance from its deepest descendent leaf). The tree uses the height detail to balance itself. Essentially, balancing in the tree is achieved by making sure that for each node, the heights of its child nodes do not differ by more than one. If they do, the tree performs rotations to lower this difference. The animation shows some typical rotations as the tree balances itself. If you look closely, you might notice that some insertions end up requiring 2 rotations for balancing the tree.</p>
+<p>Using the input data field, you can try your own numbers to see how items are inserted into the tree. Enter your custom values (comma separated), and hit enter to restart the animation with the new data.</p>
+<div id='root'>You need Javascript to run this program</div>
 
-<p>Rules, Controls and Tips</p>
-<ul>
-<li><strong>Left clicking</strong> on a closed square opens it, possibly revealing a number, a mine or an empty square.</li>
-<li>The number in a square denotes the number of mines that are in the neighboring squares (horizontal, vertical and diagonal neighbors). An empty square has no mines neighboring it (hence its neighbors are automatically opened).</li>
-<li><strong>Right clicking</strong> a square marks it with a flag (used to denote a mine). Left clicking on a flagged square will not open it. Double clicking a flagged square will remove the flag.</li>
-<li>Exposing a mine detonates all unflagged mines. As a side effect, you also lose the game (in addition to dying). Thankfully, a click of a button reincarnates you to fight another day.</li>
-<li><strong>Double clicking</strong> on a numbered square, which has an equal number of neighboring flagged squares, will open all the unflagged neighboring closed squares. This speeds up the process considerably.</li>
-<li>If a square has been incorrectly flagged, it will be highlighted with an <span style="background-color: red">&nbsp;x&nbsp;</span> at the end of the game.</li>
-<li>The first square to be opened in a game will never be a mine.</li>
-</ul>
-<p>All the best!</p>
-<p>The source code for the game is available under my github page <a href="https://github.com/nagarajan/motleytechpy3/blob/master/content/js/minesweeper/app.js">here</a>.</p>
-<p><link rel="stylesheet" href="/css/minesweeper/app.css"></p>
+<p><link rel='stylesheet' type='text/css' href="/css/balancedTree/app.css" /></p>
 <script src="/js/react.production.min.js"></script>
 <script src="/js/react-dom.production.min.js"></script>
 
-<!-- Uncomment lines below to make changes-->
-<!-- <script src="/js/babel.min.js"></script>
-<script type="text/babel" src="/js/minesweeper/app.js"></script> -->
+<script src="/js/balancedTree/app_transpiled.js"> </script>
 
-<!-- Comment the line below to make changes-->
-<script src="/js/minesweeper/app-transpiled.js"></script>
+<p>The source code for this animation/demo can be found <a href="https://gitlab.com/motleytech/mtOnPelican/-/raw/master/motleytechnet/content/js/balancedTree/app_transpiled.js">here</a>. Kindly request permission before using / copying.</p>
 
 
              
@@ -141,8 +129,8 @@
                 <a class="accordion-toggle disqus-comment-count comment-count"
                    data-toggle="collapse"
                    data-parent="#accordion2"
-                   data-disqus-identifier="minesweeper"
-                   href="/minesweeper.html#comment_thread"
+                   data-disqus-identifier="balancedAVLTree"
+                   href="/balanced-binary-tree-animated.html#comment_thread"
                    id="comment-accordion-toggle">
                     Comments
                 </a>
@@ -160,8 +148,8 @@
         (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
     }());
 
-    var disqus_identifier = 'minesweeper';
-    var disqus_url = '/minesweeper.html';
+    var disqus_identifier = 'balancedAVLTree';
+    var disqus_url = '/balanced-binary-tree-animated.html';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -184,13 +172,25 @@
         </div>
         <!-- <section id="article-sidebar" class="span2">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2020-02-18T11:43:00-08:00">Feb 18, 2020</time>
+            <time itemprop="dateCreated" datetime="2020-04-08T18:45:00-07:00">Apr 8, 2020</time>
             <h4>Category</h4>
             <a class="category-link" href="/categories.html#blog-ref">Blog</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="/tags.html#minesweeper-ref">Minesweeper
+                <li><a href="/tags.html#animation-ref">Animation
                     <span>1</span>
+</a></li>
+                <li><a href="/tags.html#avl-ref">AVL
+                    <span>1</span>
+</a></li>
+                <li><a href="/tags.html#balanced-binary-tree-ref">Balanced Binary Tree
+                    <span>1</span>
+</a></li>
+                <li><a href="/tags.html#css-ref">CSS
+                    <span>3</span>
+</a></li>
+                <li><a href="/tags.html#javascript-ref">Javascript
+                    <span>3</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
