@@ -39,7 +39,8 @@ EXTRA_PATH_METADATA = {
 
 PLUGIN_PATHS = ["plugins"]
 PLUGINS = [
-    "render_math"
+    "render_math",
+    "custom_plugin"
 ]
 
 # Landing Page

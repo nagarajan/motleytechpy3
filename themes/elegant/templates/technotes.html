@@ -26,8 +26,7 @@ Tech-notes
     <div class="row-fluid">
         <div class="{{css_class}}">
             <div class="recent-posts">
-                {% for article in articles %}
-                {% if 'technotes' in article.tags %}
+                {% for article in (articles | in_category('Technotes', 0, 10)) %}
                 {% if loop.index0 < RECENT_ARTICLES_COUNT %}
                 <div itemscope class="recent-posts-article">
                     <a href="{{ SITEURL }}/{{ article.url }}">
@@ -50,7 +49,6 @@ Tech-notes
                     {% endif %}
                     <p><a href="{{ SITEURL }}/{{ article.url }}">Read more...</a></p>
                 </div>
-                {% endif %}
                 {% endif %}
                 {% endfor %}
             </div>

@@ -15,11 +15,12 @@ A fun little program to discover shapes conjured up drawing periodic chords in a
 </style>
 <body>
 <canvas id="DemoCanvas" style="width: 100%"></canvas>
-
 <br />
+
 <div style="text-align: start">Number of points : </div>
-<input type="range" min="1" max="5000" value="200" class="slider" id="numPointsSlider" style="width:100%">
+<input type="range" min="1" max="2000" value="200" class="slider" id="numPointsSlider" style="width:100%">
 <div id="numPointsDisplay" style="text-align: end"></div>
+
 <div style="text-align: start">Jump Size : </div>
 <input type="range" min="1" max="5000" value="40" class="slider" id="kJumpSlider" style="width:100%">
 <div id="jumpSizeDisplay" style="text-align: end"></div>

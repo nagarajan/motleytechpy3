@@ -47,8 +47,7 @@
     <div class="row-fluid">
         <div class="{{css_class}}">
             <div class="recent-posts">
-                {% for article in articles[:1] %}
-                {% if 'technotes' not in article.tags %}
+                {% for article in (articles | in_category('Blog', 0, 1)) %}
                 {% if loop.index0 < RECENT_ARTICLES_COUNT %}
                 <div itemscope class="recent-posts-article"  style="border-bottom: 0px">
                     <a href="{{ SITEURL }}/{{ article.url }}">
@@ -71,7 +70,6 @@
                     {% endif %}
                     <p><a href="{{ SITEURL }}/{{ article.url }}">Read more...</a></p>
                 </div>
-                {% endif %}
                 {% endif %}
                 {% endfor %}
             </div>
@@ -116,8 +114,7 @@
     <div class="row-fluid">
         <div class="{{css_class}}">
             <div class="recent-posts">
-                {% for article in articles[1:] %}
-                {% if 'technotes' not in article.tags %}
+                {% for article in (articles | in_category('Blog', 1, None)) %}
                 {% if loop.index0 < RECENT_ARTICLES_COUNT - 1 %}
                 <div itemscope class="recent-posts-article">
                     <a href="{{ SITEURL }}/{{ article.url }}">
@@ -141,11 +138,10 @@
                     <p><a href="{{ SITEURL }}/{{ article.url }}">Read more...</a></p>
                 </div>
                 {% endif %}
-                {% endif %}
                 {% endfor %}
             </div>
             <div id="allposts">
-                Looking for older posts? Head to the <a href="{{ SITEURL }}/{{ ARCHIVES_URL }}">archives ...</a>
+                Looking for more? Head to the <a href="{{ SITEURL }}/{{ ARCHIVES_URL }}">archives ...</a>
             </div>
         </div>
     </div>
