@@ -9,18 +9,18 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Javascript, CSS, Bezier curves, Blog, " />
+<meta name="keywords" content="CSS, Technotes, " />
 
-<meta property="og:title" content="Bezier curve playground "/>
-<meta property="og:url" content="/bezier-curve-playground.html" />
-<meta property="og:description" content="Bezier curves are one of the cooler things with built-in support in the web browser - which makes it easier to create this demo in the browser (vs a custom native UI)." />
+<meta property="og:title" content="CSS Cheat Sheet "/>
+<meta property="og:url" content="/css-cheat-sheet.html" />
+<meta property="og:description" content="Centering different elements in CSS Inline element in block element &lt;div style=&#34;text-align: center; border: 1px solid red; width: 100%&#34;&gt; &lt;span style=&#34;border: 1px solid blue&#34;&gt;Centered element&lt;span&gt; &lt;/div&gt; Centered element * Inline element in block element using flex &lt;div style=&#34;display: flex; justify-content: center; border: 1px solid red; width …" />
 <meta property="og:site_name" content="MotleyTech" />
 <meta property="og:article:author" content="Nagarajan" />
-<meta property="og:article:published_time" content="2015-04-16T12:59:00-07:00" />
-<meta name="twitter:title" content="Bezier curve playground ">
-<meta name="twitter:description" content="Bezier curves are one of the cooler things with built-in support in the web browser - which makes it easier to create this demo in the browser (vs a custom native UI).">
+<meta property="og:article:published_time" content="2019-04-12T11:44:00-07:00" />
+<meta name="twitter:title" content="CSS Cheat Sheet ">
+<meta name="twitter:description" content="Centering different elements in CSS Inline element in block element &lt;div style=&#34;text-align: center; border: 1px solid red; width: 100%&#34;&gt; &lt;span style=&#34;border: 1px solid blue&#34;&gt;Centered element&lt;span&gt; &lt;/div&gt; Centered element * Inline element in block element using flex &lt;div style=&#34;display: flex; justify-content: center; border: 1px solid red; width …">
 
-        <title>Bezier curve playground  · MotleyTech - variegated, technical and interesting
+        <title>CSS Cheat Sheet  · MotleyTech - variegated, technical and interesting
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="/theme/css/elegant.prod.css" media="screen">
@@ -81,10 +81,10 @@
 <div class="row-fluid">
     <header class="page-header span10 offset1">
         <h1>
-            Bezier curve playground
+            CSS Cheat Sheet
         </h1>
             <small class="subtitle">
-                <time itemprop="dateCreated" datetime="2015-04-16T12:59:00-07:00">Published : Apr 16, 2015</time>
+                <time itemprop="dateCreated" datetime="2019-04-12T11:44:00-07:00">Published : Apr 12, 2019</time>
             </small>
 </header>
 </div>
@@ -92,41 +92,67 @@
 <div class="row-fluid">
         <div class="span10 offset1 article-content">
             
-            <p>Bezier curves are one of the <em>cooler</em> things with built-in support in the web browser - which makes it easier to create this demo in the browser (vs a custom native UI). Below is a playground to tinker with cubic bezier curves.</p>
-<p>You can</p>
+            <p><b>Centering different elements in CSS</b></p>
 <ul>
-<li>add new points - click on a empty area</li>
-<li>move the existing points (blue dots) - click and drag</li>
-<li>move the control points (the points with circles) - again, click and drag</li>
+<li>Inline element in block element</li>
 </ul>
-<p>Have a go... try adding a couple of points and dragging the resulting control points.</p>
-<div class='bezierContainer'>
-    <div class="playground">
-        <svg class='thecurve'>
-            <path stroke-width="2px" stroke='#555' fill='transparent'></path>
-        </svg>
-        <svg class='thepoints'>
-        </svg>
-        <svg class='cpoints1'>
-        </svg>
-        <svg class='cpoints2'>
-        </svg>
-        <svg class='clines1'>
-        </svg>
-        <svg class='clines2'>
-        </svg>
-    </div>
-</div>
-<div class="svgcode">
-    <p>SVG Path for the curve</p>
-    <div class="svgcodeText">
-        <textarea onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
-    </div>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">&quot;text-align: center; border: 1px solid red; width: 100%&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">style=</span><span class="s">&quot;border: 1px solid blue&quot;</span><span class="nt">&gt;</span>Centered element<span class="nt">&lt;span&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div>
+
+<div style="text-align: center; border: 1px solid red; width: 100%">
+    <span style="border: 1px solid blue">Centered element<span>
 </div>
 
-<p>If you are wondering how they work, there are a huge number of <a href="https://en.wikipedia.org/wiki/B%C3%A9zier_curve">articles</a>, explanations and animations of bezier curves on the internet (this article adds one more to the demos) - and <a href="https://en.wikipedia.org/wiki/B%C3%A9zier_curve#Higher-order_curves">this section on the wikipedia article</a> does a great job of explaining cubic+ bezier curves using animations. I refreshed my knowledge on the topic from that very article.</p>
-<p><link rel="stylesheet" href="/css/bezier/app.css"></p>
-<script src='/js/bezier/bezier.js'></script>
+<p><br /> <br />
+* Inline element in block element using flex</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">&quot;display: flex; justify-content: center; border: 1px solid red; width: 100%&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">style=</span><span class="s">&quot;border: 1px solid blue&quot;</span><span class="nt">&gt;</span>Centered element<span class="nt">&lt;span&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div>
+
+<div style="display: flex; justify-content: center; border: 1px solid red; width: 100%">
+    <span style="border: 1px solid blue">Centered element<span>
+</div>
+
+<p><br /> <br />
+* Just a block level element in another block - we will have to provide some width. The <code>margin: 0 auto</code> centers the div with the width specified (it must be smaller than 100%). The <code>text-align: right</code> centers the text within the centered div.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">&quot;border: 1px solid red; width: 50%; margin: 0 auto; text-align: right&quot;</span><span class="nt">&gt;</span>
+    Right aligned text in the centerd div
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div>
+
+<div style="border: 1px solid red; width: 50%; margin: 0 auto; text-align: right">
+    Right aligned text in the centerd div
+</div>
+
+<p><br /> <br />
+* Multiple block level elements - use flex to center them. These will be forced into inline-block elements.</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;display: flex; justify-content: center; gap: 10px&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;border: 1px solid red&quot;</span><span class="p">&gt;</span>
+        Div one
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;border: 1px solid green&quot;</span><span class="p">&gt;</span>
+        Div two
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;border: 1px solid blue&quot;</span><span class="p">&gt;</span>
+        Div three
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<div style="display: flex; justify-content: center; gap: 10px">
+    <div style="border: 1px solid red">
+        Div one
+    </div>
+    <div style="border: 1px solid green">
+        Div two
+    </div>
+    <div style="border: 1px solid blue">
+        Div three
+    </div>
+</div>
 
 
              
@@ -151,8 +177,8 @@
                 <a class="accordion-toggle disqus-comment-count comment-count"
                    data-toggle="collapse"
                    data-parent="#accordion2"
-                   data-disqus-identifier="bezierPlayground"
-                   href="/bezier-curve-playground.html#comment_thread"
+                   data-disqus-identifier="css_cheat_sheet"
+                   href="/css-cheat-sheet.html#comment_thread"
                    id="comment-accordion-toggle">
                     Comments
                 </a>
@@ -170,8 +196,8 @@
         (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
     }());
 
-    var disqus_identifier = 'bezierPlayground';
-    var disqus_url = '/bezier-curve-playground.html';
+    var disqus_identifier = 'css_cheat_sheet';
+    var disqus_url = '/css-cheat-sheet.html';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -194,19 +220,13 @@
         </div>
         <!-- <section id="article-sidebar" class="span2">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2015-04-16T12:59:00-07:00">Apr 16, 2015</time>
+            <time itemprop="dateCreated" datetime="2019-04-12T11:44:00-07:00">Apr 12, 2019</time>
             <h4>Category</h4>
-            <a class="category-link" href="/categories.html#blog-ref">Blog</a>
+            <a class="category-link" href="/categories.html#technotes-ref">Technotes</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="/tags.html#bezier-curves-ref">Bezier curves
-                    <span>1</span>
-</a></li>
                 <li><a href="/tags.html#css-ref">CSS
                     <span>4</span>
-</a></li>
-                <li><a href="/tags.html#javascript-ref">Javascript
-                    <span>3</span>
 </a></li>
             </ul>
 <h4>Contact</h4>

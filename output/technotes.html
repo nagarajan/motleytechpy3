@@ -76,26 +76,33 @@
         <div class="span12">
             <div class="recent-posts">
                 <div itemscope class="recent-posts-article">
-                    <a href="/git-cheat-sheet.html">
-                        Git Cheat Sheet
+                    <a href="/css-cheat-sheet.html">
+                        CSS Cheat Sheet
                     </a>
                     <div class="recent-posts-posted">
                         posted in
                         <a href="/categories.html#technotes-ref">Technotes</a>
                         <div class="recent-posts-time">
-                            <time itemprop="dateCreated" datetime="2019-02-09T01:25:00-08:00">Sat 09 February 2019</time>
+                            <time itemprop="dateCreated" datetime="2019-04-12T11:44:00-07:00">Fri 12 April 2019</time>
                         </div>
                     </div>
-                        <p><p>Most common git commands / tricks / tips - concentrating on those that I have actually used (instead of trying to cover all commands).</p>
-<h4>Most Commonly used commands</h4>
+                        <p><p><b>Centering different elements in CSS</b></p>
+<ul>
+<li>Inline element in block element</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">&quot;text-align: center; border: 1px solid red; width: 100%&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">style=</span><span class="s">&quot;border: 1px solid blue&quot;</span><span class="nt">&gt;</span>Centered element<span class="nt">&lt;span&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div>
 
-<div class="highlight"><pre><span></span><code>git config --global user.name nagarajan
-git config --global user.email nag.rajan@gmail.com
-git config --global color.ui <span class="nb">true</span>
+<div style="text-align: center; border: 1px solid red; width: 100%">
+    <span style="border: 1px solid blue">Centered element<span>
+</div>
 
-<span class="c1"># shortcut aliases</span>
-git config …</code></pre></div></p>
-                    <p><a href="/git-cheat-sheet.html">Read more...</a></p>
+<p><br /> <br />
+* Inline element in block element using flex</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">&quot;display: flex; justify-content: center; border: 1px solid red; width …</span></code></pre></div></p>
+                    <p><a href="/css-cheat-sheet.html">Read more...</a></p>
                 </div>
                 <div itemscope class="recent-posts-article">
                     <a href="/reverse-mouse-scroll-direction.html">
@@ -110,6 +117,28 @@ git config …</code></pre></div></p>
                     </div>
                         <p><p>A python 3 based script to reverse the direction of mouse wheel scroll in Windows 10+.</p></p>
                     <p><a href="/reverse-mouse-scroll-direction.html">Read more...</a></p>
+                </div>
+                <div itemscope class="recent-posts-article">
+                    <a href="/git-cheat-sheet.html">
+                        Git Cheat Sheet
+                    </a>
+                    <div class="recent-posts-posted">
+                        posted in
+                        <a href="/categories.html#technotes-ref">Technotes</a>
+                        <div class="recent-posts-time">
+                            <time itemprop="dateCreated" datetime="2016-02-09T01:25:00-08:00">Tue 09 February 2016</time>
+                        </div>
+                    </div>
+                        <p><p>Most common git commands / tricks / tips - concentrating on those that I have actually used (instead of trying to cover all commands).</p>
+<h4>Config commands</h4>
+
+<div class="highlight"><pre><span></span><code>git config --global user.name &lt;username&gt;
+git config --global user.email &lt;email&gt;
+git config --global color.ui <span class="nb">true</span>
+
+<span class="c1"># shortcut aliases</span>
+git config --global alias.cm <span class="s2">&quot;commit -m …</span></code></pre></div></p>
+                    <p><a href="/git-cheat-sheet.html">Read more...</a></p>
                 </div>
             </div>
         </div>
