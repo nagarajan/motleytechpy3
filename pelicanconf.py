@@ -93,7 +93,7 @@ PROJECTS = [
     },
 ]
 
-DIRECT_TEMPLATES = ["index", "technotes", "tags", "categories", "archives", "about"]
+DIRECT_TEMPLATES = ["index", "technotes", "tags", "categories", "archives", "about", "404"]
 
 LANDING_PAGE_TITLE = "And now, for something almost entirely unlike tea..."
 USE_SHORTCUT_ICONS = True

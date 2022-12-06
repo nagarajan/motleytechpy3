@@ -13,12 +13,12 @@
 
 <meta property="og:title" content="CSS Cheat Sheet "/>
 <meta property="og:url" content="/css-cheat-sheet.html" />
-<meta property="og:description" content="Centering different elements in CSS Inline element in block element &lt;div style=&#34;text-align: center; border: 1px solid red; width: 100%&#34;&gt; &lt;span style=&#34;border: 1px solid blue&#34;&gt;Centered element&lt;span&gt; &lt;/div&gt; Centered element * Inline element in block element using flex &lt;div style=&#34;display: flex; justify-content: center; border: 1px solid red; width …" />
+<meta property="og:description" content="Centering using Flex Flex makes it really easy to center elements Horizontally centering inline element in block element &lt;div style=&#34;display: flex; justify-content: center; border: 1px solid red; width: 100%&#34;&gt; &lt;span style=&#34;border: 1px solid blue&#34;&gt;Centered element&lt;span&gt; &lt;/div&gt; Centered element Horizontally centering multiple block level elements - use flex …" />
 <meta property="og:site_name" content="MotleyTech" />
 <meta property="og:article:author" content="Nagarajan" />
 <meta property="og:article:published_time" content="2019-04-12T11:44:00-07:00" />
 <meta name="twitter:title" content="CSS Cheat Sheet ">
-<meta name="twitter:description" content="Centering different elements in CSS Inline element in block element &lt;div style=&#34;text-align: center; border: 1px solid red; width: 100%&#34;&gt; &lt;span style=&#34;border: 1px solid blue&#34;&gt;Centered element&lt;span&gt; &lt;/div&gt; Centered element * Inline element in block element using flex &lt;div style=&#34;display: flex; justify-content: center; border: 1px solid red; width …">
+<meta name="twitter:description" content="Centering using Flex Flex makes it really easy to center elements Horizontally centering inline element in block element &lt;div style=&#34;display: flex; justify-content: center; border: 1px solid red; width: 100%&#34;&gt; &lt;span style=&#34;border: 1px solid blue&#34;&gt;Centered element&lt;span&gt; &lt;/div&gt; Centered element Horizontally centering multiple block level elements - use flex …">
 
         <title>CSS Cheat Sheet  · MotleyTech - variegated, technical and interesting
 </title>
@@ -92,21 +92,14 @@
 <div class="row-fluid">
         <div class="span10 offset1 article-content">
             
-            <p><b>Centering different elements in CSS</b></p>
+            <p><b>Centering using Flex</b></p>
+<p>
+Flex makes it really easy to center elements
+</p>
+
 <ul>
-<li>Inline element in block element</li>
+<li>Horizontally centering inline element in block element</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">&quot;text-align: center; border: 1px solid red; width: 100%&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;span</span> <span class="na">style=</span><span class="s">&quot;border: 1px solid blue&quot;</span><span class="nt">&gt;</span>Centered element<span class="nt">&lt;span&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-</code></pre></div>
-
-<div style="text-align: center; border: 1px solid red; width: 100%">
-    <span style="border: 1px solid blue">Centered element<span>
-</div>
-
-<p><br /> <br />
-* Inline element in block element using flex</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">&quot;display: flex; justify-content: center; border: 1px solid red; width: 100%&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;span</span> <span class="na">style=</span><span class="s">&quot;border: 1px solid blue&quot;</span><span class="nt">&gt;</span>Centered element<span class="nt">&lt;span&gt;</span>
 <span class="nt">&lt;/div&gt;</span>
@@ -116,19 +109,10 @@
     <span style="border: 1px solid blue">Centered element<span>
 </div>
 
-<p><br /> <br />
-* Just a block level element in another block - we will have to provide some width. The <code>margin: 0 auto</code> centers the div with the width specified (it must be smaller than 100%). The <code>text-align: right</code> centers the text within the centered div.</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">&quot;border: 1px solid red; width: 50%; margin: 0 auto; text-align: right&quot;</span><span class="nt">&gt;</span>
-    Right aligned text in the centerd div
-<span class="nt">&lt;/div&gt;</span>
-</code></pre></div>
-
-<div style="border: 1px solid red; width: 50%; margin: 0 auto; text-align: right">
-    Right aligned text in the centerd div
-</div>
-
-<p><br /> <br />
-* Multiple block level elements - use flex to center them. These will be forced into inline-block elements.</p>
+<p><br /> <br /></p>
+<ul>
+<li>Horizontally centering multiple block level elements - use flex to center them. These will be forced into inline-block elements.</li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;display: flex; justify-content: center; gap: 10px&quot;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;border: 1px solid red&quot;</span><span class="p">&gt;</span>
         Div one
@@ -153,6 +137,61 @@
         Div three
     </div>
 </div>
+
+<p><br /> <br /></p>
+<ul>
+<li>Vertically centering element using Flex. The parent element must have a height defined.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">&quot;display: flex; justify-content: center; border: 1px solid red; width: 100%; flex-direction: column&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">style=</span><span class="s">&quot;border: 1px solid blue&quot;</span><span class="nt">&gt;</span>Centered element<span class="nt">&lt;span&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div>
+
+<div style="display: flex; justify-content: center; border: 1px solid red; height: 100px; flex-direction: column">
+    <span style="border: 1px solid blue">Centered element<span>
+</div>
+
+<p><br /> <br /></p>
+<ul>
+<li>Vertically and Horizontally centering element using Flex. Again, parent element height must be specified.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">&quot;display: flex; justify-content: center; border: 1px solid red; height: 100px; flex-direction: column; align-items: center&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">style=</span><span class="s">&quot;border: 1px solid blue&quot;</span><span class="nt">&gt;</span>Centered element<span class="nt">&lt;span&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div>
+
+<div style="display: flex; justify-content: center; border: 1px solid red; height: 100px; flex-direction: column; align-items: center">
+    <span style="border: 1px solid blue">Centered element<span>
+</div>
+
+<p><br /> <br /></p>
+<p><b>Centering elements in CSS without flex</b></p>
+<ul>
+<li>Inline element in block element using <code>text-align</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">&quot;text-align: center; border: 1px solid red; width: 100%&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">style=</span><span class="s">&quot;border: 1px solid blue&quot;</span><span class="nt">&gt;</span>Centered element<span class="nt">&lt;span&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div>
+
+<div style="text-align: center; border: 1px solid red; width: 100%">
+    <span style="border: 1px solid blue">Centered element<span>
+</div>
+
+<p><br /> <br /></p>
+<ul>
+<li>Just a block level element in another block - we will have to provide some width. The <code>margin: 0 auto</code> centers the div with the width specified (it must be smaller than 100%). The <code>text-align: right</code> centers the text within the centered div.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">&quot;border: 1px solid red; width: 50%; margin: 0 auto; text-align: right&quot;</span><span class="nt">&gt;</span>
+    Right aligned text in the centerd div
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div>
+
+<div style="border: 1px solid red; width: 50%; margin: 0 auto; text-align: right">
+    Right aligned text in the centerd div
+</div>
+
+<p><br /> <br /></p>
 
 
              
