@@ -236,6 +236,8 @@
                 <span class="n">try_files</span> <span class="o">$</span><span class="n">uri</span> <span class="o">$</span><span class="n">uri</span><span class="o">/</span> <span class="o">=</span><span class="mi">404</span><span class="p">;</span>
         <span class="p">}</span>
 
+        <span class="n">error_page</span> <span class="mi">404</span> <span class="o">/</span><span class="mf">404.</span><span class="n">html</span><span class="p">;</span>
+
         <span class="c1"># pass PHP scripts to FastCGI server</span>
         <span class="c1">#</span>
         <span class="c1">#location ~ \.php$ {</span>

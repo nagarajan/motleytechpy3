@@ -154,6 +154,8 @@ server {
                 try_files $uri $uri/ =404;
         }
 
+        error_page 404 /404.html;
+
         # pass PHP scripts to FastCGI server
         #
         #location ~ \.php$ {
