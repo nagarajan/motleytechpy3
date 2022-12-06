@@ -18,7 +18,7 @@ Welcome to the source repo for the motleytech.net website.
 3. Log into server and pull latest changes (log into digital ocean and launch droplet console).
 4. Copy output files (/root/dev/motleytechpy3/output) to server public folder (/var/www/html).
 
-`git pull; cp -r output/* /var/www/html`
+`git pull; sudo cp -r output/* /var/www/motleytech/html`
 
 5. Check updated site.
 6. Logout and Done.
