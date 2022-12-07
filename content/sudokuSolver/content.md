@@ -4,7 +4,7 @@ Category: Blog
 Tags: Sudoku, Computing
 Authors: Nagarajan
 Disqus_Identifier: sudoku_solver
-Summary: A simple sudoku solver implemented in Javascript. This is a port of my previous Python solution. <div style="display: flex; justify-content: center; margin-bottom: 15px"><img style="width: 400px; border: 2px solid gray; padding: 5px; box-sizing: border-box" src="/images/Sudoku solver screenshot.png" /></div> This program uses a randomized approach... which implies that if a problem has more than one solution, this program will randomly find one of the solutions. You can even try to...
+Summary: A simple sudoku solver implemented in Javascript. This is a port of my previous Python solution. <div style="display: flex; justify-content: center; margin-bottom: 15px"><img style="width: 400px; border: 2px solid gray; padding: 5px; box-sizing: border-box" src="/images/Sudoku solver screenshot.webp" /></div> This program uses a randomized approach... which implies that if a problem has more than one solution, this program will randomly find one of the solutions. You can even try to...
 
 A simple sudoku solver implemented in Javascript. This is a port of my [previous Python solution](https://github.com/motleytech/pybook/blob/master/books/Sudoku_solver.ipynb).
 

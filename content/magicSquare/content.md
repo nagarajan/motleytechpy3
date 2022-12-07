@@ -4,7 +4,7 @@ Category: Blog
 Tags: Magic Square, Computing, Mathematics
 Authors: Nagarajan
 Disqus_Identifier: magic_squares
-Summary: A conventional magic square of order n is a square filled with the numbers 1 through n\*n such that the sum of each row, column or diagonal is the same.<br /> <div style="display: flex; justify-content: center"><img style="width: 400px; border: 2px solid gray; box-sizing: border-box" src="/images/Magic square screenshot.png" /></div><br /> Each number in the square must be distinct, and thus every number from 1 to n*n is used exactly once. The sum of the row in the 5x5 square above is 65.
+Summary: A conventional magic square of order n is a square filled with the numbers 1 through n\*n such that the sum of each row, column or diagonal is the same.<br /> <div style="display: flex; justify-content: center"><img style="width: 400px; border: 2px solid gray; box-sizing: border-box" src="/images/Magic square screenshot.webp" /></div><br /> Each number in the square must be distinct, and thus every number from 1 to n*n is used exactly once. The sum of the row in the 5x5 square above is 65.
 
 A conventional [magic square](http://en.wikipedia.org/wiki/Magic_square) of order n is a square filled with the numbers 1 through n\*n such that the sum of the rows, columns and diagonals is the same. Each number in the square must be distinct, and thus every number is used exactly once.
 

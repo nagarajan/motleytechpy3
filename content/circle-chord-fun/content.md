@@ -4,7 +4,7 @@ Category: Blog
 Tags: Circle, Chords
 Authors: Nagarajan
 Disqus_Identifier: circle_chord_fun
-Summary: A fun little program to discover shapes conjured up drawing periodic chords in a circle. I made this for my kids to enjoy. <br /> <div style="display: flex; justify-content: center"><img style="width: 600px; border: 2px solid gray; padding: 12px; box-sizing: border-box" src="/images/circle chord screenshot.png" /></div> <br />
+Summary: A fun little program to discover shapes conjured up drawing periodic chords in a circle. I made this for my kids to enjoy. <br /> <div style="display: flex; justify-content: center"><img style="width: 600px; border: 2px solid gray; padding: 12px; box-sizing: border-box" src="/images/circle chord screenshot.webp" /></div> <br />
 
 A fun little program to discover shapes conjured up drawing periodic chords in a circle. I made this for my kids to enjoy.
 

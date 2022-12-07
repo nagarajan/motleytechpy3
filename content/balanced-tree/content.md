@@ -4,7 +4,7 @@ Category: Blog
 Tags: Javascript, CSS, Balanced Binary Tree, AVL, Animation
 Authors: Nagarajan
 Disqus_Identifier: balancedAVLTree
-Summary: The balanced binary tree is an exremely useful data structure which promises excellent **insert**, **find** and **delete** performance guarantees. <div style="display: flex; justify-content: center; margin-bottom: 15px"><img style="width: 640px; border: 2px solid gray; box-sizing: border-box" src="/images/Balanced tree screenshot.png" /></div> The key to this performance is the balancing property which makes sure that the tree does not get too lopsided (leading to bad performance) - and the key to balancing the tree are the rotation operations.
+Summary: The balanced binary tree is an exremely useful data structure which promises excellent **insert**, **find** and **delete** performance guarantees. <div style="display: flex; justify-content: center; margin-bottom: 15px"><img style="width: 640px; border: 2px solid gray; box-sizing: border-box" src="/images/Balanced tree screenshot.webp" /></div> The key to this performance is the balancing property which makes sure that the tree does not get too lopsided (leading to bad performance) - and the key to balancing the tree are the rotation operations.
 
 The balanced binary tree is an exremely useful data structure which promises excellent **insert**, **find** and **delete** performance guarantees. The key to this performance is the balancing property which makes sure that the tree does not get too lopsided (leading to bad performance) - and the key to balancing the tree are the rotation operations. The animation below gives a visual demonstration of insertions, rotations, and tree balancing at work.
 
