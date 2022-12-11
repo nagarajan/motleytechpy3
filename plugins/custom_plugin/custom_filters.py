@@ -19,7 +19,7 @@ def in_category(value, category, start=0, end=None):
 
 def not_in_category(value, category, start=0, end=None):
     try:
-        return list(filter(lambda x: not(category != str(x.category)), value))[start: end]
+        return list(filter(lambda x: (category != str(x.category)), value))[start: end]
     except ValueError as e:
         logger.error(
             "%s ValueError. value: %s, type(value): %s, category: %s",

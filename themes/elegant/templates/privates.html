@@ -28,13 +28,13 @@ Full archives of {{ SITENAME|striptags|e }} blog.
 {% from '_includes/_defaults.html' import ARCHIVES_URL with context %}
 <div class="row-fluid">
     <header class="page-header span8 offset2">
-    <h1><a href="{{ SITEURL }}/{{ ARCHIVES_URL }}">All Posts</a> <a tabindex="-1" href="/privates.html">🧑🏽‍💻</a> <a tabindex="-1" href="/storybook-static/index.html">📒</a></h1>
+    <h1><a href="{{ SITEURL }}/{{ ARCHIVES_URL }}">All Posts</a></h1>
     </header>
 </div>
 <div class="row-fluid">
     <div class="span8 offset2">
         <div class="blog-archives">
-            {% for article in (dates | not_in_category('Private') ) %}
+            {% for article in (dates | in_category('Private') ) %}
                 {% set year = article.date.strftime('%Y') %}
                 {% if loop.first %}
                     <h2 id="{{year }}"><a href="#{{year}}">{{ year }}</a></h2>

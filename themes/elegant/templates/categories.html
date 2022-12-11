@@ -37,11 +37,11 @@ All categories of the {{ SITENAME|striptags|e }} blog.
     </header>
 </div>
 
-
 <div class="row-fluid">
     <div class="span8 offset2">
         <div class="accordion" id="accordion2">
             {% for category, articles in categories %}
+            {% if category.slug != 'private' %}
             <div class="accordion-group">
                 <div class="accordion-heading">
                     <a class="accordion-toggle list-of-categories" data-toggle="collapse" data-parent="#accordion2" href="#{{ category.slug }}-ref">
@@ -71,6 +71,7 @@ All categories of the {{ SITENAME|striptags|e }} blog.
                     </div>
                 </div>
             </div>
+            {% endif %}
             {% endfor %}
         </div>
     </div>
