@@ -9,16 +9,13 @@
 {% from '_includes/_defaults.html' import LANDING_PAGE_TITLE with context %}
 {% if LANDING_PAGE_TITLE  %}
 <meta property="og:title" content="{{ LANDING_PAGE_TITLE|e }}"/>
-<meta name="twitter:title" content="{{ LANDING_PAGE_TITLE|e }}">
 {% else %}
 <meta property="og:title" content="{{ SITENAME|striptags|e }}"/>
-<meta name="twitter:title" content="{{ SITENAME|striptags|e }}">
 {% endif %}
 <meta property="og:url" content="{{ SITEURL }}" />
 {% from '_includes/_defaults.html' import SITE_DESCRIPTION with context %}
 {% if SITE_DESCRIPTION %}
 <meta property="og:description" content="{{SITE_DESCRIPTION|e}}" />
-<meta name="twitter:description" content="{{SITE_DESCRIPTION|e}}">
 {% endif %}
 <meta property="og:site_name" content="{{ SITENAME|striptags|e }}" />
 <meta property="og:article:author" content="{{ AUTHOR }}" />

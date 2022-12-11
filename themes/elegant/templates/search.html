@@ -12,10 +12,8 @@ Search results for {{ SITENAME|striptags|e }} blog.
 {{ super() }}
 {% from '_includes/_defaults.html' import FEATURED_IMAGE, SEARCH_URL with context %}
 <meta property="og:title" content="Search · {{ SITENAME|striptags|e }}"/>
-<meta name="twitter:title" content="Search · {{ SITENAME|striptags|e }}">
 <meta property="og:url" content="{{ SITEURL }}/{{ SEARCH_URL }}" />
 <meta property="og:description" content="Search results for {{ SITENAME|striptags|e }} blog" />
-<meta name="twitter:description" content="Search results for {{ SITENAME|striptags|e }} blog">
 <meta property="og:site_name" content="{{ SITENAME|striptags|e }}" />
 <meta property="og:article:author" content="{{ AUTHOR }}" />
 {% if FEATURED_IMAGE %}

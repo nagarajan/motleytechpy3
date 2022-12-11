@@ -8,11 +8,8 @@ Disqus_Identifier: dev_env_tips
 <h4>Fix for the git ssh identity issue </h4>
 
 ```bash
-eval "$(ssh-agent -s)"
-# this give the pid (process id of the ssh-agent)
-
-# kill that pid
-kill -9 <pid>
+# kill existing ssh-agents
+pkill -9 -f ssh-agent
 
 # restart ssh-agent
 eval "$(ssh-agent -s)"
