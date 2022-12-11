@@ -32,7 +32,7 @@ DEFAULT_PAGINATION = 5
 #RELATIVE_URLS = True
 
 THEME = "themes/elegant"
-STATIC_PATHS = ['images', 'js', 'css']
+STATIC_PATHS = ['images', 'js', 'css', 'fonts']
 EXTRA_PATH_METADATA = {
     'images/favicon.ico': {'path': 'favicon.ico'},
 }
