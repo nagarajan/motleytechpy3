@@ -53,9 +53,9 @@ html:
 regenall:
 	rm -rf output
 	mkdir output
+	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
 	cp -r resume/Nagarajan_resume.pdf output/Nagarajan_resume.pdf
 	cp -r storybook/reactStorybook/storybook-static output
-	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
 
 clean:
 	[ ! -d "$(OUTPUTDIR)" ] || rm -rf "$(OUTPUTDIR)"
