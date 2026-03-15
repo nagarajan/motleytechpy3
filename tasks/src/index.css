@@ -78,11 +78,11 @@ body {
 /* Light theme (default) */
 .theme-light {
   --bg-page: #f9fafb;
-  --bg-header: #ffffff;
-  --bg-swimlane: #f3f4f6;
+  --bg-header: #9ca3af;
+  --bg-swimlane: #d1d5db;
   --bg-card: #ffffff;
   --bg-card-completed: #dcfce7;
-  --bg-subtask: #f9fafb;
+  --bg-subtask: #e5e7eb;
   --bg-subtask-completed: #dcfce7;
   --bg-input: #ffffff;
   --bg-hover: #f3f4f6;

@@ -15,15 +15,16 @@ export function ThemeSelector() {
         <button
           key={option.value}
           onClick={() => setTheme(option.value)}
-          className={`p-2 rounded transition-colors ${
-            theme === option.value
-              ? 'bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300'
-              : 'text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700'
-          }`}
+          className="rounded transition-colors"
+          style={{
+            padding: '0.5em',
+            backgroundColor: theme === option.value ? 'var(--bg-active)' : 'transparent',
+            color: theme === option.value ? 'var(--accent-primary)' : 'var(--text-primary)',
+          }}
           title={option.label}
         >
           {option.icon === 'sun' ? (
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg style={{ width: '1.25em', height: '1.25em' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -32,7 +33,7 @@ export function ThemeSelector() {
               />
             </svg>
           ) : (
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg style={{ width: '1.25em', height: '1.25em' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"

@@ -11,21 +11,16 @@ Welcome to the source repo for the motleytech.net website.
 6. `make devserver`
 7. Visit http://localhost:8000 in the browser
 
+For tasks
+
+1. cd tasks
+2. npm install (install nvm and node if npm is missing)
+3. npm run dev
+
 
 ## Publishing
-1. Run `make html` to create the html files.
+1. Run `bash build.sh` to create the html files.
 2. Commit and push git changes.
-3. Log into server and pull latest changes (log into digital ocean and launch droplet console).
-4. Copy output files (/root/dev/motleytechpy3/output) to server public folder (/var/www/html).
-
-```
-cd dev/motleytechpy3
-git pull
-cp -r output/* /var/www/motleytech/html
-cd tasks
-cp -r dist /var/www/motleytech/html/tasks
-sed -i '' 's|/assets|assets|g' /var/www/motleytech/html/tasks/index.html
-```
-
-5. Check updated site.
-6. Logout and Done.
+3. Log into server and run `bash publish.sh` command.
+4. Check updated site.
+5. Logout and Done.
