@@ -5,6 +5,14 @@ import { doc, setDoc, onSnapshot } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import type { AppState, Board, Swimlane, Task, Subtask, FontSize, Theme } from '../types';
 
+export interface ExportData {
+  version: number;
+  exportedAt: string;
+  boards: Record<string, Board>;
+  swimlanes: Record<string, Swimlane>;
+  tasks: Record<string, Task>;
+}
+
 interface BoardStore extends AppState {
   // Board actions
   addBoard: (name: string) => void;
@@ -37,6 +45,10 @@ interface BoardStore extends AppState {
   // Settings
   setFontSize: (size: FontSize) => void;
   setTheme: (theme: Theme) => void;
+
+  // Import/Export
+  getExportData: () => ExportData;
+  importData: (data: ExportData) => { importedBoards: number; renamedBoards: string[] };
 
   // Firestore sync
   _isRemoteUpdate: boolean;
@@ -90,7 +102,7 @@ const createDefaultBoard = (): { board: Board; swimlanes: Swimlane[] } => {
 
 export const useBoardStore = create<BoardStore>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       boards: {},
       swimlanes: {},
       tasks: {},
@@ -443,6 +455,109 @@ export const useBoardStore = create<BoardStore>()(
 
       setTheme: (theme: Theme) => {
         set({ theme });
+      },
+
+      // Import/Export
+      getExportData: (): ExportData => {
+        const state = get();
+        return {
+          version: 1,
+          exportedAt: new Date().toISOString(),
+          boards: state.boards,
+          swimlanes: state.swimlanes,
+          tasks: state.tasks,
+        };
+      },
+
+      importData: (data: ExportData) => {
+        const state = get();
+        const existingBoardNames = new Set(
+          Object.values(state.boards).map((b) => b.name.toLowerCase())
+        );
+
+        const renamedBoards: string[] = [];
+        const newBoards: Record<string, Board> = { ...state.boards };
+        const newSwimlanes: Record<string, Swimlane> = { ...state.swimlanes };
+        const newTasks: Record<string, Task> = { ...state.tasks };
+
+        const getUniqueBoardName = (originalName: string): string => {
+          const lowerName = originalName.toLowerCase();
+          if (!existingBoardNames.has(lowerName)) {
+            existingBoardNames.add(lowerName);
+            return originalName;
+          }
+
+          let counter = 1;
+          let newName = `${originalName} (${counter})`;
+          while (existingBoardNames.has(newName.toLowerCase())) {
+            counter++;
+            newName = `${originalName} (${counter})`;
+          }
+          existingBoardNames.add(newName.toLowerCase());
+          return newName;
+        };
+
+        Object.values(data.boards).forEach((importedBoard) => {
+          const newBoardId = uuidv4();
+
+          const originalName = importedBoard.name;
+          const uniqueName = getUniqueBoardName(originalName);
+          if (uniqueName !== originalName) {
+            renamedBoards.push(`"${originalName}" -> "${uniqueName}"`);
+          }
+
+          const newSwimlaneIds: string[] = [];
+          importedBoard.swimlaneIds.forEach((oldSwimlaneId) => {
+            const importedSwimlane = data.swimlanes[oldSwimlaneId];
+            if (importedSwimlane) {
+              const newSwimlaneId = uuidv4();
+              newSwimlaneIds.push(newSwimlaneId);
+
+              const newTaskIds: string[] = [];
+              importedSwimlane.taskIds.forEach((oldTaskId) => {
+                const importedTask = data.tasks[oldTaskId];
+                if (importedTask) {
+                  const newTaskId = uuidv4();
+                  newTaskIds.push(newTaskId);
+
+                  const newSubtasks = importedTask.subtasks.map((subtask) => ({
+                    ...subtask,
+                    id: uuidv4(),
+                  }));
+
+                  newTasks[newTaskId] = {
+                    ...importedTask,
+                    id: newTaskId,
+                    subtasks: newSubtasks,
+                  };
+                }
+              });
+
+              newSwimlanes[newSwimlaneId] = {
+                ...importedSwimlane,
+                id: newSwimlaneId,
+                taskIds: newTaskIds,
+              };
+            }
+          });
+
+          newBoards[newBoardId] = {
+            id: newBoardId,
+            name: uniqueName,
+            swimlaneIds: newSwimlaneIds,
+          };
+        });
+
+        set({
+          boards: newBoards,
+          swimlanes: newSwimlanes,
+          tasks: newTasks,
+        });
+
+        return {
+          importedBoards: Object.keys(data.boards).length,
+          renamedBoards,
+        };
       },
     }),
     {

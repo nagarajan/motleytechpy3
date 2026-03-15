@@ -3,6 +3,7 @@ import { Board } from './components/Board';
 import { BoardSwitcher } from './components/BoardSwitcher';
 import { FontSizeSelector } from './components/FontSizeSelector';
 import { ThemeSelector } from './components/ThemeSelector';
+import { ImportExportButtons } from './components/ImportExportButtons';
 
 const scaleClasses = {
   xs: 'scale-xs',
@@ -31,6 +32,7 @@ function App() {
             <BoardSwitcher />
           </div>
           <div className="flex items-center gap-4">
+            <ImportExportButtons />
             <ThemeSelector />
             <FontSizeSelector />
           </div>
