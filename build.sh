@@ -1,3 +1,4 @@
+source venv/bin/activate
 make html
 echo "Built blog files"
 cd tasks
