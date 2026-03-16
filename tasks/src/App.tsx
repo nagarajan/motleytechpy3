@@ -28,7 +28,7 @@ function App() {
       <header className="px-6 py-4" style={{ backgroundColor: 'var(--bg-header)', borderBottom: '1px solid var(--border-default)' }}>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <h1 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>Task Board</h1>
+            <h1 className="text-xl font-bold" style={{ color: 'var(--text-header)' }}>Task Board</h1>
             <BoardSwitcher />
           </div>
           <div className="flex items-center gap-4">

@@ -77,24 +77,25 @@ body {
 
 /* Light theme (default) */
 .theme-light {
-  --bg-page: #f9fafb;
-  --bg-header: #9ca3af;
-  --bg-swimlane: #d1d5db;
-  --bg-card: #ffffff;
+  --bg-page: #dbeafe;
+  --bg-header: #3b82f6;
+  --bg-swimlane: #bfdbfe;
+  --bg-card: #f3f4f6;
   --bg-card-completed: #dcfce7;
   --bg-subtask: #e5e7eb;
   --bg-subtask-completed: #dcfce7;
   --bg-input: #ffffff;
-  --bg-hover: #f3f4f6;
-  --bg-active: #dbeafe;
-  --border-default: #e5e7eb;
-  --border-card: #e5e7eb;
+  --bg-hover: #e5e7eb;
+  --bg-active: #93c5fd;
+  --border-default: #93c5fd;
+  --border-card: #d1d5db;
   --border-completed: #86efac;
   --text-primary: #1f2937;
-  --text-secondary: #6b7280;
-  --text-muted: #9ca3af;
+  --text-secondary: #4b5563;
+  --text-muted: #6b7280;
   --text-completed: #6b7280;
-  --accent-primary: #3b82f6;
+  --text-header: #ffffff;
+  --accent-primary: #2563eb;
   --accent-success: #22c55e;
   --accent-danger: #ef4444;
 }
@@ -118,6 +119,7 @@ body {
   --text-secondary: #d1d5db;
   --text-muted: #9ca3af;
   --text-completed: #d1d5db;
+  --text-header: #f9fafb;
   --accent-primary: #60a5fa;
   --accent-success: #4ade80;
   --accent-danger: #f87171;
