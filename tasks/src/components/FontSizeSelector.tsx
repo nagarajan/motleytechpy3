@@ -14,7 +14,7 @@ export function FontSizeSelector() {
 
   return (
     <div className="flex items-center gap-1">
-      <span className="text-sm mr-1" style={{ color: 'var(--text-secondary)' }}>Size:</span>
+      <span className="text-sm mr-1" style={{ color: 'var(--text-header)' }}>Size:</span>
       <div className="flex border rounded-lg overflow-hidden" style={{ borderColor: 'var(--border-default)' }}>
         {fontSizes.map((size) => (
           <button

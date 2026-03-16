@@ -18,8 +18,8 @@ export function ThemeSelector() {
           className="rounded transition-colors"
           style={{
             padding: '0.5em',
-            backgroundColor: theme === option.value ? 'var(--bg-active)' : 'transparent',
-            color: theme === option.value ? 'var(--accent-primary)' : 'var(--text-primary)',
+            backgroundColor: theme === option.value ? 'var(--bg-card)' : 'transparent',
+            color: theme === option.value ? 'var(--accent-primary)' : 'var(--text-header)',
           }}
           title={option.label}
         >
