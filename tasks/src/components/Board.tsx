@@ -5,6 +5,7 @@ import {
   DragOverlay,
   closestCorners,
   PointerSensor,
+  TouchSensor,
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
@@ -81,6 +82,12 @@ export function Board({ board }: BoardProps) {
     useSensor(PointerSensor, {
       activationConstraint: {
         distance: 8,
+      },
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 200,
+        tolerance: 8,
       },
     })
   );
