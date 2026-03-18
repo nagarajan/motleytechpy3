@@ -130,3 +130,18 @@ body {
   background-color: var(--bg-page);
   color: var(--text-primary);
 }
+
+/* Drag handle styles for touch support */
+.cursor-grab {
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Prevent text selection during drag on mobile */
+.cursor-grabbing,
+.cursor-grabbing * {
+  cursor: grabbing !important;
+  -webkit-user-select: none;
+  user-select: none;
+}

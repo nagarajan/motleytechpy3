@@ -74,7 +74,7 @@ export function Swimlane({ swimlane, tasks, boardId, isTaskDragging = false }: S
           {...attributes}
           {...listeners}
           className="cursor-grab"
-          style={{ color: 'var(--text-muted)' }}
+          style={{ color: 'var(--text-muted)', touchAction: 'none' }}
           title="Drag to reorder"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

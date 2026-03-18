@@ -95,7 +95,7 @@ function SortableSubtask({ subtask, taskId }: { subtask: SubtaskType; taskId: st
         {...attributes}
         {...listeners}
         className="cursor-grab flex-shrink-0"
-        style={{ color: 'var(--text-muted)', display: 'flex', alignItems: 'center' }}
+        style={{ color: 'var(--text-muted)', display: 'flex', alignItems: 'center', touchAction: 'none' }}
         title="Drag to move"
       >
         <svg style={{ width: '1em', height: '1em' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
