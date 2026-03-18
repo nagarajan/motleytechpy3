@@ -57,34 +57,42 @@ interface BoardStore extends AppState {
 
 const FIRESTORE_DOC = doc(db, 'taskboards', 'user-data');
 
-// Debounce helper
-function debounce<T extends (arg: AppState) => void>(fn: T, ms: number): T {
-  let timeoutId: ReturnType<typeof setTimeout>;
-  return ((arg: AppState) => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => fn(arg), ms);
-  }) as T;
-}
+// Track local changes to prevent Firestore from overwriting them
+let localUpdateTimestamp = 0;
+let lastSavedTimestamp = 0;
+let pendingSaveTimeout: ReturnType<typeof setTimeout> | null = null;
 
 // Save to Firestore (debounced to avoid too many writes)
-const saveToFirestore = debounce((state: AppState) => {
-  console.log('Saving to Firestore...');
-  setDoc(FIRESTORE_DOC, {
-    boards: state.boards,
-    swimlanes: state.swimlanes,
-    tasks: state.tasks,
-    activeBoardId: state.activeBoardId,
-    fontSize: state.fontSize,
-    theme: state.theme,
-    updatedAt: new Date().toISOString(),
-  })
-    .then(() => {
-      console.log('Successfully saved to Firestore');
+const saveToFirestore = (state: AppState) => {
+  // Clear any pending save
+  if (pendingSaveTimeout) {
+    clearTimeout(pendingSaveTimeout);
+  }
+  
+  // Mark that we have a pending local change
+  localUpdateTimestamp = Date.now();
+  
+  pendingSaveTimeout = setTimeout(() => {
+    const saveTimestamp = Date.now();
+    console.log('Saving to Firestore...');
+    setDoc(FIRESTORE_DOC, {
+      boards: state.boards,
+      swimlanes: state.swimlanes,
+      tasks: state.tasks,
+      activeBoardId: state.activeBoardId,
+      fontSize: state.fontSize,
+      theme: state.theme,
+      updatedAt: saveTimestamp,
     })
-    .catch((error) => {
-      console.error('Failed to save to Firestore:', error);
-    });
-}, 1000);
+      .then(() => {
+        console.log('Successfully saved to Firestore');
+        lastSavedTimestamp = saveTimestamp;
+      })
+      .catch((error) => {
+        console.error('Failed to save to Firestore:', error);
+      });
+  }, 500);
+};
 
 const createDefaultBoard = (): { board: Board; swimlanes: Swimlane[] } => {
   const todoId = uuidv4();
@@ -612,17 +620,34 @@ function initializeFirestoreSync() {
         console.log('Firestore snapshot received, exists:', snapshot.exists());
         if (snapshot.exists()) {
           const data = snapshot.data();
+          const remoteTimestamp = data.updatedAt || 0;
+          
+          // Ignore updates that are older than our pending local changes
+          // This prevents the "revert" issue when making local changes
+          if (localUpdateTimestamp > 0 && remoteTimestamp < localUpdateTimestamp) {
+            console.log('Ignoring stale Firestore update (local change pending)');
+            return;
+          }
+          
+          // If this is our own save coming back, just update the timestamp tracking
+          if (remoteTimestamp === lastSavedTimestamp) {
+            console.log('Received our own save confirmation');
+            localUpdateTimestamp = 0; // Clear pending flag
+            return;
+          }
+          
           const currentState = useBoardStore.getState();
 
-          // Only update if data is different (compare by updatedAt or content)
+          // Only update if data is different
           const hasChanges =
             JSON.stringify(data.boards) !== JSON.stringify(currentState.boards) ||
             JSON.stringify(data.swimlanes) !== JSON.stringify(currentState.swimlanes) ||
             JSON.stringify(data.tasks) !== JSON.stringify(currentState.tasks);
 
           if (hasChanges) {
-            console.log('Firestore data differs from local, updating local state');
+            console.log('Applying remote Firestore update');
             currentState._setIsRemoteUpdate(true);
+            localUpdateTimestamp = 0; // Clear pending flag since we're accepting remote data
             useBoardStore.setState({
               boards: data.boards || {},
               swimlanes: data.swimlanes || {},
