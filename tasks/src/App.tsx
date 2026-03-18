@@ -25,13 +25,13 @@ function App() {
   return (
     <div className={`min-h-screen flex flex-col ${scaleClasses[fontSize]} ${themeClasses[theme]}`}>
       {/* Header */}
-      <header className="px-6 py-4" style={{ backgroundColor: 'var(--bg-header)', borderBottom: '1px solid var(--border-default)' }}>
+      <header style={{ padding: '1em 1.5em', backgroundColor: 'var(--bg-header)', borderBottom: '1px solid var(--border-default)' }}>
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <h1 className="text-xl font-bold" style={{ color: 'var(--text-header)' }}>Task Board</h1>
+          <div className="flex items-center" style={{ gap: '1em' }}>
+            <h1 className="font-bold" style={{ fontSize: '1.5em', color: 'var(--text-header)' }}>Task Board</h1>
             <BoardSwitcher />
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center" style={{ gap: '1em' }}>
             <ImportExportButtons />
             <ThemeSelector />
             <FontSizeSelector />

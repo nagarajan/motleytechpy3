@@ -68,6 +68,7 @@ function debounce<T extends (arg: AppState) => void>(fn: T, ms: number): T {
 
 // Save to Firestore (debounced to avoid too many writes)
 const saveToFirestore = debounce((state: AppState) => {
+  console.log('Saving to Firestore...');
   setDoc(FIRESTORE_DOC, {
     boards: state.boards,
     swimlanes: state.swimlanes,
@@ -76,9 +77,13 @@ const saveToFirestore = debounce((state: AppState) => {
     fontSize: state.fontSize,
     theme: state.theme,
     updatedAt: new Date().toISOString(),
-  }).catch((error) => {
-    console.error('Failed to save to Firestore:', error);
-  });
+  })
+    .then(() => {
+      console.log('Successfully saved to Firestore');
+    })
+    .catch((error) => {
+      console.error('Failed to save to Firestore:', error);
+    });
 }, 1000);
 
 const createDefaultBoard = (): { board: Board; swimlanes: Swimlane[] } => {
@@ -579,6 +584,8 @@ let unsubscribeFromStore: (() => void) | null = null;
 let unsubscribeFromFirestore: (() => void) | null = null;
 
 function initializeFirestoreSync() {
+  console.log('Initializing Firestore sync...');
+  
   // Subscribe to local state changes and push to Firestore
   if (!unsubscribeFromStore) {
     unsubscribeFromStore = useBoardStore.subscribe((state) => {
@@ -594,6 +601,7 @@ function initializeFirestoreSync() {
         });
       }
     });
+    console.log('Subscribed to local state changes');
   }
 
   // Subscribe to Firestore changes and update local state
@@ -601,6 +609,7 @@ function initializeFirestoreSync() {
     unsubscribeFromFirestore = onSnapshot(
       FIRESTORE_DOC,
       (snapshot) => {
+        console.log('Firestore snapshot received, exists:', snapshot.exists());
         if (snapshot.exists()) {
           const data = snapshot.data();
           const currentState = useBoardStore.getState();
@@ -612,6 +621,7 @@ function initializeFirestoreSync() {
             JSON.stringify(data.tasks) !== JSON.stringify(currentState.tasks);
 
           if (hasChanges) {
+            console.log('Firestore data differs from local, updating local state');
             currentState._setIsRemoteUpdate(true);
             useBoardStore.setState({
               boards: data.boards || {},
@@ -632,6 +642,7 @@ function initializeFirestoreSync() {
         console.error('Firestore sync error:', error);
       }
     );
+    console.log('Subscribed to Firestore changes');
   }
 }
 
@@ -644,3 +655,8 @@ const initializeStore = () => {
 };
 
 initializeStore();
+
+// Ensure Firestore sync starts (in case onRehydrateStorage doesn't trigger)
+setTimeout(() => {
+  initializeFirestoreSync();
+}, 100);
