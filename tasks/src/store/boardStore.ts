@@ -57,41 +57,50 @@ interface BoardStore extends AppState {
 
 const FIRESTORE_DOC = doc(db, 'taskboards', 'user-data');
 
-// Track local changes to prevent Firestore from overwriting them
-let localUpdateTimestamp = 0;
-let lastSavedTimestamp = 0;
+// Track when we should block Firestore updates
+let blockUntil = 0;
 let pendingSaveTimeout: ReturnType<typeof setTimeout> | null = null;
+
+// Check if we should block Firestore updates
+const shouldBlockFirestoreUpdates = () => Date.now() < blockUntil;
+
+// Extend the block period (called on every local change)
+const extendBlockPeriod = (ms: number) => {
+  const newBlockUntil = Date.now() + ms;
+  if (newBlockUntil > blockUntil) {
+    blockUntil = newBlockUntil;
+  }
+};
 
 // Save to Firestore (debounced to avoid too many writes)
 const saveToFirestore = (state: AppState) => {
+  // Block Firestore updates for 3 seconds from now
+  // This gets extended with each new local change
+  extendBlockPeriod(3000);
+  
   // Clear any pending save
   if (pendingSaveTimeout) {
     clearTimeout(pendingSaveTimeout);
   }
   
-  // Mark that we have a pending local change
-  localUpdateTimestamp = Date.now();
-  
   pendingSaveTimeout = setTimeout(() => {
-    const saveTimestamp = Date.now();
     console.log('Saving to Firestore...');
+    // Only save task data to Firestore, not UI settings
     setDoc(FIRESTORE_DOC, {
       boards: state.boards,
       swimlanes: state.swimlanes,
       tasks: state.tasks,
-      activeBoardId: state.activeBoardId,
-      fontSize: state.fontSize,
-      theme: state.theme,
-      updatedAt: saveTimestamp,
+      updatedAt: Date.now(),
     })
       .then(() => {
         console.log('Successfully saved to Firestore');
-        lastSavedTimestamp = saveTimestamp;
+        // Extend block a bit more after save completes
+        extendBlockPeriod(2000);
       })
       .catch((error) => {
         console.error('Failed to save to Firestore:', error);
       });
-  }, 500);
+  }, 200);
 };
 
 const createDefaultBoard = (): { board: Board; swimlanes: Swimlane[] } => {
@@ -591,6 +600,9 @@ export const useBoardStore = create<BoardStore>()(
 let unsubscribeFromStore: (() => void) | null = null;
 let unsubscribeFromFirestore: (() => void) | null = null;
 
+// Track previous state to detect task data changes
+let prevTaskData: { boards: string; swimlanes: string; tasks: string } | null = null;
+
 function initializeFirestoreSync() {
   console.log('Initializing Firestore sync...');
   
@@ -598,7 +610,24 @@ function initializeFirestoreSync() {
   if (!unsubscribeFromStore) {
     unsubscribeFromStore = useBoardStore.subscribe((state) => {
       // Don't sync if this was a remote update (to avoid loops)
-      if (!state._isRemoteUpdate) {
+      if (state._isRemoteUpdate) {
+        return;
+      }
+      
+      // Only sync if task data changed (not UI settings like fontSize, theme, activeBoardId)
+      const currentTaskData = {
+        boards: JSON.stringify(state.boards),
+        swimlanes: JSON.stringify(state.swimlanes),
+        tasks: JSON.stringify(state.tasks),
+      };
+      
+      const taskDataChanged = !prevTaskData ||
+        currentTaskData.boards !== prevTaskData.boards ||
+        currentTaskData.swimlanes !== prevTaskData.swimlanes ||
+        currentTaskData.tasks !== prevTaskData.tasks;
+      
+      if (taskDataChanged) {
+        prevTaskData = currentTaskData;
         saveToFirestore({
           boards: state.boards,
           swimlanes: state.swimlanes,
@@ -617,28 +646,21 @@ function initializeFirestoreSync() {
     unsubscribeFromFirestore = onSnapshot(
       FIRESTORE_DOC,
       (snapshot) => {
-        console.log('Firestore snapshot received, exists:', snapshot.exists());
+        const blocked = shouldBlockFirestoreUpdates();
+        console.log('Firestore snapshot received, exists:', snapshot.exists(), 'blocked:', blocked);
+        
+        // Ignore ALL Firestore updates while we have pending local changes
+        // This prevents the race condition where old data overwrites local changes
+        if (blocked) {
+          console.log('Ignoring Firestore update - local changes pending, block expires in', blockUntil - Date.now(), 'ms');
+          return;
+        }
+        
         if (snapshot.exists()) {
           const data = snapshot.data();
-          const remoteTimestamp = data.updatedAt || 0;
-          
-          // Ignore updates that are older than our pending local changes
-          // This prevents the "revert" issue when making local changes
-          if (localUpdateTimestamp > 0 && remoteTimestamp < localUpdateTimestamp) {
-            console.log('Ignoring stale Firestore update (local change pending)');
-            return;
-          }
-          
-          // If this is our own save coming back, just update the timestamp tracking
-          if (remoteTimestamp === lastSavedTimestamp) {
-            console.log('Received our own save confirmation');
-            localUpdateTimestamp = 0; // Clear pending flag
-            return;
-          }
-          
           const currentState = useBoardStore.getState();
 
-          // Only update if data is different
+          // Only update if task data is different (not UI settings)
           const hasChanges =
             JSON.stringify(data.boards) !== JSON.stringify(currentState.boards) ||
             JSON.stringify(data.swimlanes) !== JSON.stringify(currentState.swimlanes) ||
@@ -647,14 +669,11 @@ function initializeFirestoreSync() {
           if (hasChanges) {
             console.log('Applying remote Firestore update');
             currentState._setIsRemoteUpdate(true);
-            localUpdateTimestamp = 0; // Clear pending flag since we're accepting remote data
+            // Only update task data, preserve local UI settings
             useBoardStore.setState({
               boards: data.boards || {},
               swimlanes: data.swimlanes || {},
               tasks: data.tasks || {},
-              activeBoardId: data.activeBoardId || currentState.activeBoardId,
-              fontSize: data.fontSize || 'md',
-              theme: data.theme || 'light',
             });
             // Reset flag after a short delay
             setTimeout(() => {
