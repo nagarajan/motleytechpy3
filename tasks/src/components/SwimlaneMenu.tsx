@@ -65,7 +65,7 @@ export function SwimlaneMenu({ swimlaneId, currentBoardId }: SwimlaneMenuProps) 
             <div className="relative">
               <button
                 onClick={() => setShowMoveMenu(!showMoveMenu)}
-                className="w-full px-4 py-2 text-left text-[0.9em] flex items-center justify-between"
+                className="w-full px-4 py-2 text-left text-[0.9em] flex items-center justify-between transition-colors hover:bg-[var(--bg-hover)]"
                 style={{ color: 'var(--text-primary)' }}
               >
                 Move to board
@@ -80,7 +80,7 @@ export function SwimlaneMenu({ swimlaneId, currentBoardId }: SwimlaneMenuProps) 
                     <button
                       key={board.id}
                       onClick={() => handleMoveToBoard(board.id)}
-                      className="w-full px-4 py-2 text-left text-[0.9em]"
+                      className="w-full px-4 py-2 text-left text-[0.9em] transition-colors hover:bg-[var(--bg-hover)]"
                       style={{ color: 'var(--text-primary)' }}
                     >
                       {board.name}
@@ -93,7 +93,7 @@ export function SwimlaneMenu({ swimlaneId, currentBoardId }: SwimlaneMenuProps) 
 
           <button
             onClick={handleDuplicate}
-            className="w-full px-4 py-2 text-left text-[0.9em]"
+            className="w-full px-4 py-2 text-left text-[0.9em] transition-colors hover:bg-[var(--bg-hover)]"
             style={{ color: 'var(--text-primary)' }}
           >
             Duplicate
@@ -103,7 +103,7 @@ export function SwimlaneMenu({ swimlaneId, currentBoardId }: SwimlaneMenuProps) 
 
           <button
             onClick={handleDelete}
-            className="w-full px-4 py-2 text-left text-[0.9em]"
+            className="w-full px-4 py-2 text-left text-[0.9em] transition-colors hover:bg-[var(--bg-hover)]"
             style={{ color: 'var(--accent-danger)' }}
           >
             Delete swimlane

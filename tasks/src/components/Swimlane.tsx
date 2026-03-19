@@ -142,7 +142,7 @@ export function Swimlane({ swimlane, tasks, boardId, isTaskDragging = false }: S
             <div className="flex gap-2">
               <button
                 onClick={() => handleAddTask(false)}
-                className="flex-1 text-white py-2 rounded transition-colors"
+                className="flex-1 text-white py-2 rounded transition-all duration-150 hover:brightness-110 hover:shadow-md active:scale-[0.97] active:brightness-90 active:shadow-none"
                 style={{ backgroundColor: 'var(--accent-primary)' }}
               >
                 Add Task
@@ -152,8 +152,8 @@ export function Swimlane({ swimlane, tasks, boardId, isTaskDragging = false }: S
                   setIsAddingTask(false);
                   setNewTaskTitle('');
                 }}
-                className="px-4 py-2 rounded transition-colors"
-                style={{ color: 'var(--text-secondary)', backgroundColor: 'var(--bg-hover)' }}
+                className="px-4 py-2 rounded border transition-all duration-150 hover:brightness-95 hover:shadow-sm active:scale-[0.97] active:brightness-90"
+                style={{ color: 'var(--text-secondary)', backgroundColor: 'var(--bg-hover)', borderColor: 'var(--border-default)' }}
               >
                 Cancel
               </button>
@@ -162,7 +162,7 @@ export function Swimlane({ swimlane, tasks, boardId, isTaskDragging = false }: S
         ) : (
           <button
             onClick={() => setIsAddingTask(true)}
-            className="w-full flex items-center justify-center gap-2 py-2 rounded transition-colors"
+            className="w-full flex items-center justify-center gap-2 py-2 rounded transition-all duration-150 hover:opacity-70 hover:bg-[var(--bg-hover)] active:scale-[0.98] active:opacity-50"
             style={{ color: 'var(--text-secondary)' }}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

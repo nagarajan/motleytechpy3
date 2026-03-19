@@ -189,7 +189,7 @@ export function Task({ task, swimlaneId, isTaskDragging = false }: TaskProps) {
                 />
                 <button
                   onClick={() => handleAddSubtask(false)}
-                  className="flex-shrink-0"
+                  className="flex-shrink-0 rounded p-0.5 transition-all duration-150 hover:opacity-70 hover:bg-[var(--bg-hover)] active:scale-90 active:opacity-50"
                   style={{ color: 'var(--accent-primary)' }}
                 >
                   <svg style={{ width: '1em', height: '1em' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -201,7 +201,7 @@ export function Task({ task, swimlaneId, isTaskDragging = false }: TaskProps) {
                     setIsAddingSubtask(false);
                     setNewSubtaskTitle('');
                   }}
-                  className="flex-shrink-0"
+                  className="flex-shrink-0 rounded p-0.5 transition-all duration-150 hover:opacity-70 hover:bg-[var(--bg-hover)] active:scale-90 active:opacity-50"
                   style={{ color: 'var(--text-muted)' }}
                 >
                   <svg style={{ width: '1em', height: '1em' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -213,7 +213,7 @@ export function Task({ task, swimlaneId, isTaskDragging = false }: TaskProps) {
               isHovered && (
                 <button
                   onClick={() => setIsAddingSubtask(true)}
-                  className="flex items-center gap-1 text-[0.9em] ml-4 py-1"
+                  className="flex items-center gap-1 text-[0.9em] ml-4 py-1 rounded transition-all duration-150 hover:opacity-70 active:scale-[0.98] active:opacity-50"
                   style={{ color: 'var(--text-secondary)' }}
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

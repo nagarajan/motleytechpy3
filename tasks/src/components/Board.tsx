@@ -304,7 +304,7 @@ export function Board({ board }: BoardProps) {
           {/* Add Swimlane button */}
           <button
             onClick={() => addSwimlane(board.id, 'New Swimlane')}
-            className="flex-shrink-0 swimlane-width h-fit border-2 border-dashed rounded-lg p-6 flex items-center justify-center gap-2 transition-colors"
+            className="flex-shrink-0 swimlane-width h-fit border-2 border-dashed rounded-lg p-6 flex items-center justify-center gap-2 transition-all duration-150 hover:opacity-80 hover:shadow-md hover:border-solid active:scale-[0.98] active:opacity-60 active:shadow-none"
             style={{ backgroundColor: 'var(--bg-swimlane)', borderColor: 'var(--border-default)', color: 'var(--text-secondary)' }}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

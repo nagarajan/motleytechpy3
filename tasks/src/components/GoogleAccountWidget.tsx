@@ -37,7 +37,7 @@ export function GoogleAccountWidget() {
     return (
       <div className="flex items-center" style={{ gap: '0.5em' }}>
         <div
-          className="rounded-full animate-pulse"
+          className="rounded-lg animate-pulse"
           style={{
             width: '2em',
             height: '2em',
@@ -52,14 +52,14 @@ export function GoogleAccountWidget() {
     <div className="relative" ref={menuRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center rounded-full transition-opacity hover:opacity-80"
+        className="flex items-center rounded-lg transition-opacity hover:opacity-80"
         style={{ gap: '0.5em' }}
       >
-        {/* Colorful border wrapper - pastel Google colors */}
+        {/* Colorful border wrapper - app theme colors: pink, violet, green, orange */}
         <div
-          className="rounded-full flex items-center justify-center"
+          className="rounded-lg flex items-center justify-center"
           style={{
-            background: 'conic-gradient(from 0deg, #6aa6f8 0deg 90deg, #f87171 90deg 180deg, #fbbf24 180deg 270deg, #4ade80 270deg 360deg)',
+            background: 'conic-gradient(from 0deg, #ec4899 0deg 90deg, #8b5cf6 90deg 180deg, #10b981 180deg 270deg, #f97316 270deg 360deg)',
             padding: '3px',
           }}
         >
@@ -67,13 +67,13 @@ export function GoogleAccountWidget() {
             <img
               src={user.photoURL || ''}
               alt={user.displayName || 'User'}
-              className="rounded-full"
+              className="rounded-md"
               style={{ width: '2em', height: '2em' }}
               referrerPolicy="no-referrer"
             />
           ) : (
             <div
-              className="flex items-center justify-center rounded-full"
+              className="flex items-center justify-center rounded-md"
               style={{
                 width: '2em',
                 height: '2em',
@@ -145,7 +145,7 @@ export function GoogleAccountWidget() {
               <div style={{ padding: '0.5em' }}>
                 <button
                   onClick={handleSwitchAccount}
-                  className="w-full flex items-center rounded transition-colors"
+                  className="w-full flex items-center rounded transition-colors hover:bg-[var(--bg-hover)]"
                   style={{
                     padding: '0.5em 0.75em',
                     color: 'var(--text-secondary)',
@@ -170,7 +170,7 @@ export function GoogleAccountWidget() {
 
                 <button
                   onClick={handleSignOut}
-                  className="w-full flex items-center rounded transition-colors"
+                  className="w-full flex items-center rounded transition-colors hover:bg-[var(--bg-hover)]"
                   style={{
                     padding: '0.5em 0.75em',
                     color: 'var(--text-secondary)',
@@ -198,7 +198,7 @@ export function GoogleAccountWidget() {
             <div style={{ padding: '0.5em' }}>
               <button
                 onClick={handleSignIn}
-                className="w-full flex items-center rounded transition-colors"
+                className="w-full flex items-center rounded transition-colors hover:bg-[var(--bg-hover)]"
                 style={{
                   padding: '0.5em 0.75em',
                   color: 'var(--text-secondary)',

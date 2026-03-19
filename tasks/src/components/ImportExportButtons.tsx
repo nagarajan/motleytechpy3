@@ -78,10 +78,10 @@ export function ImportExportButtons() {
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center">
       <button
         onClick={handleExport}
-        className="flex items-center gap-1.5 px-3 py-1.5 text-[0.85em] border rounded transition-colors hover:opacity-80"
+        className="flex items-center gap-1.5 px-3 py-1.5 text-[0.85em] border border-r-0 rounded-l transition-colors hover:opacity-80"
         style={{
           backgroundColor: 'var(--bg-card)',
           borderColor: 'var(--border-default)',
@@ -107,7 +107,7 @@ export function ImportExportButtons() {
 
       <button
         onClick={handleImportClick}
-        className="flex items-center gap-1.5 px-3 py-1.5 text-[0.85em] border rounded transition-colors hover:opacity-80"
+        className="flex items-center gap-1.5 px-3 py-1.5 text-[0.85em] border rounded-r transition-colors hover:opacity-80"
         style={{
           backgroundColor: 'var(--bg-card)',
           borderColor: 'var(--border-default)',

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { useBoardStore } from '../store/boardStore';
+import { useUIStore } from '../store/uiStore';
 import type { Theme } from '../types';
 
 interface ThemeOption {
@@ -27,7 +27,7 @@ const themeOptions: ThemeOption[] = [
 export function ColorThemeSelector() {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const { theme, setTheme } = useBoardStore();
+  const { theme, setTheme } = useUIStore();
 
   const currentTheme = themeOptions.find((t) => t.value === theme) || themeOptions[0];
 
@@ -73,20 +73,18 @@ export function ColorThemeSelector() {
     <div className="relative" ref={menuRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center rounded transition-colors"
+        className="flex items-center gap-1.5 px-3 py-1.5 text-[0.85em] border rounded transition-colors hover:opacity-80"
         style={{
-          padding: '0.5em 0.75em',
           backgroundColor: 'var(--bg-card)',
+          borderColor: 'var(--border-default)',
           color: 'var(--text-secondary)',
-          gap: '0.5em',
         }}
         title="Color theme"
       >
-        {renderColorPreview(currentTheme.colors, '1.25em')}
-        <span style={{ fontSize: '0.85em' }}>{currentTheme.label}</span>
+        {renderColorPreview(currentTheme.colors, '1rem')}
+        <span>{currentTheme.label}</span>
         <svg
-          className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}
-          style={{ width: '0.75em', height: '0.75em' }}
+          className={`w-3 h-3 transition-transform ${isOpen ? 'rotate-180' : ''}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -116,11 +114,10 @@ export function ColorThemeSelector() {
               <button
                 key={option.value}
                 onClick={() => handleSelectTheme(option.value)}
-                className="w-full flex items-center rounded transition-colors"
+                className={`w-full flex items-center rounded transition-colors ${theme === option.value ? 'bg-[var(--bg-active)]' : 'hover:bg-[var(--bg-hover)]'}`}
                 style={{
                   padding: '0.5em',
                   gap: '0.5em',
-                  backgroundColor: theme === option.value ? 'var(--bg-active)' : 'transparent',
                   color: 'var(--text-primary)',
                 }}
               >
@@ -153,11 +150,10 @@ export function ColorThemeSelector() {
               <button
                 key={option.value}
                 onClick={() => handleSelectTheme(option.value)}
-                className="w-full flex items-center rounded transition-colors"
+                className={`w-full flex items-center rounded transition-colors ${theme === option.value ? 'bg-[var(--bg-active)]' : 'hover:bg-[var(--bg-hover)]'}`}
                 style={{
                   padding: '0.5em',
                   gap: '0.5em',
-                  backgroundColor: theme === option.value ? 'var(--bg-active)' : 'transparent',
                   color: 'var(--text-primary)',
                 }}
               >
@@ -184,11 +180,10 @@ export function ColorThemeSelector() {
               <button
                 key={option.value}
                 onClick={() => handleSelectTheme(option.value)}
-                className="w-full flex items-center rounded transition-colors"
+                className={`w-full flex items-center rounded transition-colors ${theme === option.value ? 'bg-[var(--bg-active)]' : 'hover:bg-[var(--bg-hover)]'}`}
                 style={{
                   padding: '0.5em',
                   gap: '0.5em',
-                  backgroundColor: theme === option.value ? 'var(--bg-active)' : 'transparent',
                   color: 'var(--text-primary)',
                 }}
               >

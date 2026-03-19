@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useBoardStore, initializeForUser } from './store/boardStore';
 import { useAuthStore, initializeAuthListener } from './store/authStore';
+import { useUIStore } from './store/uiStore';
+import { useBoardRouting } from './hooks/useBoardRouting';
 import { Board } from './components/Board';
 import { BoardSwitcher } from './components/BoardSwitcher';
 import { FontSizeSelector } from './components/FontSizeSelector';
@@ -34,8 +36,9 @@ const themeClasses: Record<string, string> = {
 const getThemeClass = (theme: string) => themeClasses[theme] || 'theme-lavender';
 
 function App() {
-  const { boards, activeBoardId, fontSize, theme } = useBoardStore();
+  const { boards, activeBoardId } = useBoardStore();
   const { initialized } = useAuthStore();
+  const { fontSize, theme } = useUIStore();
   const activeBoard = activeBoardId ? boards[activeBoardId] : null;
 
   // Initialize auth listener on mount
@@ -46,6 +49,9 @@ function App() {
     });
     return unsubscribe;
   }, []);
+
+  // Sync URL with active board (only after initialization)
+  useBoardRouting();
 
   // Show loading while auth is initializing
   if (!initialized) {
