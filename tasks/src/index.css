@@ -75,29 +75,208 @@ body {
   width: var(--swimlane-width, 320px);
 }
 
-/* Light theme (default) */
-.theme-light {
-  --bg-page: #dbeafe;
-  --bg-header: #3b82f6;
-  --bg-swimlane: #bfdbfe;
-  --bg-card: #f3f4f6;
+/* ==================== PASTEL THEMES ==================== */
+
+/* Rose - soft pink/rose tones */
+.theme-rose {
+  --bg-page: #fce7f3;
+  --bg-header: #ec4899;
+  --bg-swimlane: #fbcfe8;
+  --bg-card: #fdf2f8;
   --bg-card-completed: #dcfce7;
-  --bg-subtask: #e5e7eb;
+  --bg-subtask: #f5d0fe;
   --bg-subtask-completed: #dcfce7;
   --bg-input: #ffffff;
-  --bg-hover: #e5e7eb;
-  --bg-active: #93c5fd;
-  --border-default: #93c5fd;
-  --border-card: #d1d5db;
+  --bg-hover: #fce7f3;
+  --bg-active: #f9a8d4;
+  --border-default: #f9a8d4;
+  --border-card: #f0abfc;
   --border-completed: #86efac;
   --text-primary: #1f2937;
   --text-secondary: #4b5563;
   --text-muted: #6b7280;
   --text-completed: #6b7280;
   --text-header: #ffffff;
-  --accent-primary: #2563eb;
+  --accent-primary: #db2777;
   --accent-success: #22c55e;
   --accent-danger: #ef4444;
+}
+
+/* Lavender - soft purple tones */
+.theme-lavender {
+  --bg-page: #ede9fe;
+  --bg-header: #8b5cf6;
+  --bg-swimlane: #ddd6fe;
+  --bg-card: #f5f3ff;
+  --bg-card-completed: #dcfce7;
+  --bg-subtask: #e9d5ff;
+  --bg-subtask-completed: #dcfce7;
+  --bg-input: #ffffff;
+  --bg-hover: #ede9fe;
+  --bg-active: #c4b5fd;
+  --border-default: #c4b5fd;
+  --border-card: #d8b4fe;
+  --border-completed: #86efac;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --text-muted: #6b7280;
+  --text-completed: #6b7280;
+  --text-header: #ffffff;
+  --accent-primary: #7c3aed;
+  --accent-success: #22c55e;
+  --accent-danger: #ef4444;
+}
+
+/* Mint - soft green tones */
+.theme-mint {
+  --bg-page: #d1fae5;
+  --bg-header: #10b981;
+  --bg-swimlane: #a7f3d0;
+  --bg-card: #ecfdf5;
+  --bg-card-completed: #bbf7d0;
+  --bg-subtask: #99f6e4;
+  --bg-subtask-completed: #bbf7d0;
+  --bg-input: #ffffff;
+  --bg-hover: #d1fae5;
+  --bg-active: #6ee7b7;
+  --border-default: #6ee7b7;
+  --border-card: #5eead4;
+  --border-completed: #4ade80;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --text-muted: #6b7280;
+  --text-completed: #166534;
+  --text-header: #ffffff;
+  --accent-primary: #059669;
+  --accent-success: #22c55e;
+  --accent-danger: #ef4444;
+}
+
+/* Peach - soft orange/peach tones */
+.theme-peach {
+  --bg-page: #ffedd5;
+  --bg-header: #f97316;
+  --bg-swimlane: #fed7aa;
+  --bg-card: #fff7ed;
+  --bg-card-completed: #dcfce7;
+  --bg-subtask: #fde68a;
+  --bg-subtask-completed: #dcfce7;
+  --bg-input: #ffffff;
+  --bg-hover: #ffedd5;
+  --bg-active: #fdba74;
+  --border-default: #fdba74;
+  --border-card: #fcd34d;
+  --border-completed: #86efac;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --text-muted: #6b7280;
+  --text-completed: #6b7280;
+  --text-header: #ffffff;
+  --accent-primary: #ea580c;
+  --accent-success: #22c55e;
+  --accent-danger: #ef4444;
+}
+
+/* ==================== SATURATED THEMES ==================== */
+
+/* Ocean - deep blue tones */
+.theme-ocean {
+  --bg-page: #0c4a6e;
+  --bg-header: #0284c7;
+  --bg-swimlane: #075985;
+  --bg-card: #0369a1;
+  --bg-card-completed: #166534;
+  --bg-subtask: #0e7490;
+  --bg-subtask-completed: #166534;
+  --bg-input: #164e63;
+  --bg-hover: #155e75;
+  --bg-active: #0891b2;
+  --border-default: #0891b2;
+  --border-card: #06b6d4;
+  --border-completed: #22c55e;
+  --text-primary: #f0f9ff;
+  --text-secondary: #bae6fd;
+  --text-muted: #7dd3fc;
+  --text-completed: #86efac;
+  --text-header: #ffffff;
+  --accent-primary: #38bdf8;
+  --accent-success: #4ade80;
+  --accent-danger: #f87171;
+}
+
+/* Forest - rich green tones */
+.theme-forest {
+  --bg-page: #14532d;
+  --bg-header: #16a34a;
+  --bg-swimlane: #166534;
+  --bg-card: #15803d;
+  --bg-card-completed: #065f46;
+  --bg-subtask: #047857;
+  --bg-subtask-completed: #065f46;
+  --bg-input: #064e3b;
+  --bg-hover: #047857;
+  --bg-active: #059669;
+  --border-default: #10b981;
+  --border-card: #34d399;
+  --border-completed: #6ee7b7;
+  --text-primary: #ecfdf5;
+  --text-secondary: #a7f3d0;
+  --text-muted: #6ee7b7;
+  --text-completed: #bbf7d0;
+  --text-header: #ffffff;
+  --accent-primary: #34d399;
+  --accent-success: #4ade80;
+  --accent-danger: #f87171;
+}
+
+/* Sunset - warm orange/red tones */
+.theme-sunset {
+  --bg-page: #7c2d12;
+  --bg-header: #ea580c;
+  --bg-swimlane: #9a3412;
+  --bg-card: #c2410c;
+  --bg-card-completed: #166534;
+  --bg-subtask: #b45309;
+  --bg-subtask-completed: #166534;
+  --bg-input: #92400e;
+  --bg-hover: #b45309;
+  --bg-active: #d97706;
+  --border-default: #f59e0b;
+  --border-card: #fbbf24;
+  --border-completed: #86efac;
+  --text-primary: #fffbeb;
+  --text-secondary: #fde68a;
+  --text-muted: #fcd34d;
+  --text-completed: #bbf7d0;
+  --text-header: #ffffff;
+  --accent-primary: #fbbf24;
+  --accent-success: #4ade80;
+  --accent-danger: #fca5a5;
+}
+
+/* Grape - deep purple tones */
+.theme-grape {
+  --bg-page: #4c1d95;
+  --bg-header: #7c3aed;
+  --bg-swimlane: #5b21b6;
+  --bg-card: #6d28d9;
+  --bg-card-completed: #166534;
+  --bg-subtask: #7e22ce;
+  --bg-subtask-completed: #166534;
+  --bg-input: #581c87;
+  --bg-hover: #6b21a8;
+  --bg-active: #a855f7;
+  --border-default: #a855f7;
+  --border-card: #c084fc;
+  --border-completed: #86efac;
+  --text-primary: #faf5ff;
+  --text-secondary: #e9d5ff;
+  --text-muted: #d8b4fe;
+  --text-completed: #bbf7d0;
+  --text-header: #ffffff;
+  --accent-primary: #c084fc;
+  --accent-success: #4ade80;
+  --accent-danger: #f87171;
 }
 
 /* Dark theme */
@@ -126,7 +305,9 @@ body {
 }
 
 /* Apply theme colors */
-.theme-light, .theme-dark {
+.theme-rose, .theme-lavender, .theme-mint, .theme-peach,
+.theme-ocean, .theme-forest, .theme-sunset, .theme-grape,
+.theme-dark {
   background-color: var(--bg-page);
   color: var(--text-primary);
 }

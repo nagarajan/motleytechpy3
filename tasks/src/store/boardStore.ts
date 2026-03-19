@@ -1,9 +1,10 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { v4 as uuidv4 } from 'uuid';
-import { doc, setDoc, onSnapshot } from 'firebase/firestore';
+import { doc, setDoc, onSnapshot, type DocumentReference } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import type { AppState, Board, Swimlane, Task, Subtask, FontSize, Theme } from '../types';
+import { sanitizeEmail } from './authStore';
 
 export interface ExportData {
   version: number;
@@ -55,7 +56,9 @@ interface BoardStore extends AppState {
   _setIsRemoteUpdate: (value: boolean) => void;
 }
 
-const FIRESTORE_DOC = doc(db, 'taskboards', 'user-data');
+// Current user's Firestore document (null = guest mode, no Firebase sync)
+let currentUserEmail: string | null = null;
+let firestoreDoc: DocumentReference | null = null;
 
 // Track when we should block Firestore updates
 let blockUntil = 0;
@@ -74,6 +77,11 @@ const extendBlockPeriod = (ms: number) => {
 
 // Save to Firestore (debounced to avoid too many writes)
 const saveToFirestore = (state: AppState) => {
+  // Only save if we have a Firestore document (signed in)
+  if (!firestoreDoc) {
+    return;
+  }
+  
   // Block Firestore updates for 3 seconds from now
   // This gets extended with each new local change
   extendBlockPeriod(3000);
@@ -83,10 +91,11 @@ const saveToFirestore = (state: AppState) => {
     clearTimeout(pendingSaveTimeout);
   }
   
+  const docRef = firestoreDoc;
   pendingSaveTimeout = setTimeout(() => {
     console.log('Saving to Firestore...');
     // Only save task data to Firestore, not UI settings
-    setDoc(FIRESTORE_DOC, {
+    setDoc(docRef, {
       boards: state.boards,
       swimlanes: state.swimlanes,
       tasks: state.tasks,
@@ -130,7 +139,7 @@ export const useBoardStore = create<BoardStore>()(
       tasks: {},
       activeBoardId: null,
       fontSize: 'md' as FontSize,
-      theme: 'light' as Theme,
+      theme: 'lavender' as Theme,
       _isRemoteUpdate: false,
 
       _setIsRemoteUpdate: (value: boolean) => {
@@ -584,14 +593,6 @@ export const useBoardStore = create<BoardStore>()(
     }),
     {
       name: 'kanban-board-storage',
-      onRehydrateStorage: () => {
-        return (state) => {
-          // After rehydrating from localStorage, start Firestore sync
-          if (state) {
-            initializeFirestoreSync();
-          }
-        };
-      },
     }
   )
 );
@@ -603,8 +604,31 @@ let unsubscribeFromFirestore: (() => void) | null = null;
 // Track previous state to detect task data changes
 let prevTaskData: { boards: string; swimlanes: string; tasks: string } | null = null;
 
-function initializeFirestoreSync() {
-  console.log('Initializing Firestore sync...');
+function stopFirestoreSync() {
+  console.log('Stopping Firestore sync...');
+  if (unsubscribeFromStore) {
+    unsubscribeFromStore();
+    unsubscribeFromStore = null;
+  }
+  if (unsubscribeFromFirestore) {
+    unsubscribeFromFirestore();
+    unsubscribeFromFirestore = null;
+  }
+  if (pendingSaveTimeout) {
+    clearTimeout(pendingSaveTimeout);
+    pendingSaveTimeout = null;
+  }
+  prevTaskData = null;
+  blockUntil = 0;
+}
+
+function startFirestoreSync() {
+  if (!firestoreDoc) {
+    console.log('No Firestore document set, skipping sync');
+    return;
+  }
+  
+  console.log('Starting Firestore sync for user:', currentUserEmail);
   
   // Subscribe to local state changes and push to Firestore
   if (!unsubscribeFromStore) {
@@ -644,7 +668,7 @@ function initializeFirestoreSync() {
   // Subscribe to Firestore changes and update local state
   if (!unsubscribeFromFirestore) {
     unsubscribeFromFirestore = onSnapshot(
-      FIRESTORE_DOC,
+      firestoreDoc,
       (snapshot) => {
         const blocked = shouldBlockFirestoreUpdates();
         console.log('Firestore snapshot received, exists:', snapshot.exists(), 'blocked:', blocked);
@@ -675,6 +699,12 @@ function initializeFirestoreSync() {
               swimlanes: data.swimlanes || {},
               tasks: data.tasks || {},
             });
+            // Update activeBoardId if current one doesn't exist
+            const newBoards = data.boards || {};
+            if (!newBoards[currentState.activeBoardId || '']) {
+              const firstBoardId = Object.keys(newBoards)[0] || null;
+              useBoardStore.setState({ activeBoardId: firstBoardId });
+            }
             // Reset flag after a short delay
             setTimeout(() => {
               useBoardStore.getState()._setIsRemoteUpdate(false);
@@ -690,7 +720,50 @@ function initializeFirestoreSync() {
   }
 }
 
-// Initialize with a default board if empty
+// Initialize or switch user
+export function initializeForUser(email: string | null) {
+  console.log('Initializing for user:', email);
+  
+  // Stop any existing sync
+  stopFirestoreSync();
+  
+  if (email) {
+    // Signed in: Clear local storage and switch to Firebase
+    const sanitized = sanitizeEmail(email);
+    currentUserEmail = email;
+    firestoreDoc = doc(db, 'users', sanitized, 'taskboards', 'data');
+    
+    // Clear local data
+    localStorage.removeItem('kanban-board-storage');
+    
+    // Reset store to empty state (will be populated from Firebase)
+    useBoardStore.setState({
+      boards: {},
+      swimlanes: {},
+      tasks: {},
+      activeBoardId: null,
+      _isRemoteUpdate: false,
+    });
+    
+    // Start syncing with Firebase
+    startFirestoreSync();
+  } else {
+    // Guest mode: No Firebase sync, use localStorage only
+    currentUserEmail = null;
+    firestoreDoc = null;
+    
+    // Rehydrate from localStorage (Zustand persist handles this)
+    // Just ensure we have a default board if empty
+    setTimeout(() => {
+      const state = useBoardStore.getState();
+      if (Object.keys(state.boards).length === 0) {
+        state.addBoard('My Board');
+      }
+    }, 100);
+  }
+}
+
+// Initialize with a default board if empty (guest mode on first load)
 const initializeStore = () => {
   const state = useBoardStore.getState();
   if (Object.keys(state.boards).length === 0) {
@@ -698,9 +771,6 @@ const initializeStore = () => {
   }
 };
 
+// Only initialize default board, don't start Firebase sync
+// Firebase sync will be started when user signs in
 initializeStore();
-
-// Ensure Firestore sync starts (in case onRehydrateStorage doesn't trigger)
-setTimeout(() => {
-  initializeFirestoreSync();
-}, 100);

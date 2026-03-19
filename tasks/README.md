@@ -20,6 +20,9 @@ A modern, drag-and-drop kanban board application built with React, TypeScript, a
   - Drag between tasks
   - Drag to swimlane to promote to a full task
 - **Persistence**: Data synced to Firebase Firestore (cloud) with localStorage fallback
+- **Multi-User Support**: Sign in with Google to sync data across devices
+  - Guest mode: Data saved locally in browser
+  - Signed in: Data synced to Firebase, keyed by email address
 
 ## Tech Stack
 
@@ -30,6 +33,7 @@ A modern, drag-and-drop kanban board application built with React, TypeScript, a
 - **@dnd-kit** - Drag and drop functionality
 - **Zustand** - State management with localStorage persistence
 - **Firebase Firestore** - Cloud database for persistent storage
+- **Firebase Auth** - Google authentication for multi-user support
 - **UUID** - Unique ID generation
 
 ## Getting Started
@@ -49,7 +53,27 @@ A modern, drag-and-drop kanban board application built with React, TypeScript, a
    - Click "Create database"
    - Select "Start in test mode" (for development)
    - Choose a location close to you
-4. Get your Firebase config:
+4. Enable Google Authentication:
+   - Go to Build -> Authentication
+   - Click "Get started"
+   - Go to "Sign-in method" tab
+   - Click on "Google" and enable it
+   - Add your domain to "Authorized domains" if hosting externally
+5. Update Firestore Security Rules:
+   - Go to Build -> Firestore Database -> Rules tab
+   - Replace the rules with:
+   ```
+   rules_version = '2';
+   service cloud.firestore {
+     match /databases/{database}/documents {
+       match /users/{userEmail}/taskboards/{docId} {
+         allow read, write: if request.auth != null;
+       }
+     }
+   }
+   ```
+   - Click "Publish"
+6. Get your Firebase config:
    - Go to Project Settings (gear icon) -> Your Apps -> Web App
    - If no web app exists, click "Add app" and select Web
    - Copy the config values
@@ -125,9 +149,11 @@ src/
     EditableTitle.tsx   - Inline editable text
     ConfirmDialog.tsx   - Delete confirmation modal
     FontSizeSelector.tsx - UI scale selector
+    GoogleAccountWidget.tsx - Google sign-in/out widget
   config/
-    firebase.ts         - Firebase/Firestore initialization
+    firebase.ts         - Firebase/Firestore/Auth initialization
   store/
+    authStore.ts        - Authentication state and Google sign-in
     boardStore.ts       - Zustand store with Firestore sync
   types/
     index.ts            - TypeScript interfaces

@@ -24,7 +24,20 @@ export interface Board {
 }
 
 export type FontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type Theme = 'light' | 'dark';
+
+// Pastel themes: rose, lavender, mint, peach
+// Saturated themes: ocean, forest, sunset, grape
+// Plus dark theme
+export type Theme = 
+  | 'dark'
+  | 'rose'
+  | 'lavender'
+  | 'mint'
+  | 'peach'
+  | 'ocean'
+  | 'forest'
+  | 'sunset'
+  | 'grape';
 
 export interface AppState {
   boards: Record<string, Board>;

@@ -1,9 +1,12 @@
-import { useBoardStore } from './store/boardStore';
+import { useEffect } from 'react';
+import { useBoardStore, initializeForUser } from './store/boardStore';
+import { useAuthStore, initializeAuthListener } from './store/authStore';
 import { Board } from './components/Board';
 import { BoardSwitcher } from './components/BoardSwitcher';
 import { FontSizeSelector } from './components/FontSizeSelector';
-import { ThemeSelector } from './components/ThemeSelector';
+import { ColorThemeSelector } from './components/ColorThemeSelector';
 import { ImportExportButtons } from './components/ImportExportButtons';
+import { GoogleAccountWidget } from './components/GoogleAccountWidget';
 
 const scaleClasses = {
   xs: 'scale-xs',
@@ -13,17 +16,50 @@ const scaleClasses = {
   xl: 'scale-xl',
 };
 
-const themeClasses = {
-  light: 'theme-light',
+const themeClasses: Record<string, string> = {
+  // Pastel themes
+  rose: 'theme-rose',
+  lavender: 'theme-lavender',
+  mint: 'theme-mint',
+  peach: 'theme-peach',
+  // Saturated themes
+  ocean: 'theme-ocean',
+  forest: 'theme-forest',
+  sunset: 'theme-sunset',
+  grape: 'theme-grape',
+  // Dark theme
   dark: 'theme-dark',
 };
 
+const getThemeClass = (theme: string) => themeClasses[theme] || 'theme-lavender';
+
 function App() {
   const { boards, activeBoardId, fontSize, theme } = useBoardStore();
+  const { initialized } = useAuthStore();
   const activeBoard = activeBoardId ? boards[activeBoardId] : null;
 
+  // Initialize auth listener on mount
+  useEffect(() => {
+    const unsubscribe = initializeAuthListener((user) => {
+      // When auth state changes, initialize board store for that user
+      initializeForUser(user?.email || null);
+    });
+    return unsubscribe;
+  }, []);
+
+  // Show loading while auth is initializing
+  if (!initialized) {
+    return (
+      <div className={`min-h-screen flex items-center justify-center ${getThemeClass(theme)}`}>
+        <div className="text-center" style={{ color: 'var(--text-secondary)' }}>
+          <p>Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className={`min-h-screen flex flex-col ${scaleClasses[fontSize]} ${themeClasses[theme]}`}>
+    <div className={`min-h-screen flex flex-col ${scaleClasses[fontSize]} ${getThemeClass(theme)}`}>
       {/* Header */}
       <header style={{ padding: '1em 1.5em', backgroundColor: 'var(--bg-header)', borderBottom: '1px solid var(--border-default)' }}>
         <div className="flex items-center justify-between">
@@ -33,8 +69,9 @@ function App() {
           </div>
           <div className="flex items-center" style={{ gap: '1em' }}>
             <ImportExportButtons />
-            <ThemeSelector />
+            <ColorThemeSelector />
             <FontSizeSelector />
+            <GoogleAccountWidget />
           </div>
         </div>
       </header>
