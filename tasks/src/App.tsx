@@ -91,7 +91,7 @@ function App() {
           </div>
 
           {/* Desktop controls */}
-          <div className="hidden md:flex items-center" style={{ gap: '1em' }}>
+          <div className="hidden min-[840px]:flex items-center" style={{ gap: '1em' }}>
             <ImportExportButtons />
             <ColorThemeSelector />
             <FontSizeSelector />
@@ -99,7 +99,7 @@ function App() {
           </div>
 
           {/* Mobile hamburger menu */}
-          <div className="md:hidden relative" ref={menuRef}>
+          <div className="min-[840px]:hidden relative" ref={menuRef}>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 rounded transition-colors hover:bg-[var(--bg-hover)]"

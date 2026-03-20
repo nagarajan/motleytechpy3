@@ -17,6 +17,23 @@ import {
 import type { Board as BoardType, Task as TaskType, Subtask as SubtaskType } from '../types';
 import { Swimlane } from './Swimlane';
 import { useBoardStore } from '../store/boardStore';
+import { useUIStore } from '../store/uiStore';
+
+const containerPaddingClasses = {
+  xs: 'p-3',       // 12px
+  sm: 'p-[14px]',  // 14px
+  md: 'p-4',       // 16px
+  lg: 'p-[18px]',  // 18px
+  xl: 'p-5',       // 20px
+};
+
+const swimlaneGapClasses = {
+  xs: 'gap-2',       // 8px
+  sm: 'gap-[10px]',  // 10px
+  md: 'gap-3',       // 12px
+  lg: 'gap-[14px]',  // 14px
+  xl: 'gap-4',       // 16px
+};
 
 interface BoardProps {
   board: BoardType;
@@ -32,6 +49,7 @@ export function Board({ board }: BoardProps) {
     reorderSubtasks,
     addSwimlane,
   } = useBoardStore();
+  const { fontSize } = useUIStore();
 
   const [activeId, setActiveId] = useState<string | null>(null);
   const [activeType, setActiveType] = useState<string | null>(null);
@@ -278,8 +296,8 @@ export function Board({ board }: BoardProps) {
       onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
     >
-      <div className="flex-1 overflow-x-auto p-6">
-        <div className="flex gap-4 h-full">
+      <div className={`flex-1 overflow-x-auto ${containerPaddingClasses[fontSize]}`}>
+        <div className={`flex h-full ${swimlaneGapClasses[fontSize]}`}>
           <SortableContext
             items={swimlaneIds}
             strategy={horizontalListSortingStrategy}

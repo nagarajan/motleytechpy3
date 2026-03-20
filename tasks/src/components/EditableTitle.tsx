@@ -61,6 +61,7 @@ export function EditableTitle({
         onChange={(e) => setEditValue(e.target.value)}
         onBlur={handleSave}
         onKeyDown={handleKeyDown}
+        onClick={(e) => e.stopPropagation()}
         placeholder={placeholder}
         className={`border rounded px-2 py-1 outline-none focus:ring-2 focus:ring-blue-500 ${inputClassName}`}
         style={{ borderColor: 'var(--accent-primary)', backgroundColor: 'var(--bg-input)', color: 'var(--text-primary)', ...style }}
@@ -70,8 +71,11 @@ export function EditableTitle({
 
   return (
     <div
-      onClick={() => setIsEditing(true)}
-      className={`cursor-pointer rounded px-1 ${className}`}
+      onClick={(e) => {
+        e.stopPropagation();
+        setIsEditing(true);
+      }}
+      className={`cursor-pointer rounded px-1 hover:bg-[var(--bg-hover)] ${className}`}
       style={{ ...style }}
       title="Click to edit"
     >
