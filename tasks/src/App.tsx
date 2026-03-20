@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useBoardStore, initializeForUser } from './store/boardStore';
 import { useAuthStore, initializeAuthListener } from './store/authStore';
 import { useUIStore } from './store/uiStore';
@@ -40,6 +40,8 @@ function App() {
   const { initialized } = useAuthStore();
   const { fontSize, theme } = useUIStore();
   const activeBoard = activeBoardId ? boards[activeBoardId] : null;
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   // Initialize auth listener on mount
   useEffect(() => {
@@ -52,6 +54,20 @@ function App() {
 
   // Sync URL with active board (only after initialization)
   useBoardRouting();
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    if (mobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [mobileMenuOpen]);
 
   // Show loading while auth is initializing
   if (!initialized) {
@@ -73,11 +89,59 @@ function App() {
             <h1 className="font-bold" style={{ fontSize: '1.5em', color: 'var(--text-header)' }}>Task Board</h1>
             <BoardSwitcher />
           </div>
-          <div className="flex items-center" style={{ gap: '1em' }}>
+
+          {/* Desktop controls */}
+          <div className="hidden md:flex items-center" style={{ gap: '1em' }}>
             <ImportExportButtons />
             <ColorThemeSelector />
             <FontSizeSelector />
             <GoogleAccountWidget />
+          </div>
+
+          {/* Mobile hamburger menu */}
+          <div className="md:hidden relative" ref={menuRef}>
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 rounded transition-colors hover:bg-[var(--bg-hover)]"
+              style={{ color: 'var(--text-header)' }}
+              title="Menu"
+            >
+              {mobileMenuOpen ? (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
+
+            {mobileMenuOpen && (
+              <div
+                className="absolute right-0 top-full mt-2 p-4 rounded-lg shadow-lg z-50 min-w-[200px]"
+                style={{ backgroundColor: 'var(--bg-card)', border: '1px solid var(--border-default)' }}
+              >
+                <div className="flex flex-col gap-4">
+                  <div>
+                    <p className="text-xs font-semibold uppercase mb-2" style={{ color: 'var(--text-muted)' }}>Data</p>
+                    <ImportExportButtons />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold uppercase mb-2" style={{ color: 'var(--text-muted)' }}>Theme</p>
+                    <ColorThemeSelector />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold uppercase mb-2" style={{ color: 'var(--text-muted)' }}>Size</p>
+                    <FontSizeSelector />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold uppercase mb-2" style={{ color: 'var(--text-muted)' }}>Account</p>
+                    <GoogleAccountWidget />
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </header>

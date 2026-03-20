@@ -312,6 +312,9 @@ export function Board({ board }: BoardProps) {
             </svg>
             Add Swimlane
           </button>
+
+          {/* Spacer for right padding when scrolling */}
+          <div className="flex-shrink-0 w-2" aria-hidden="true" />
         </div>
       </div>
 

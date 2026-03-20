@@ -1,10 +1,23 @@
 import { useEffect, useRef } from 'react';
 import { useBoardStore } from '../store/boardStore';
 
+// Get base path from Vite config (e.g., '/tasks/' in production, '/' in development)
+const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, ''); // Remove trailing slash
+
 function getBoardIdFromUrl(): string | null {
   const path = window.location.pathname;
-  const match = path.match(/^\/board\/([^/]+)$/);
+  // Match /board/uuid or /tasks/board/uuid depending on base path
+  const pattern = new RegExp(`^${BASE_PATH}/board/([^/]+)$`);
+  const match = path.match(pattern);
   return match ? match[1] : null;
+}
+
+function getBoardUrl(boardId: string): string {
+  return `${BASE_PATH}/board/${boardId}`;
+}
+
+function getBaseUrl(): string {
+  return BASE_PATH || '/';
 }
 
 export function useBoardRouting() {
@@ -36,7 +49,7 @@ export function useBoardRouting() {
         // Invalid board ID - go to first board
         skipNextUrlUpdate.current = true;
         setActiveBoard(boardIds[0]);
-        window.history.replaceState({ boardId: boardIds[0] }, '', `/board/${boardIds[0]}`);
+        window.history.replaceState({ boardId: boardIds[0] }, '', getBoardUrl(boardIds[0]));
       }
     } else {
       // Base URL - redirect to active or first board
@@ -45,7 +58,7 @@ export function useBoardRouting() {
         skipNextUrlUpdate.current = true;
         setActiveBoard(targetId);
       }
-      window.history.replaceState({ boardId: targetId }, '', `/board/${targetId}`);
+      window.history.replaceState({ boardId: targetId }, '', getBoardUrl(targetId));
     }
   }, [boards, activeBoardId, setActiveBoard]);
 
@@ -64,11 +77,11 @@ export function useBoardRouting() {
       // Valid board - update URL
       const urlBoardId = getBoardIdFromUrl();
       if (urlBoardId !== activeBoardId) {
-        window.history.pushState({ boardId: activeBoardId }, '', `/board/${activeBoardId}`);
+        window.history.pushState({ boardId: activeBoardId }, '', getBoardUrl(activeBoardId));
       }
     } else if (boardIds.length === 0) {
       // All boards deleted - go to base URL
-      window.history.replaceState({}, '', '/');
+      window.history.replaceState({}, '', getBaseUrl());
     }
   }, [activeBoardId, boards]);
 
@@ -86,7 +99,7 @@ export function useBoardRouting() {
         // Invalid or missing board - go to first board
         skipNextUrlUpdate.current = true;
         setActiveBoard(boardIds[0]);
-        window.history.replaceState({ boardId: boardIds[0] }, '', `/board/${boardIds[0]}`);
+        window.history.replaceState({ boardId: boardIds[0] }, '', getBoardUrl(boardIds[0]));
       }
     };
 

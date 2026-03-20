@@ -55,11 +55,13 @@ export function GoogleAccountWidget() {
         className="flex items-center rounded-lg transition-opacity hover:opacity-80"
         style={{ gap: '0.5em' }}
       >
-        {/* Colorful border wrapper - app theme colors: pink, violet, green, orange */}
+        {/* Colorful border wrapper - theme colors when logged in, grey shades when guest */}
         <div
           className="rounded-lg flex items-center justify-center"
           style={{
-            background: 'conic-gradient(from 0deg, #ec4899 0deg 90deg, #8b5cf6 90deg 180deg, #10b981 180deg 270deg, #f97316 270deg 360deg)',
+            background: user
+              ? 'conic-gradient(from 0deg, #ec4899 0deg 90deg, #8b5cf6 90deg 180deg, #10b981 180deg 270deg, #f97316 270deg 360deg)'
+              : 'conic-gradient(from 0deg, #9ca3af 0deg 90deg, #6b7280 90deg 180deg, #4b5563 180deg 270deg, #374151 270deg 360deg)',
             padding: '3px',
           }}
         >
