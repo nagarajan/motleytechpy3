@@ -3,9 +3,10 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig(({ command }) => ({
   plugins: [react(), tailwindcss()],
-  base: mode === 'production' ? '/tasks/' : '/',
+  // Use /tasks/ base path for production build, / for dev server
+  base: command === 'build' ? '/tasks/' : '/',
   server: {
     port: 8095,
     host: '0.0.0.0',
